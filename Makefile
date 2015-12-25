@@ -9,8 +9,6 @@ help:
 	@echo "make list           #=> List the files"
 	@echo "make update         #=> Fetch changes"
 	@echo "make deploy         #=> Create symlink"
-	@echo "make init           #=> Setup environment"
-	@echo "make install        #=> Updating, deploying and initializng"
 	@echo "make clean          #=> Remove the dotfiles"
 
 list:

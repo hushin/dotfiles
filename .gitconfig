@@ -1,23 +1,22 @@
 [core]
-  autocrlf = false
-  excludesfile = ~/.gitignore
+    autocrlf = false
+    excludesfile = ~/.gitignore
 [credential]
-  helper = cache
+    helper = cache
 [include]
-  path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
 [alias]
-  ci = commit -v
-  co = checkout
-  st = status
-  di = diff
-  br = branch
-  df = diff
-  a  = add
-  d  = diff
-  dc = diff --cached
-  f  = fetch
+    ci = commit -v
+    co = checkout
+    st = status
+    di = diff
+    br = branch
+    df = diff
+    a  = add
+    d  = diff
+    dc = diff --cached
+    f  = fetch
+[ghq]
+    root = ~/src
 [color]
-  diff        = auto
-  status      = auto
-  branch      = auto
-  interactive = auto
+    ui = auto

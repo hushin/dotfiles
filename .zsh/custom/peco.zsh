@@ -1,10 +1,24 @@
 # history
 bindkey '^r'   anyframe-widget-put-history
+bindkey '^xr' anyframe-widget-execute-history
+bindkey '^x^r' anyframe-widget-execute-history
+
+# ghq
+bindkey '^xg' anyframe-widget-cd-ghq-repository
+bindkey '^x^g' anyframe-widget-cd-ghq-repository
+bindkey '^]' anyframe-widget-cd-ghq-repository
 
 # git branch
 bindkey '^gb'  anyframe-widget-checkout-git-branch
 bindkey '^g^b' anyframe-widget-checkout-git-branch
 bindkey '^g^b^b' anyframe-widget-insert-git-branch
+
+
+bindkey '^xb' anyframe-widget-cdr
+bindkey '^x^b' anyframe-widget-checkout-git-branch
+
+bindkey '^xe' anyframe-widget-insert-git-branch
+bindkey '^x^e' anyframe-widget-insert-git-branch
 
 # kill
 bindkey '^p^k' anyframe-widget-kill
@@ -79,18 +93,6 @@ function psp() {
     ps -ef | peco --query "$*"
   fi
 }
-
-# ghq with peco
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N peco-src
-bindkey '^]' peco-src
 
 # tmux with peco
 function peco-tmux() {

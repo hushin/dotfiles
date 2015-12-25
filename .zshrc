@@ -52,9 +52,9 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z} r:|[-_.]=
 # Antigen
 source $HOME/.zsh/antigen/antigen.zsh
 antigen use oh-my-zsh
-antigen bundle https://github.com/mollifier/anyframe
+antigen bundle mollifier/anyframe
 antigen bundle git
-antigen theme ys
+antigen theme robbyrussell
 antigen apply
 
 # カスタム設定を読み込む
