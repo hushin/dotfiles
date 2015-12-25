@@ -49,6 +49,10 @@ setopt brace_ccl               # {a-c} を a b c に展開する
 zstyle ':completion:*:default' menu select=1                                        # 補完候補をカーソルで選べるように
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z} r:|[-_.]=**' # -_. の前は末尾に * を付けていい感じに補完する
 
+# cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
 # Antigen
 source $HOME/.zsh/antigen/antigen.zsh
 antigen use oh-my-zsh

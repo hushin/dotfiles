@@ -2,7 +2,7 @@
     autocrlf = false
     excludesfile = ~/.gitignore
 [credential]
-    helper = cache
+    helper = osxkeychain
 [include]
     path = ~/.gitconfig.local
 [alias]
