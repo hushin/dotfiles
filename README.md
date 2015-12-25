@@ -9,7 +9,6 @@
 ```
 git clone https://github.com/hushin/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-make init
 make deploy
 ```
 
