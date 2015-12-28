@@ -4,14 +4,11 @@ bindkey '^xr' anyframe-widget-execute-history
 bindkey '^x^r' anyframe-widget-execute-history
 
 # ghq
-bindkey '^xg' anyframe-widget-cd-ghq-repository
-bindkey '^x^g' anyframe-widget-cd-ghq-repository
 bindkey '^]' anyframe-widget-cd-ghq-repository
 
 # git branch
 bindkey '^gb'  anyframe-widget-checkout-git-branch
 bindkey '^g^b' anyframe-widget-checkout-git-branch
-bindkey '^g^b^b' anyframe-widget-insert-git-branch
 
 
 bindkey '^xb' anyframe-widget-cdr
@@ -19,6 +16,8 @@ bindkey '^x^b' anyframe-widget-checkout-git-branch
 
 bindkey '^xe' anyframe-widget-insert-git-branch
 bindkey '^x^e' anyframe-widget-insert-git-branch
+
+bindkey '^w' anyframe-widget-select-widget
 
 # kill
 bindkey '^p^k' anyframe-widget-kill
