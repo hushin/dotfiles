@@ -35,13 +35,6 @@ function git-pull-and-prune() {
 }
 alias ggpull='git-pull-and-prune'
 
-# autojumpした時はtmuxのwindow名をディレクトリー名に変更する
-function jump-and-tmux-rename-window() {
-  \j "$@"
-  tmux rename-window ${PWD:t}
-}
-alias j='jump-and-tmux-rename-window'
-
 function direnv-init() {
   echo 'export PATH=$PWD/bin:$PWD/vendor/bin:$PATH' > .envrc && direnv allow
 }
