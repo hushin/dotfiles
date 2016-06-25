@@ -57,6 +57,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 source $HOME/.zsh/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle mollifier/anyframe
+antigen bundle mollifier/cd-gitroot
 antigen bundle git
 antigen theme robbyrussell
 antigen apply

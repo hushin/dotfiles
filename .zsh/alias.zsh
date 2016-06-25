@@ -18,6 +18,10 @@ alias ll='ls -l'
 alias diff='diff -u'
 alias grep='egrep --color'
 
+# cd
+alias cdu='cd-gitroot'
+
+# git
 alias gsh='git show'
 compdef _git gsh=git-show
 alias gdc='git diff --cached'
