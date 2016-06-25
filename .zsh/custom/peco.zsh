@@ -9,13 +9,11 @@ bindkey '^]' anyframe-widget-cd-ghq-repository
 # git branch
 bindkey '^gb'  anyframe-widget-checkout-git-branch
 bindkey '^g^b' anyframe-widget-checkout-git-branch
+bindkey '^gi' anyframe-widget-insert-git-branch
+bindkey '^g^i' anyframe-widget-insert-git-branch
 
-
-bindkey '^xb' anyframe-widget-cdr
-bindkey '^x^b' anyframe-widget-checkout-git-branch
-
-bindkey '^xe' anyframe-widget-insert-git-branch
-bindkey '^x^e' anyframe-widget-insert-git-branch
+# cdr
+bindkey '^[' anyframe-widget-cdr
 
 bindkey '^w' anyframe-widget-select-widget
 
