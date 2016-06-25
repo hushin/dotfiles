@@ -90,3 +90,22 @@ function psp() {
     ps -ef | peco --query "$*"
   fi
 }
+
+# Treeで表示してディレクトリを移動
+# $1 階層
+function anyframe-widget-cd-tree(){
+  tree --charset=o -f -L $1 \
+    | anyframe-selector-auto \
+    | tr -d '\||`|-' \
+    | anyframe-action-execute cd --
+}
+alias cdt='anyframe-widget-cd-tree'
+
+# agで検索 peco で絞り込み emacs で該当行を開く
+# ファイル名にスペースが含まれていても動く
+function ag-emacs(){
+  local IFS="
+	"
+  emacs $(ag "$@" | peco --query "$LBUFFER" | awk -F : '{print "+" $2 "	" $1}')
+}
+alias age='ag-emacs'
