@@ -7,6 +7,9 @@ if type anyenv > /dev/null 2>&1; then
   eval "$(anyenv init -)"
 fi
 
+# rbenv TODO anyenvに移行
+eval "$(rbenv init -)"
+
 # homebrew cask
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
