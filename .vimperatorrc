@@ -66,6 +66,13 @@ highlight Bell display:none;
 " 常にタブ表示
 set showtabline=2
 " アドレス補完
+" オートコンプリート関係
+" s 検索エンジンのみ
+" f ローカルファイル
+" b ブックマーク
+" h 履歴
+" l ロケーションバー(ブックマーク、履歴)
+" S 検索サジェスト
 set complete=lbsS
 "set complete=sSltf
 "set complete=lb
@@ -84,8 +91,6 @@ set hintchars=hjklasdfgyuiowertnm
 " IME off
 style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
 
-
-
 " タブ追加アイコンを非表示に
 sty chrome://* .tabs-newtab-button {display: none;}
 
@@ -99,6 +104,11 @@ javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://h
 :lazy fmaps -u='b\.hatena\.ne\.jp/' j k o e b
 :lazy fmaps -u='calendar\.google\.com' -e 'vkeydown' j k t a w m x c e / + q s ?
 :lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc <S-i> <S-u>
+lazy fmaps -u='^http://twitter.com/' <Space> . j k ?
+lazy fmaps -u='^http://twitter.com/' -events=vkeydown f r t n m gh gr gp gf gm
+
+" feedSomeKeys_3 ではうまく設定できなかったので、ignorekeysで無効化
+ignorekeys add www\\.facebook\\.com -except J,K,H,L,f,:,,
 
 " qmark go + ○ でアクセス
 qmark b http://b.hatena.ne.jp/
@@ -180,14 +190,16 @@ noremap u <C-u>
 map x :tabclose<CR>
 map X :undo<CR>
 
+no a <Nop>
+
 " ===========================
 " color scheme
 " ===========================
 
-" ヒント表示色
-highlight Hint font-family: Arial; font-size: 16px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: yellow;
-highlight HintElem color: gray; background-color: #a1e4e6;
-highlight HintActive color: black; background-color: #ff8700;
+" ヒント表示色"
+highlight Hint z-index:9999; font-size:16px; color: #fff; text-shadow: 0 1px 0 #000; line-height: 20px; background-color:rgba(0,0,0,0.8); border-width:0px; border-radius: 4px;box-shadow: 0 0 2px rgba(0,0,0, 0.5); padding: 0 0; min-width: 20px; text-indent: -1px;text-align: center; display: inline-block;position:absolute; text-align: cener; vertical-align: middle; font-family: Arial, Menlo, Consolas, Monaco, monospace; text-transform: uppercase; margin-top: --7px; margin-left: -7px;
+highlight HintElem background-color:rgba(240,0,0,0.1);
+highlight HintActive background:rgba(0,0,240,0.3);
 
 highlight Normal<<EOM
     color: #33FF33;
