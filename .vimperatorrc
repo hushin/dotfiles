@@ -79,8 +79,8 @@ set complete=lbsS
 " エラー出力レベル
 set verbose=9
 " GUI options
-set gui=none
-set gui+=menu,tabs
+" set gui=none
+" set gui+=menu,tabs
 
 
 " No focus
