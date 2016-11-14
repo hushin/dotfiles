@@ -180,6 +180,8 @@ qmark m https://mail.google.com/mail/
 
 command clip javascript evernote_doAction()
 
+set nextpattern=^次(へ|の|ペ)?,^続き,ＮＥＸＴ,(next|more),^(>>*|»)
+set previouspattern=^前(へ|の|ペ)?,^戻る,ＢＡＣＫ,(prev|previous),^(<<*|«)
 
 "---------------------------------------------------------------------------}}}
 " Bookmarks (for search)                                                    {{{
