@@ -87,6 +87,11 @@ EOM
 " ===========================
 " Plugins
 " ===========================
+
+" TODO
+" cd ~/.vimperator
+" mkdir vimppm && cd vimppm
+" git clone git://github.com/cd01/vimppm .
 source ~/.vimperator/vimppm/plugin/vimppm.js
 
 " Vimpr list (only js file)
