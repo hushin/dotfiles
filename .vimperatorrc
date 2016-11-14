@@ -88,6 +88,8 @@ EOM
 " Plugins
 " ===========================
 
+" 設定しないと$PATHが通らず vimppm が使えない環境があった
+set shell=/bin/zsh
 " TODO
 " cd ~/.vimperator
 " mkdir vimppm && cd vimppm
