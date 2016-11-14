@@ -19,17 +19,70 @@ javascript <<EOM
 EOM
 
 " https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-%E3%81%A7%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%8B%A1%E5%BC%B5%E3%82%92%E4%BD%BF%E3%81%86
-javascript <<EOF
+javascript <<EOM
 // キーボードショートカットの指定
 // 空(null)を指定すれば hints や nnoremap を上書きしなくなる
 //    (注: 現バージョンではデフォルト値で上書きされてます。将来修正予定です)
 liberator.globalVariables.hBookmark_shortcuts = {
-    hintsAdd     : 'h',
-    hintsComment : 'm',
-    add          : ['h'],
-    comment      : ['m'],
+    hintsAdd     : 'B',
+    hintsComment : 'C',
+    add          : ['B'],
+    comment      : ['C'],
 };
-EOF
+EOM
+
+
+" https://github.com/vimpr/vimperator-plugins/blob/master/stella.js
+javascript <<EOM
+liberator.globalVariables.stella_nico_use_comment=true
+function addLocalMappings(buffer, maps) {
+  maps.forEach(
+    function (map) {
+      let [cmd, action, extra] = map;
+      let actionFunc = action;
+      extra || (extra = {});
+      if (typeof action == "string") {
+        if (action.charAt(0) == ':')
+          actionFunc = extra.open ? function () commandline.open("", action, modes.EX)
+                                  : function () liberator.execute(action);
+        else
+          actionFunc = function () events.feedkeys(action, extra.noremap, true);
+      }
+      extra.matchingUrls = buffer;
+      mappings.addUserMap(
+        [modes.NORMAL],
+        [cmd],
+        "Local mapping for " + buffer,
+        actionFunc,
+        extra
+      );
+    }
+  );
+}
+addLocalMappings(
+  /^(http:\/\/(es|www).nicovideo.jp\/(watch|playlist\/mylist)|https:\/\/(jp|www)\.youtube\.com\/watch|http:\/\/(www\.)?vimeo\.com\/(channels\/(hd)?#)?\d+)/,
+  [
+    ['<C-g>', ':pageinfo S',      ],
+    ['p',     ':stplay',          ],
+    ['m',     ':stmute',          ],
+    ['c',     ':stcomment',       ],
+    ['zz',    ':stlarge',         ],
+    ['r',     ':strepeat',        ],
+    ['+',     ':stvolume! 10',    ],
+    ['-',     ':stvolume! -10',   ],
+    ['h',     ':stseek! -10',     ],
+    ['l',     ':stseek! 10',      ],
+    ['k',     ':stvolume! 10',    ],
+    ['j',     ':stvolume! -10',   ],
+    ['s',     ':stseek ',         {open: true}],
+    ['S',     ':stseek! ',        {open: true}],
+    ['v',     ':stvolume ',       {open: true}],
+    ['V',     ':stvolume! ',      {open: true}],
+    ['o',     ':strelations ',    {open: true}],
+    ['O',     ':strelations! ',   {open: true}],
+  ]
+);
+EOM
 
 " ===========================
 " Plugins
@@ -43,14 +96,17 @@ vimppm 'copy.js'
 vimppm 'caret-hint.js'
 vimppm 'amazon_simple_uri.js'
 vimppm 'feedSomeKeys_3.js'
+vimppm 'stella.js'
+" vimppm 'sbmcommentsviewer.js'
+
 
 
 " ===========================
 " Variables
 " ===========================
 " _smooziee.js
-let g:smooziee_scroll_amount="70"
-let g:smooziee_scroll_interval="12"
+let g:smooziee_scroll_amount="130"
+let g:smooziee_scroll_interval="15"
 
 " ===========================
 " Settings
@@ -117,6 +173,7 @@ qmark m https://mail.google.com/mail/
 
 command clip javascript evernote_doAction()
 
+
 "---------------------------------------------------------------------------}}}
 " Bookmarks (for search)                                                    {{{
 "------------------------------------------------------------------------------
@@ -158,14 +215,10 @@ bmark -title="Stackoverflow" -tags=keyword -keyword=stack https://stackoverflow.
 " ===========================
 map ,r :source<Space>~/.vimperatorrc<CR>
 
-" Ctrl+r で再起動
-map <C-r> :restart<CR>
+" .Ctrl+r で再起動
+map ,<C-r> :restart<CR>
 " Bookmarks
 map ,b :bmarks<Space>
-
-" J, Kに前のタブ,次のタブを割り当てる
-map J <C-PageUp>
-map K <C-PageDown>
 
 " sでぐぐる
 nnoremap s :tabopen<Space>google<Space>
@@ -187,10 +240,20 @@ cmap <C-p> <S-TAB>
 " dとuでスクロール
 noremap d <C-d>
 noremap u <C-u>
-map x :tabclose<CR>
+" タブを閉じたとき直前のタブにフォーカスさせる
+noremap x <M-W>
 map X :undo<CR>
 
 no a <Nop>
+
+" h/lでタブ移動
+nmap h <C-p>
+nmap l <C-n>
+" Shift+← / Shift+→でタブ位置変更
+map <S-Right> :tabmove! +1<CR>
+map <S-Left> :tabmove! -1<CR>
+" eでクイックヒントモードを新しいタブで開く
+map e F
 
 " ===========================
 " color scheme
@@ -236,3 +299,4 @@ highlight CompTitle>*<<EOM
 EOM
 
 " vim: set ft=vimperator:
+echo "Finish loading vimperatorrc!"
