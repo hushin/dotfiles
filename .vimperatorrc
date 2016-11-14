@@ -1,0 +1,226 @@
+" ===========================
+" Scripts
+" ===========================
+" copy.js
+javascript <<EOM
+    liberator.globalVariables.copy_templates = [
+        {label: 'anchor', value: '<a href=\"%URL\">%TITLE%</a>'},
+        {label: 'htmlblockquote', value: '<blockquote cite=\"%URL%\" title=\"%TITLE%\">%HTMLSEL%</blockquote>'},
+        {label: 'selanchor', value: '<a href=\"%URL%\" title=\"%TITLE%\">%SEL%</a>'},
+        {label: 'title', value: '%TITLE%'},
+        {label: 'titleAndUrl', value: '%TITLE%\n%URL%'},
+        {label: 'markdown', value: 'markdown test', map: ',m2',
+          custom: function() {
+            var d = content.document;
+            return '['+d.title.replace(/([\[\]])/g,'\\$1')+']'+'('+d.location.href+')';
+          }
+        },
+    ];
+EOM
+
+" https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-%E3%81%A7%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%8B%A1%E5%BC%B5%E3%82%92%E4%BD%BF%E3%81%86
+javascript <<EOF
+// キーボードショートカットの指定
+// 空(null)を指定すれば hints や nnoremap を上書きしなくなる
+//    (注: 現バージョンではデフォルト値で上書きされてます。将来修正予定です)
+liberator.globalVariables.hBookmark_shortcuts = {
+    hintsAdd     : 'h',
+    hintsComment : 'm',
+    add          : ['h'],
+    comment      : ['m'],
+};
+EOF
+
+" ===========================
+" Plugins
+" ===========================
+source ~/.vimperator/vimppm/plugin/vimppm.js
+
+" Vimpr list (only js file)
+vimppm '_libly.js'
+vimppm '_smooziee.js'
+vimppm 'copy.js'
+vimppm 'caret-hint.js'
+vimppm 'amazon_simple_uri.js'
+vimppm 'feedSomeKeys_3.js'
+
+
+" ===========================
+" Variables
+" ===========================
+" _smooziee.js
+let g:smooziee_scroll_amount="70"
+let g:smooziee_scroll_interval="12"
+
+" ===========================
+" Settings
+" ===========================
+
+" ブラウザタイトルを変更
+set titlestring=Firefox
+" 検索語を強調表示
+set hlsearch
+" ビープ音を無効化
+set visualbell
+highlight Bell display:none;
+" 常にタブ表示
+set showtabline=2
+" アドレス補完
+set complete=lbsS
+"set complete=sSltf
+"set complete=lb
+" エラー出力レベル
+set verbose=9
+" GUI options
+set gui=none
+set gui+=menu,tabs
+
+
+" No focus
+set focuscontent
+
+set hintchars=hjklasdfgyuiowertnm
+
+" IME off
+style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
+
+
+
+" タブ追加アイコンを非表示に
+sty chrome://* .tabs-newtab-button {display: none;}
+
+" Hatena::Bookmark
+javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
+
+" feedSomeKeys_3.js
+:command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+:lazy fmap -modes=i -events=keydown,keypress <C-p> <Up>
+:lazy fmap -modes=i -events=keydown,keypress <C-n> <Down>
+:lazy fmaps -u='b\.hatena\.ne\.jp/' j k o e b
+:lazy fmaps -u='calendar\.google\.com' -e 'vkeydown' j k t a w m x c e / + q s ?
+:lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc <S-i> <S-u>
+
+" qmark go + ○ でアクセス
+qmark b http://b.hatena.ne.jp/
+qmark c https://calendar.google.com/
+qmark m https://mail.google.com/mail/
+
+command clip javascript evernote_doAction()
+
+"---------------------------------------------------------------------------}}}
+" Bookmarks (for search)                                                    {{{
+"------------------------------------------------------------------------------
+
+" Search Engine
+bmark -title="Google" -keyword=g http://www.google.com/search?q=%s
+" ALC
+bmark -title="ALC" -keyword=a http://eow.alc.co.jp/%s/UTF-8/
+set defsearch=g
+
+bmark -title="Google - I'm feeling lucky!" -tags=keyword -keyword=l https://www.google.co.jp/search?q=%s&btnI=I
+bmark -title="Hatena tag" -tags=keyword -keyword=ht http://b.hatena.ne.jp/search/tag?q=%s
+bmark -title="Wikipedia" -tags=keyword -keyword=w https://ja.wikipedia.org/wiki/%s
+bmark -title="niconico" -tags=keyword -keyword=n http://www.nicovideo.jp/search/%s
+bmark -title="niconico dictionary" -tags=keyword -keyword=nd http://dic.nicovideo.jp/s/al/a/%s
+bmark -title="Google image" -tags=keyword -keyword=p http://www.google.com/search?site=imghp&tbm=isch&q=%s
+bmark -title="Google Map" -tags=keyword -keyword=m https://www.google.com/maps/place/%s
+bmark -title="Google Trends" -tags=keyword -keyword=tr https://www.google.co.jp/trends/explore#q=%s
+bmark -title="IP address" -tags=keyword -keyword=ip http://www.ip-adress.com/whois/%s
+bmark -title="flickr" -tags=keyword -keyword=f https://www.flickr.com/search/?text=%s&safe_search=3
+bmark -title="Youtube" -tags=keyword -keyword=y http://www.youtube.com/results?search_query=%s&sm=3
+bmark -title="Yahoo real time search" -tags=keyword -keyword=rt http://realtime.search.yahoo.co.jp/search?p=%s&ei=UTF-8
+bmark -title="twitter" -tags=keyword -keyword=tw https://twitter.com/search?f=tweets&vertical=default&src=typd&q=%s
+bmark -title="Google Scholar" -tags=keyword -keyword=sc http://scholar.google.co.jp/scholar?as_vis=1&q=%s&hl=ja&as_sdt=1
+bmark -title="Qiita" -tags=keyword -keyword=q http://qiita.com/search?q=%s
+bmark -title="Github - repo" -tags=keyword -keyword=gi https://github.com/search?q=%s
+bmark -title="Github - user" -tags=keyword -keyword=gu https://github.com/search?q=%s&type=Users
+bmark -title="Github - code" -tags=keyword -keyword=gc https://github.com/search?q=%s&type=Code
+bmark -title="Github - code filename" -tags=keyword -keyword=gf https://github.com/search?q=filename:%s&type=Code
+bmark -title="Gist" -tags=keyword -keyword=gs https://gist.github.com/search?utf8=✓&q=%s
+bmark -title="translate ja <-> en" -tags=keyword -keyword=t http://ejje.weblio.jp/content/%s
+bmark -title="Gmail" -tags=keyword -keyword=gm https://mail.google.com/mail/u/0/#search/%s
+bmark -title="Hacker News" -tags=keyword -keyword=hn https://hn.algolia.com/?q=%s
+bmark -title="Pinterest" -tags=keyword -keyword=pin https://www.pinterest.com/search/pins/?q=%s
+bmark -title="Stackoverflow" -tags=keyword -keyword=stack https://stackoverflow.com/search?q=%s
+
+" ===========================
+" key maps
+" ===========================
+map ,r :source<Space>~/.vimperatorrc<CR>
+
+" Ctrl+r で再起動
+map <C-r> :restart<CR>
+" Bookmarks
+map ,b :bmarks<Space>
+
+" J, Kに前のタブ,次のタブを割り当てる
+map J <C-PageUp>
+map K <C-PageDown>
+
+" sでぐぐる
+nnoremap s :tabopen<Space>google<Space>
+
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-y> <C-v>
+
+" 補完リストの選択を<C-n>や<C-p>で
+cmap <C-n> <TAB>
+cmap <C-p> <S-TAB>
+
+" dとuでスクロール
+noremap d <C-d>
+noremap u <C-u>
+map x :tabclose<CR>
+map X :undo<CR>
+
+" ===========================
+" color scheme
+" ===========================
+
+" ヒント表示色
+highlight Hint font-family: Arial; font-size: 16px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: yellow;
+highlight HintElem color: gray; background-color: #a1e4e6;
+highlight HintActive color: black; background-color: #ff8700;
+
+highlight Normal<<EOM
+    color: #33FF33;
+    background: #333333;
+EOM
+
+highlight StatusLine<<EOM
+    background: #333333;
+    color: #33FF33;
+    font-weight: normal;
+EOM
+
+highlight CmdLine<<EOM
+    transition: all 0.25s;
+EOM
+
+highlight ErrorMsg<<EOM
+    color: white;
+    background: red;
+    font-weight: bold;
+EOM
+
+highlight WarningMsg<<EOM
+    color: red;
+EOM
+
+highlight CompTitle<<EOM
+    background: #252525;
+EOM
+
+highlight CompTitle>*<<EOM
+    color: #EEEE55;
+    text-shadow: 1px 1px 1px #DDDD44;
+EOM
+
+" vim: set ft=vimperator:
