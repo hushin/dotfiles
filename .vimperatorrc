@@ -72,8 +72,6 @@ addLocalMappings(
     ['-',     ':stvolume! -10',   ],
     ['h',     ':stseek! -10',     ],
     ['l',     ':stseek! 10',      ],
-    ['k',     ':stvolume! 10',    ],
-    ['j',     ':stvolume! -10',   ],
     ['s',     ':stseek ',         {open: true}],
     ['S',     ':stseek! ',        {open: true}],
     ['v',     ':stvolume ',       {open: true}],
@@ -145,6 +143,8 @@ set verbose=9
 set gui=none
 set gui+=menu,tabs,navigation,addons
 
+" helpなどを新しいタブで開く
+set newtab=all
 
 " No focus
 set focuscontent
@@ -177,8 +177,6 @@ ignorekeys add www\\.facebook\\.com -except J,K,H,L,f,:,,
 qmark b http://b.hatena.ne.jp/
 qmark c https://calendar.google.com/
 qmark m https://mail.google.com/mail/
-
-command clip javascript evernote_doAction()
 
 set nextpattern=^次(へ|の|ペ)?,^続き,ＮＥＸＴ,(next|more),^(>>*|»)
 set previouspattern=^前(へ|の|ペ)?,^戻る,ＢＡＣＫ,(prev|previous),^(<<*|«)
@@ -263,6 +261,22 @@ map <S-Right> :tabmove! +1<CR>
 map <S-Left> :tabmove! -1<CR>
 " eでクイックヒントモードを新しいタブで開く
 map e F
+
+" タブのピン留めをトグルする
+" http://qiita.com/t3kot3ko/items/1b032940dbb79e88323e
+javascript <<EOM
+liberator.modules.commands.addUserCommand(["togglepin"], "add pin to current tab",
+function(){
+    var currentTab = gBrowser.mCurrentTab
+    if(currentTab.pinned){
+        gBrowser.unpinTab(currentTab)
+    }
+    else{
+        gBrowser.pinTab(currentTab)
+    }
+});
+EOM
+nnoremap <C-t> :togglepin <CR>
 
 " ===========================
 " color scheme
