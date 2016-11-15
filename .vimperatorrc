@@ -268,8 +268,8 @@ map e F
 " color scheme
 " ===========================
 
-" ヒント表示色"
-highlight Hint z-index:9999; font-size:16px; color: #fff; text-shadow: 0 1px 0 #000; line-height: 20px; background-color:rgba(0,0,0,0.8); border-width:0px; border-radius: 4px;box-shadow: 0 0 2px rgba(0,0,0, 0.5); padding: 0 0; min-width: 20px; text-indent: -1px;text-align: center; display: inline-block;position:absolute; text-align: cener; vertical-align: middle; font-family: Arial, Menlo, Consolas, Monaco, monospace; text-transform: uppercase; margin-top: --7px; margin-left: -7px;
+" ヒント表示色
+highlight Hint z-index:9999; font-size:14px; color: black; text-shadow: rgba(255, 255, 255, 0.6) 0px 1px 0px; line-height: 18px; background: linear-gradient(to bottom, rgb(255, 247, 133), rgb(255, 197, 66)); border-width: 1px; border-style: solid; border-color: rgb(227, 190, 35); border-image: initial;  border-radius: 3px;box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 7px 0px; padding: 0 0;min-width: 18px; text-indent: -1px;text-align: center; display: inline-block;position:absolute; text-align: cener; vertical-align: middle; font-weight: bold;font-family: Arial, Menlo, Consolas, Monaco, monospace; text-transform: uppercase; margin-top: --7px; margin-left: -7px;
 highlight HintElem background-color:rgba(240,0,0,0.1);
 highlight HintActive background:rgba(0,0,240,0.3);
 
