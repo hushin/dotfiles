@@ -94,6 +94,11 @@ set shell=/bin/zsh
 " git clone git://github.com/cd01/vimppm .
 source ~/.vimperator/vimppm/plugin/vimppm.js
 
+vimppm 'petitviolet/vimp-plugins'
+
+source ~/.vimperator/vimppm/vimp-plugins/slideshare.js
+source ~/.vimperator/vimppm/vimp-plugins/speakerdeck.js
+
 " Vimpr list (only js file)
 vimppm '_libly.js'
 vimppm '_smooziee.js'
@@ -277,6 +282,17 @@ function(){
 });
 EOM
 nnoremap <C-t> :togglepin <CR>
+
+" slideshareの操作
+nnoremap -urls=www\\.slideshare\\.net <C-k> :slideshare next<CR>
+nnoremap -urls=www\\.slideshare\\.net <C-j> :slideshare prev<CR>
+nnoremap -urls=ssslide\\.com <C-k> :slideshare next<CR>
+nnoremap -urls=ssslide\\.com <C-j> :slideshare prev<CR>
+" speakerdeckの操作
+" nmap <C-[> :speakerdeck prev<CR>
+" nmap <C-]> :speakerdeck next<CR>
+nnoremap -urls=speakerdeck\\.com <C-k> :speakerdeck next<CR>
+nnoremap -urls=speakerdeck\\.com <C-j> :speakerdeck prev<CR>
 
 " ===========================
 " color scheme
