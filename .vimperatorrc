@@ -319,13 +319,6 @@ nnoremap -urls=ssslide\\.com <C-j> :slideshare prev<CR>
 nnoremap -urls=speakerdeck\\.com <C-k> :speakerdeck next<CR>
 nnoremap -urls=speakerdeck\\.com <C-j> :speakerdeck prev<CR>
 
-" ページのエンコーディングを変更
-nnoremap ,es :set encoding=Shift_JIS<CR>
-nnoremap ,ec :set encoding=EUC-JP<CR>
-nnoremap ,eu :set encoding=UTF-8<CR>
-nnoremap ,ei :set encodeing=ISO-2022-JP<CR>
-
-
 " ===========================
 " color scheme
 " ===========================
