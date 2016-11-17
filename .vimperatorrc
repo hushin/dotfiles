@@ -70,8 +70,8 @@ addLocalMappings(
     ['r',     ':strepeat',        ],
     ['+',     ':stvolume! 10',    ],
     ['-',     ':stvolume! -10',   ],
-    ['h',     ':stseek! -10',     ],
-    ['l',     ':stseek! 10',      ],
+    ['<Left>',     ':stseek! -10',     ],
+    ['<Right>',     ':stseek! 10',      ],
     ['s',     ':stseek ',         {open: true}],
     ['S',     ':stseek! ',        {open: true}],
     ['v',     ':stvolume ',       {open: true}],
@@ -109,14 +109,27 @@ vimppm 'feedSomeKeys_3.js'
 vimppm 'stella.js'
 " vimppm 'sbmcommentsviewer.js'
 
-
-
 " ===========================
 " Variables
 " ===========================
 " _smooziee.js
 let g:smooziee_scroll_amount="130"
 let g:smooziee_scroll_interval="15"
+
+"============================
+" about:config
+"============================
+
+" 新しいタブはバックグランドで開く
+set! browser.tabs.loadDivertedInBackground=true
+
+"============================
+" stylesheet
+"============================
+
+" firefoxの句読点が読みにくいので上書き
+style * * {word-break: normal !important;}
+
 
 " ===========================
 " Settings
@@ -160,7 +173,7 @@ set hintchars=hjklasdfgyuiowertnm
 style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
 
 " タブ追加アイコンを非表示に
-sty chrome://* .tabs-newtab-button {display: none;}
+style chrome://* .tabs-newtab-button {display: none;}
 
 " Hatena::Bookmark
 javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
@@ -172,13 +185,13 @@ javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://h
 :lazy fmaps -u='b\.hatena\.ne\.jp/' j k o e b
 :lazy fmaps -u='calendar\.google\.com' -e 'vkeydown' j k t a w m x c e / + q s ?
 :lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc <S-i> <S-u>
-lazy fmaps -u='^http://twitter.com/' <Space> . j k ?
-lazy fmaps -u='^http://twitter.com/' -events=vkeydown f r t n m gh gr gp gf gm
+:lazy fmaps -u='^http://twitter.com/' <Space> . j k ?
+:lazy fmaps -u='^http://twitter.com/' -events=vkeydown f r t n m gh gr gp gf gm
 
 " feedSomeKeys_3 ではうまく設定できなかったので、ignorekeysで無効化
 ignorekeys add www\\.facebook\\.com -except J,K,H,L,f,:,,
 
-" qmark go + ○ でアクセス
+" qmark go + ○ でアクセス gn*, go*
 qmark b http://b.hatena.ne.jp/
 qmark c https://calendar.google.com/
 qmark m https://mail.google.com/mail/
@@ -254,18 +267,30 @@ noremap d <C-d>
 noremap u <C-u>
 " タブを閉じたとき直前のタブにフォーカスさせる
 noremap x <M-W>
-map X :undo<CR>
+noremap X :undo<CR>
 
 no a <Nop>
 
 " h/lでタブ移動
 nmap h <C-p>
 nmap l <C-n>
+" Ctrl+h/Ctrl+lに戻る/進むを割り当てる
+map <C-h> <A-Left>
+map <C-l> <A-Right>
 " Shift+← / Shift+→でタブ位置変更
 map <S-Right> :tabmove! +1<CR>
 map <S-Left> :tabmove! -1<CR>
 " eでクイックヒントモードを新しいタブで開く
 map e F
+" 選択文字列でぐぐる(マウスとVISUALモードの選択時に対応)
+nmap S <M-c>:tabopen<Space>google<Space><M-v><CR>
+vmap S <M-c><Esc><Esc>:tabopen<Space>google<Space><M-v><CR>
+" pは文字列によってURLと判断されて誤爆するので明示的にGoogle検索を指定する
+nnoremap p :open<Space>google<Space><M-v><CR>
+nnoremap P :tabopen<Space>google<Space><M-v><CR>
+
+" undo一覧から開く
+nnoremap U :undo<Space>
 
 " タブのピン留めをトグルする
 " http://qiita.com/t3kot3ko/items/1b032940dbb79e88323e
@@ -293,6 +318,13 @@ nnoremap -urls=ssslide\\.com <C-j> :slideshare prev<CR>
 " nmap <C-]> :speakerdeck next<CR>
 nnoremap -urls=speakerdeck\\.com <C-k> :speakerdeck next<CR>
 nnoremap -urls=speakerdeck\\.com <C-j> :speakerdeck prev<CR>
+
+" ページのエンコーディングを変更
+nnoremap ,es :set encoding=Shift_JIS<CR>
+nnoremap ,ec :set encoding=EUC-JP<CR>
+nnoremap ,eu :set encoding=UTF-8<CR>
+nnoremap ,ei :set encodeing=ISO-2022-JP<CR>
+
 
 " ===========================
 " color scheme
