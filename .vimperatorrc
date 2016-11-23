@@ -113,8 +113,7 @@ vimppm 'stella.js'
 " Variables
 " ===========================
 " _smooziee.js
-let g:smooziee_scroll_amount="130"
-let g:smooziee_scroll_interval="15"
+let g:smooziee_scroll_amount="90"
 
 "============================
 " about:config
@@ -262,9 +261,11 @@ cnoremap <C-y> <C-v>
 cmap <C-n> <TAB>
 cmap <C-p> <S-TAB>
 
-" dとuでスクロール
-noremap d <C-d>
-noremap u <C-u>
+" _smooziee を使いつつ dとuでスクロール
+noremap <C-d> :js liberator.plugins.smooziee.smoothScrollBy(innerHeight / 2)<CR>
+noremap <C-u> :js liberator.plugins.smooziee.smoothScrollBy(innerHeight / -2)<CR>
+noremap d :js liberator.plugins.smooziee.smoothScrollBy(innerHeight / 2)<CR>
+noremap u :js liberator.plugins.smooziee.smoothScrollBy(innerHeight / -2)<CR>
 " タブを閉じたとき直前のタブにフォーカスさせる
 noremap x <M-W>
 noremap X :undo<CR>
