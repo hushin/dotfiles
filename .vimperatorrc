@@ -107,6 +107,7 @@ vimppm 'caret-hint.js'
 vimppm 'amazon_simple_uri.js'
 vimppm 'feedSomeKeys_3.js'
 vimppm 'stella.js'
+vimppm 'migemo-find.js'
 " vimppm 'sbmcommentsviewer.js'
 
 " ===========================
@@ -151,7 +152,7 @@ set showtabline=2
 " h 履歴
 " l ロケーションバー(ブックマーク、履歴)
 " S 検索サジェスト
-set complete=lbsS
+set complete=bsS
 "set complete=sSltf
 "set complete=lb
 " エラー出力レベル
@@ -242,7 +243,9 @@ map ,r :source<Space>~/.vimperatorrc<CR>
 " .Ctrl+r で再起動
 map ,<C-r> :restart<CR>
 " Bookmarks
-map ,b :bmarks<Space>
+map ,b :bmarks!<Space>
+" History
+map ,h :history!<Space>
 
 " sでぐぐる
 nnoremap s :tabopen<Space>google<Space>
