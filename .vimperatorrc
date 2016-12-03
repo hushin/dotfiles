@@ -152,7 +152,7 @@ set showtabline=2
 " h 履歴
 " l ロケーションバー(ブックマーク、履歴)
 " S 検索サジェスト
-set complete=bsS
+set complete=lbsS
 "set complete=sSltf
 "set complete=lb
 " エラー出力レベル
