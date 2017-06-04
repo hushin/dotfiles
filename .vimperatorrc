@@ -184,7 +184,7 @@ javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://h
 :lazy fmap -modes=i -events=keydown,keypress <C-n> <Down>
 :lazy fmaps -u='b\.hatena\.ne\.jp/' j k o e b
 :lazy fmaps -u='calendar\.google\.com' -e 'vkeydown' j k t a w m x c e / + q s ?
-:lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc <S-i> <S-u>
+:lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a z # [ ] ? gi gs gt gd ga gc <S-i> <S-u>
 :lazy fmaps -u='^http://twitter.com/' <Space> . j k ?
 :lazy fmaps -u='^http://twitter.com/' -events=vkeydown f r t n m gh gr gp gf gm
 
@@ -274,6 +274,9 @@ noremap x <M-W>
 noremap X :undo<CR>
 
 no a <Nop>
+
+" A でinstapaperに追加
+nmap A :open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/TbVSmwFP6fKy?a=read-later&u='+encodeURIComponent(l.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)<CR>
 
 " h/lでタブ移動
 nmap h <C-p>

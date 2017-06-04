@@ -51,3 +51,8 @@ alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| egrep --color'
 alias -g P='| peco'
+
+touchp() { 
+  mkdir -p $( dirname "$1") && touch "$1" 
+}
+

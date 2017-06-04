@@ -1,5 +1,5 @@
 # path
-export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:$HOME/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$HOME/bin
 
 # anyenv
 export PATH=$HOME/.anyenv/bin:$PATH
