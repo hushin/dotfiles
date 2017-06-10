@@ -56,3 +56,10 @@ touchp() {
   mkdir -p $( dirname "$1") && touch "$1" 
 }
 
+# zsh
+
+alias reload='source ~/.zshrc'
+
+# emacs
+alias e='emacsclient -t -a ""'
+alias ekill='emacsclient -e "(kill-emacs)"'
