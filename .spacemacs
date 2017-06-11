@@ -339,6 +339,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; mozc
   (set-language-environment "Japanese")
+  (prefer-coding-system 'utf-8)
   (setq default-input-method "japanese-mozc")
   (setq mozc-helper-program-name "/usr/local/bin/mozc_emacs_helper")
 
