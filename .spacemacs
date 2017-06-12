@@ -342,10 +342,30 @@ you should place your code here."
   (prefer-coding-system 'utf-8)
   (setq default-input-method "japanese-mozc")
   (setq mozc-helper-program-name "/usr/local/bin/mozc_emacs_helper")
-
   (setq mozc-candidate-style 'overlay)
+
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.org")
+  (with-eval-after-load 'org
+    (setq org-directory "~/Dropbox/org"
+      org-archive-directory (concat org-directory "/archive")
+      org-archive-location (concat org-archive-directory "/%s_archive::")
+      org-default-notes-file (concat org-directory "/refile.org")
+      org-agenda-files (list org-directory))
+    ;; org-todo settings
+    (setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANCELLED(c)")))
+    ;; org-captureで2種類のメモを扱うようにする
+    (setq org-capture-templates
+      '(("t" "New TODO" entry
+          (file+headline (concat org-directory "/todo.org") "TODO")
+          "* TODO %?\n\n")
+         ("m" "Memo" entry
+           (file+headline (concat org-directory "/memo.org" "MEMO")
+             "* %U%?\n%i\n%a")))
+      )
+    )
+  (editorconfig-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
