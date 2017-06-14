@@ -44,7 +44,9 @@ values."
      emacs-lisp
      markdown
 
-     colors
+     (colors :variables
+       colors-enable-rainbow-identifiers nil
+       colors-enable-nyan-cat-progress-bar (display-graphic-p))
      osx
      gtags
      pandoc
