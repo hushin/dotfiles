@@ -337,6 +337,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (editorconfig-mode 1)
+  (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.org")
+  (global-visual-line-mode)
   ;; mozc
   (set-language-environment "Japanese")
   (prefer-coding-system 'utf-8)
@@ -345,27 +348,26 @@ you should place your code here."
   (setq mozc-candidate-style 'overlay)
 
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.org")
   (with-eval-after-load 'org
     (setq org-directory "~/Dropbox/org"
       org-archive-directory (concat org-directory "/archive")
       org-archive-location (concat org-archive-directory "/%s_archive::")
       org-default-notes-file (concat org-directory "/refile.org")
       org-agenda-files (list org-directory))
+    (setq org-bullets-bullet-list '("◉" "○" "✸" "¤"))
     ;; org-todo settings
     (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANCELLED(c)")))
     ;; org-captureで2種類のメモを扱うようにする
     (setq org-capture-templates
       '(("t" "New TODO" entry
-          (file+headline (concat org-directory "/todo.org") "TODO")
+          (file+headline (concat org-directory "/todo.org") "ToDo")
           "* TODO %?\n\n")
          ("m" "Memo" entry
-           (file+headline (concat org-directory "/memo.org" "MEMO")
+           (file+headline (concat org-directory "/memo.org" "Memo")
              "* %U%?\n%i\n%a")))
       )
     )
-  (editorconfig-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
