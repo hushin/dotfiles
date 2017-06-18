@@ -349,7 +349,7 @@ you should place your code here."
   (prefer-coding-system 'utf-8)
   (setq default-input-method "japanese-mozc")
   (setq mozc-helper-program-name "/usr/local/bin/mozc_emacs_helper")
-  (setq mozc-candidate-style 'overlay)
+  (setq mozc-candidate-style 'echo-area)
   (global-set-key (kbd "s-i") #'toggle-input-method)
   (global-set-key (kbd "s-j") #'mozc-temp-convert)
   (with-eval-after-load 'org
@@ -401,10 +401,15 @@ you should place your code here."
     (setq org-capture-templates
       '(("t" "New TODO" entry
           (file+headline (concat org-directory "/gtd.org") "Inbox")
-          "* TODO  %?\n%U\n" :clock-in t :clock-resume t)
+          "* TODO %?\n%U\n" :clock-in t :clock-resume t)
          ("m" "Memo" entry
            (file+headline (concat org-directory "/memo.org") "Memo")
-           "* %U%?\n%i\n%a"))
+           "* %U%?\n%i\n%a")
+         ("l" "A link, for reading later." entry
+           (file+headline (concat org-directory "/memo.org") "Reading List")
+           "* %:description\n%u\n\n%c\n\n%i"
+           :empty-lines 1)
+         )
       )
    )
   )
