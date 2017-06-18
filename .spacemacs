@@ -341,7 +341,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (editorconfig-mode 1)
-  (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.org")
+  (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.")
   (global-visual-line-mode)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   ;; mozc
@@ -361,17 +361,52 @@ you should place your code here."
     (setq org-bullets-bullet-list '("◉" "○" "✸" "¤"))
     ;; org-todo settings
     (setq org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANCELLED(c)")))
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+               (sequence "WAITING(w)" "HOLD(h)" "|" "CANCELLED(c)" "MEETING"))))
+    ;; Allow automatically handing of created/expired meta data.
+    (require 'org-expiry)
+    ;; Configure it a bit to my liking
+    (setq
+                                        ; Name of property when an item is created
+      org-expiry-created-property-name "CREATED"
+                                        ; Don't show everything in the agenda view
+      org-expiry-inactive-timestamps   t
+      )
+
+    (defun mrb/insert-created-timestamp()
+      "Insert a CREATED property using org-expiry.el for TODO entries"
+      (org-expiry-insert-created)
+      (org-back-to-heading)
+      (org-end-of-line)
+      (insert " ")
+      )
+
+    ;; Automatically add tags when state changes occur
+    (setq org-todo-state-tags-triggers
+      (quote (("CANCELLED" ("CANCELLED" . t))
+               ("WAITING" ("WAITING" . t))
+               ("HOLD" ("WAITING") ("HOLD" . t))
+               (done ("WAITING") ("HOLD"))
+               ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+    (setq org-agenda-custom-commands
+      '(
+         ("n" todo "NEXT")
+         ("w" todo "WAITING")
+         ("d" "Agenda + Next Actions" ((agenda) (todo "NEXT")))
+         )
+      )
     ;; org-captureで2種類のメモを扱うようにする
     (setq org-capture-templates
       '(("t" "New TODO" entry
-          (file+headline (concat org-directory "/todo.org") "ToDo")
-          "* TODO %?\n\n")
+          (file+headline (concat org-directory "/gtd.org") "Inbox")
+          "* TODO  %?\n%U\n" :clock-in t :clock-resume t)
          ("m" "Memo" entry
-           (file+headline (concat org-directory "/memo.org" "Memo")
-             "* %U%?\n%i\n%a")))
+           (file+headline (concat org-directory "/memo.org") "Memo")
+           "* %U%?\n%i\n%a"))
       )
-    )
+   )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
