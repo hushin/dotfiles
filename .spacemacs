@@ -57,11 +57,12 @@ values."
      better-defaults
      git
      github
+     deft
      org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
+     ;; spell-checking
      syntax-checking
      ;; version-control
      )
@@ -74,6 +75,8 @@ values."
      editorconfig
      all-the-icons
      all-the-icons-dired
+     dracula-theme
+     doom-themes
      ox-gfm
      mozc
      mozc-temp
@@ -149,8 +152,13 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+    dotspacemacs-themes '(
+                           dracula
+                           spacemacs-dark
+                           spacemacs-light
+                           misterioso
+                           wombat
+                           )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -341,6 +349,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (editorconfig-mode 1)
+  (define-key global-map "\C-h" 'delete-backward-char)
   (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.")
   (global-visual-line-mode)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -352,6 +361,29 @@ you should place your code here."
   (setq mozc-candidate-style 'echo-area)
   (global-set-key (kbd "s-i") #'toggle-input-method)
   (global-set-key (kbd "s-j") #'mozc-temp-convert)
+  ;; js2-mode
+  (eval-after-load 'flycheck
+    '(custom-set-variables
+       '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs))))
+  (defun my/use-eslint-from-node-modules ()
+    (let* ((root (locate-dominating-file
+                   (or (buffer-file-name) default-directory)
+                   "node_modules"))
+            (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                        root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flycheck-javascript-eslint-executable eslint))))
+
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+  (setq js2-include-browser-externs nil)
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
+  (setq js2-highlight-external-variables nil)
+  (setq js2-include-jslint-globals nil)
+  ;; deft
+  (setq deft-extensions '("org" "md" "txt"))
+  (setq deft-directory "~/Dropbox/org/notes")
   (with-eval-after-load 'org
     (setq org-directory "~/Dropbox/org"
       org-archive-directory (concat org-directory "/archive")
@@ -421,9 +453,13 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+  '(ansi-color-names-vector
+     ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-disabled-checkers (quote (javascript-jshint javascript-jscs)))
   '(package-selected-packages
      (quote
-       (mozc-temp mozc-popup ac-mozc mozc ddskk cdb ccc helm-dash dash-at-point rainbow-mode rainbow-identifiers color-identifiers-mode pandoc-mode ox-pandoc helm-gtags ggtags all-the-icons-dired all-the-icons memoize font-lock+ emoji-cheat-sheet-plus company-emoji yapfify xterm-color web-mode web-beautify tide typescript-mode tagedit slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary multi-term magit-gh-pulls livid-mode skewer-mode simple-httpd live-py-mode less-css-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc hy-mode helm-pydoc helm-css-scss helm-cscope xcscope haml-mode github-search github-clone github-browse-file gist gh marshal logito pcache ht flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-tern dash-functional tern company-anaconda coffee-mode auto-dictionary anaconda-mode pythonic unfill mwim helm-company helm-c-yasnippet fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+       (doom-themes dracula-theme deft mozc-temp mozc-popup ac-mozc mozc ddskk cdb ccc helm-dash dash-at-point rainbow-mode rainbow-identifiers color-identifiers-mode pandoc-mode ox-pandoc helm-gtags ggtags all-the-icons-dired all-the-icons memoize font-lock+ emoji-cheat-sheet-plus company-emoji yapfify xterm-color web-mode web-beautify tide typescript-mode tagedit slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary multi-term magit-gh-pulls livid-mode skewer-mode simple-httpd live-py-mode less-css-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc hy-mode helm-pydoc helm-css-scss helm-cscope xcscope haml-mode github-search github-clone github-browse-file gist gh marshal logito pcache ht flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-tern dash-functional tern company-anaconda coffee-mode auto-dictionary anaconda-mode pythonic unfill mwim helm-company helm-c-yasnippet fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -20,7 +20,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=~/bin:$PATH
 
 # editor
-export EDITOR=atom
+export EDITOR='emacsclient -t -a ""'
 
 # term color
 export TERM=xterm-256color
