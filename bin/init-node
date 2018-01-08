@@ -12,6 +12,6 @@ mkdir lib
 mkdir src
 # create package.json
 # https://github.com/azu/init-package-json-parcel
-init-package-json
+yes '' | init-package-json
 # git
 git add .
