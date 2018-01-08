@@ -52,12 +52,16 @@ alias -g T='| tail'
 alias -g G='| egrep --color'
 alias -g P='| peco'
 
-touchp() { 
-  mkdir -p $( dirname "$1") && touch "$1" 
+touchp() {
+  mkdir -p $( dirname "$1") && touch "$1"
+}
+
+joinpdf() {
+  mkdir -p formatted
+  "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" --output formatted/output`date "+%Y%m%d_%H%M%S"`.pdf $@
 }
 
 # zsh
-
 alias reload='source ~/.zshrc'
 
 # emacs
