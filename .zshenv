@@ -7,6 +7,9 @@ if type anyenv > /dev/null 2>&1; then
   eval "$(anyenv init -)"
 fi
 
+# rbenv TODO anyenvに移行
+eval "$(rbenv init -)"
+
 # ansible
 export PATH=/usr/local/opt/ansible@1.9/bin:$PATH
 
