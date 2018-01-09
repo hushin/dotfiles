@@ -181,3 +181,5 @@ bind generic -      ?git checkout -
 # http://hisaichi5518.hatenablog.jp/entry/2017/02/09/160007
 # B でコミットをブラウザで開く
 bind generic B @bash -c "git browse-remote %(commit)"
+# B でファイルをブラウザで開く
+bind tree    B @bash -c "git browse-remote %(file)"
