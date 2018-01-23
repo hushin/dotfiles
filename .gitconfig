@@ -11,7 +11,8 @@
 	st = status
 	info = remote show origin
 	l  = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
-	ln = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset' --name-status
+  ln = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset' --name-status
+  lc = log --graph -n 20 --pretty=format:'%C(yellow)%h%Creset %s'
 	lp = log --oneline -n 20 -p
   ls = log --stat --abbrev-commit -n 1 # display previous log
 
@@ -45,3 +46,9 @@
 	rebase = preserve
 [fetch]
 	prune = true
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[interactive]
+	diffFilter = diff-highlight
