@@ -22,6 +22,9 @@ alias grep='egrep --color'
 alias cdu='cd-gitroot'
 
 # git
+alias g='git'
+alias t='tig'
+alias ta='tig --all'
 alias gsh='git show'
 compdef _git gsh=git-show
 alias gdc='git diff --cached'
