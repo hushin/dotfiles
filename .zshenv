@@ -28,6 +28,9 @@ export EDITOR='emacsclient -t -a ""'
 # term color
 export TERM=xterm-256color
 
+# diff-highlight
+export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
+
 # golang
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
