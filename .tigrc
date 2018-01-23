@@ -14,7 +14,7 @@ set line-graphics = utf-8       # グラフ描画時の種別
 set tab-size = 8                # TAB 文字の表示幅
 # 空白無視 (status-view では表示するが diff-view では無視する) (W でトグル)
 # set ignore-space = at-eol
-# set split-view-width = 75%      # 垂直分割時の比率
+set split-view-width = 75%      # 垂直分割時の比率
 # 検索時に大文字小文字を無視する (default: false)
 set ignore-case = true
 
@@ -51,8 +51,8 @@ bind main    G      move-last-line
 bind main    <Esc>g :toggle commit-title-graph
 
 # n / p を上下移動に割り当て (default: find-next / view-pager)
-bind generic n      move-down
-bind generic p      move-up
+# bind generic n      move-down
+# bind generic p      move-up
 
 # n / p で単位ごとの移動
 bind diff    n      :/^@@
@@ -175,11 +175,43 @@ bind main    <Esc>= ?git checkout %(commit)
 # - で直前のブランチに戻る (checkout -)
 bind generic -      ?git checkout -
 
+# M で merge
+bind main    M      ?git merge %(branch)
+bind diff    M      ?git merge %(branch)
+bind refs    M      ?git merge %(branch)
+bind main    <Esc>m ?git merge %(commit)
+bind diff    <Esc>m ?git merge %(commit)
+
+# R で rebase
+bind main    R      ?git rebase %(branch)
+bind diff    R      ?git rebase %(branch)
+bind refs    R      ?git rebase %(branch)
+bind main    <Esc>r ?git rebase %(commit)
+bind diff    <Esc>r ?git rebase %(commit)
+
+# I で rebase -i
+bind main    I      ?git rebase -i %(branch)
+bind diff    I      ?git rebase -i %(branch)
+bind refs    I      ?git rebase -i %(branch)
+bind main    <Esc>i ?git rebase -i %(commit)
+bind diff    <Esc>i ?git rebase -i %(commit)
+
 # ! で revert
 # bind main    !      ?git revert %(commit)
 
 # http://hisaichi5518.hatenablog.jp/entry/2017/02/09/160007
 # B でコミットをブラウザで開く
-bind generic B @bash -c "git browse-remote %(commit)"
+bind main    B @bash -c "git browse-remote %(commit)"
+bind blame   B @bash -c "git browse-remote %(commit)"
+bind refs    B @bash -c "git browse-remote %(ref)"
+
 # B でファイルをブラウザで開く
-bind tree    B @bash -c "git browse-remote %(file)"
+bind tree    B @bash -c "git browse-remote %(commit) %(file)"
+bind blob    B @bash -c "git browse-remote %(commit) %(file) -L %(lineno)"
+bind grep    B @bash -c "git browse-remote %(commit) %(file)"
+
+
+# w で Pull Request を開く
+bind main    w @bash -c "git openpr %(commit)"
+bind blame   w @bash -c "git openpr %(commit)"
+bind refs    w @bash -c "git openpr %(ref)"
