@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     shell-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -346,6 +347,35 @@ you should place your code here."
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (global-set-key (kbd "s-}") #'evil-window-next)
   (global-set-key (kbd "s-{") #'evil-window-prev)
+  (defun copy-to-clipboard ()
+    "Copies selection to x-clipboard."
+    (interactive)
+    (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save)
+        )
+      (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+        (message "No region active; can't yank to clipboard!")))
+    )
+
+  (defun paste-from-clipboard ()
+    "Pastes from x-clipboard."
+    (interactive)
+    (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active")
+        )
+      (insert (shell-command-to-string "pbpaste"))
+      )
+    )
+  (evil-leader/set-key "o y" 'copy-to-clipboard)
+  (evil-leader/set-key "o p" 'paste-from-clipboard)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -357,7 +387,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ox-twbs ox-gfm magit-gh-pulls helm-dash github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus editorconfig dash-at-point company-emoji all-the-icons-dired all-the-icons memoize font-lock+ yapfify xterm-color web-mode web-beautify unfill tide typescript-mode tagedit smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder rainbow-mode rainbow-identifiers pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd live-py-mode less-css-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc hy-mode htmlize helm-pydoc helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-anaconda company color-identifiers-mode coffee-mode auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (insert-shebang fish-mode company-shell ox-twbs ox-gfm magit-gh-pulls helm-dash github-search github-clone github-browse-file gist gh marshal logito pcache ht emoji-cheat-sheet-plus editorconfig dash-at-point company-emoji all-the-icons-dired all-the-icons memoize font-lock+ yapfify xterm-color web-mode web-beautify unfill tide typescript-mode tagedit smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder rainbow-mode rainbow-identifiers pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd live-py-mode less-css-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc hy-mode htmlize helm-pydoc helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-anaconda company color-identifiers-mode coffee-mode auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
