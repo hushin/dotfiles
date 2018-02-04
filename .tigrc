@@ -193,11 +193,11 @@ bind main    <Esc>r ?git rebase %(commit)
 bind diff    <Esc>r ?git rebase %(commit)
 
 # I で rebase -i
-bind main    I      ?git rebase -i %(branch)
-bind diff    I      ?git rebase -i %(branch)
-bind refs    I      ?git rebase -i %(branch)
-bind main    <Esc>i ?git rebase -i %(commit)
-bind diff    <Esc>i ?git rebase -i %(commit)
+bind main    I      ?git rebase -i %(commit)
+bind diff    I      ?git rebase -i %(commit)
+bind main    <Esc>i ?git rebase -i %(branch)
+bind diff    <Esc>i ?git rebase -i %(branch)
+bind refs    <Esc>i ?git rebase -i %(commit)
 
 # ! で revert
 # bind main    !      ?git revert %(commit)
