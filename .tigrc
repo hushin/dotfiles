@@ -74,9 +74,9 @@ bind log     n      :/^commit
 bind log     p      :?^commit
 
 # 元の n / p を別に割り当て
-bind generic V      view-pager
-bind generic <Ctrl-s> find-next # 要 stty stop undef
-bind generic <Ctrl-r> find-prev
+# bind generic V      view-pager
+# bind generic <Ctrl-s> find-next # 要 stty stop undef
+# bind generic <Ctrl-r> find-prev
 
 # Ctrl-f, Ctrl-b で左右スクロール
 bind generic <Ctrl-f> scroll-right
@@ -204,17 +204,17 @@ bind refs    <Esc>i ?git rebase -i %(commit)
 
 # http://hisaichi5518.hatenablog.jp/entry/2017/02/09/160007
 # B でコミットをブラウザで開く
-bind main    B @bash -c "git browse-remote %(commit)"
-bind blame   B @bash -c "git browse-remote %(commit)"
-bind refs    B @bash -c "git browse-remote %(ref)"
+bind main    B @git browse-remote %(commit)
+bind blame   B @git browse-remote %(commit)
+bind refs    B @git browse-remote %(ref)
 
 # B でファイルをブラウザで開く
-bind tree    B @bash -c "git browse-remote %(commit) %(file)"
-bind blob    B @bash -c "git browse-remote %(commit) %(file) -L %(lineno)"
-bind grep    B @bash -c "git browse-remote %(commit) %(file)"
+bind tree    B @git browse-remote %(commit) %(file)
+bind blob    B @git browse-remote %(commit) %(file) -L %(lineno)
+bind grep    B @git browse-remote %(commit) %(file)
 
 
 # w で Pull Request を開く
-bind main    w @bash -c "git openpr %(commit)"
-bind blame   w @bash -c "git openpr %(commit)"
-bind refs    w @bash -c "git openpr %(ref)"
+bind main    w @git openpr %(commit)
+bind blame   w @git openpr %(commit)
+bind refs    w @git openpr %(ref)
