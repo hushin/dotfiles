@@ -218,3 +218,9 @@ bind grep    B @git browse-remote %(commit) %(file)
 bind main    w @git openpr %(commit)
 bind blame   w @git openpr %(commit)
 bind refs    w @git openpr %(ref)
+
+# B でブランチを作成してそのブランチに移動 (checkout -b)
+bind main    <Esc>b ?git checkout -b "%(prompt Enter branch name: )" %(branch)
+
+# A で git add -A
+bind status A @git add -A
