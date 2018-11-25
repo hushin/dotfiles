@@ -9,7 +9,7 @@ brew "mackup"
 cask "karabiner-elements"
 
 cask "dropbox"
-cask "1password@6"
+cask "1password6"
 
 brew "bash"
 brew "fish"
