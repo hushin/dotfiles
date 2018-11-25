@@ -59,7 +59,6 @@ cask 'keycastr'
 cask "vlc"
 cask "grandperspective"
 cask "adobe-acrobat-reader"
-cask "flux"
 cask "dash"
 cask "alfred"
 cask "xmind"
