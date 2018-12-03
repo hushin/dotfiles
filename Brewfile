@@ -1,4 +1,4 @@
-cask_args appdir: '/Applications'
+cask_args appdir: "/Applications"
 tap "caskroom/cask"
 tap "caskroom/versions"
 tap "caskroom/fonts"
@@ -43,6 +43,7 @@ brew "graphviz"
 brew "shellcheck"
 brew "slackcat"
 brew "ctop"
+brew "tldr"
 
 cask "atom"
 cask "google-japanese-ime"
@@ -50,12 +51,11 @@ cask "spectacle"
 cask "iterm2"
 cask "sourcetree"
 cask "docker"
-cask "slack"
 cask "firefox"
 cask "visual-studio-code"
 cask "sublime-text"
-cask 'cyberduck'
-cask 'keycastr'
+cask "cyberduck"
+cask "keycastr"
 cask "vlc"
 cask "grandperspective"
 cask "adobe-acrobat-reader"
@@ -84,6 +84,7 @@ cask "cooviewer"
 cask "kindle"
 cask "google-backup-and-sync"
 
+mas "Slack", id: 803453959
 mas "Skitch", id: 425955336
 mas "The Unarchiver", id: 425424353
 # mas "Numbers", id: 409203825
