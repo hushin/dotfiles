@@ -1,0 +1,7 @@
+memodir = "~/Documents/memo/_posts"
+editor = "code"
+column = 20
+selectcmd = "peco"
+grepcmd = "ag ${PATTERN} ${DIR}"
+assetsdir = ""
+pluginsdir = "~/.config/memo/plugins"
