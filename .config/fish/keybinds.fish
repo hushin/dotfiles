@@ -1,7 +1,7 @@
 function fish_user_key_bindings
   bind \x1b 'fzf_recentd' # Ctrl-[にバインドする
   bind \c] 'fzf_ghq'
-  bind \cf '__fzf_find_file'
+  bind \ct '__fzf_find_file'
   bind \cr '__fzf_reverse_isearch'
   bind \eo '__fzf_cd'
   bind \eO '__fzf_cd --hidden'
