@@ -10,6 +10,7 @@
 git clone https://github.com/hushin/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 make deploy
+make init
 ```
 
 gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
