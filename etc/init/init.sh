@@ -11,4 +11,4 @@ do
   bash "$t"
 done
 
-fish ${dir_name}/osx/20_fish.fish
+fish ${dir_name}/osx/fish.fish
