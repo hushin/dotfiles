@@ -18,3 +18,6 @@ set -x PATH $PATH $GOPATH/bin
 # bobthefish
 set -g theme_color_scheme solarized-light
 set -g theme_display_date no
+
+# nvm
+set -gx NVM_DIR /usr/local/opt/nvm
