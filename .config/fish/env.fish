@@ -14,10 +14,11 @@ set -x PATH $PATH /usr/local/share/git-core/contrib/diff-highlight
 set -x GOPATH $HOME/.go
 set -x PATH $PATH $GOPATH/bin
 
+# nodebrew
+
+set -x PATH $HOME/.nodebrew/current/bin $PATH
+
 # theme
 # bobthefish
 set -g theme_color_scheme solarized-light
 set -g theme_display_date no
-
-# nvm
-set -gx NVM_DIR /usr/local/opt/nvm

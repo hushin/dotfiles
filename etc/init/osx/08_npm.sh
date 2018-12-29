@@ -1,9 +1,11 @@
-#!/usr/local/bin/fish
+#!/bin/sh
 
-mkdir ~/.nvm
-nvm install --lts
-nvm use --lts
+set -u
 
-node -v
+echo "install node"
+nodebrew selfupdate
+nodebrew install-binary v10.x
+nodebrew use v10.x
 
-npm install -g init-package-json-parcel
+echo "install npm packages"
+npm install -g init-package-json-parcel http-server
