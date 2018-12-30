@@ -1,14 +1,16 @@
+test -r ~/.bashrc && source ~/.bashrc
 # Source global definitions
 test -r /etc/bashrc && source /etc/bashrc
 
 # homebrew
-export PATH=/usr/local/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 
 # golang
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
+
+# ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH

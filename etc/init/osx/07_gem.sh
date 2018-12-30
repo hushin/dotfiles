@@ -2,5 +2,5 @@
 
 set -eu
 
-echo "install git-browse-remote"
-gem install git-browse-remote
+echo "install gem packages"
+gem install git-browse-remote jekyll bundler

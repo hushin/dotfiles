@@ -4,6 +4,7 @@
 !/.gitignore
 !/git
 !/fish
+!/karabiner
 /fish/completions
 /fish/conf.d
 /fish/functions

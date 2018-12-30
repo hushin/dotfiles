@@ -3,6 +3,7 @@
 set -u
 
 echo "install node"
+mkdir -p ~/.nodebrew/src
 nodebrew selfupdate
 nodebrew install-binary v10.x
 nodebrew use v10.x
