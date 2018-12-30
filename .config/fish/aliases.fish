@@ -1,6 +1,10 @@
-balias t tig
-balias ta 'tig --all'
+if test (type -t balias) = 'function'
+  balias t tig
+  balias ta 'tig --all'
+end
 
+# zsh
+alias reload='source ~/.config/fish/config.fish'
 
 function checkout-git-branch -d "Fuzzy-find and checkout a branch"
   git branch | grep -v HEAD | string trim | fzf | read -l result; and git checkout "$result"

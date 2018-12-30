@@ -1,0 +1,105 @@
+cask_args appdir: "/Applications"
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "caskroom/fonts"
+
+brew "mas"
+cask "google-chrome"
+brew "mackup"
+cask "karabiner-elements"
+
+cask "dropbox"
+cask "1password6"
+
+brew "ag"
+brew "awscli"
+brew "bash"
+brew "coreutils"
+brew "ctop"
+brew "curl"
+brew "docker-completion"
+brew "docker-compose-completion"
+brew "docker-machine-completion"
+brew "emojify"
+brew "fish"
+brew "fzf"
+brew "gawk"
+brew "ghq"
+brew "gibo"
+brew "git-now"
+brew "git-secrets"
+brew "git"
+brew "gnu-sed", args: ["with-default-names"]
+brew "go"
+brew "graphviz"
+# brew "highlight"
+brew "hub"
+brew "jq"
+brew "nkf"
+brew "nodebrew"
+brew "openssl"
+brew "ruby"
+brew "shellcheck"
+brew "slackcat"
+brew "source-highlight"
+brew "sshrc"
+brew "tig"
+brew "tldr"
+brew "tmux"
+brew "trash"
+brew "tree"
+brew "watch"
+brew "wget"
+brew "yarn", args: ["without-node"]
+
+cask "adobe-acrobat-reader"
+cask "alfred"
+cask "atom"
+cask "betterzip"
+# cask "box-sync"
+cask "cyberduck"
+cask "dash"
+cask "docker"
+cask "firefox"
+cask "font-noto-serif"
+cask "font-roboto"
+cask "font-source-han-code-jp"
+cask "google-japanese-ime"
+cask "grandperspective"
+cask "iterm2"
+cask "keycastr"
+# cask "pandoc"
+cask "qlcolorcode"
+cask "qlimagesize"
+cask "qlmarkdown"
+cask "qlprettypatch"
+cask "qlstephen"
+cask "quicklook-csv"
+cask "quicklook-json"
+cask "sourcetree"
+cask "spectacle"
+cask "sublime-text"
+cask "suspicious-package"
+cask "visual-studio-code"
+cask "vlc"
+cask "webpquicklook"
+cask "xmind"
+
+# cask "skype"
+cask "clipy"
+cask "cooviewer"
+cask "kindle"
+cask "google-backup-and-sync"
+
+mas "Slack", id: 803453959
+mas "Skitch", id: 425955336
+mas "The Unarchiver", id: 425424353
+# mas "Numbers", id: 409203825
+# mas "Keynote", id: 409183694
+# mas "Pages", id: 409201541
+# mas "Xcode", id: 497799835
+
+mas "LINE", id: 539883307
+mas "Noizio", id: 928871589
+mas "Be Focused Pro", id: 961632517
+# mas "Evernote", id: 406056744

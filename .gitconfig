@@ -1,8 +1,6 @@
 [core]
 	autocrlf = false
 	excludesfile = ~/.gitignore
-[credential]
-	helper = osxkeychain
 [include]
 	path = ~/.gitconfig.local
 [alias]
