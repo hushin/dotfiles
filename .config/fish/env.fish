@@ -20,6 +20,9 @@ set -x PATH $PATH $GOPATH/bin
 
 # ruby
 set -x PATH /usr/local/opt/ruby/bin $PATH
+if which ruby >/dev/null; and which gem >/dev/null
+  set -x PATH (ruby -r rubygems -e 'puts Gem.dir')/bin $PATH
+end
 
 # nodebrew
 set -x PATH $HOME/.nodebrew/current/bin $PATH
