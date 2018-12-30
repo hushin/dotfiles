@@ -1,5 +1,7 @@
-balias t tig
-balias ta 'tig --all'
+if test (type -t balias) = 'function'
+  balias t tig
+  balias ta 'tig --all'
+end
 
 # zsh
 alias reload='source ~/.config/fish/config.fish'

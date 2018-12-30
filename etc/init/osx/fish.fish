@@ -1,10 +1,12 @@
 #!/usr/local/bin/fish
 
+if grep fish /etc/shells
+  echo Found fish
+else
+  echo "add fish"
+  echo /usr/local/bin/fish | sudo tee -a /etc/shells
+end
 
-echo "add fish"
-# TODO すでにある場合は追記しないようにする
-# echo /usr/local/bin/fish | sudo tee -a /etc/shells
-# # TODO デフォルトシェルにするか分岐させる？
 # chsh -s /usr/local/bin/fish
 
 echo "install fisher"
