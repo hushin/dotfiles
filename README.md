@@ -7,7 +7,7 @@
 ## Installation
 
 ```
-git clone https://github.com/hushin/dotfiles.git ~/.dotfiles
+git clone git@github.com:hushin/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 make deploy
 make init
