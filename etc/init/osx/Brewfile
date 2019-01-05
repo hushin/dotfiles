@@ -3,13 +3,21 @@ tap "caskroom/cask"
 tap "caskroom/versions"
 tap "caskroom/fonts"
 
+## first
+
 brew "mas"
 cask "google-chrome"
 brew "mackup"
 cask "karabiner-elements"
 
+## first private
+
 cask "dropbox"
 cask "1password6"
+# cask "onedrive"
+# cask "keepassxc"
+
+## brew
 
 brew "ag"
 brew "awscli"
@@ -32,7 +40,6 @@ brew "git"
 brew "gnu-sed", args: ["with-default-names"]
 brew "go"
 brew "graphviz"
-# brew "highlight"
 brew "hub"
 brew "jq"
 brew "nkf"
@@ -51,12 +58,13 @@ brew "tree"
 brew "watch"
 brew "wget"
 brew "yarn", args: ["without-node"]
+# brew "highlight"
+
+## cask
 
 cask "adobe-acrobat-reader"
 cask "alfred"
 cask "atom"
-cask "betterzip"
-# cask "box-sync"
 cask "cyberduck"
 cask "dash"
 cask "docker"
@@ -67,8 +75,8 @@ cask "font-source-han-code-jp"
 cask "google-japanese-ime"
 cask "grandperspective"
 cask "iterm2"
+cask "java"
 cask "keycastr"
-# cask "pandoc"
 cask "qlcolorcode"
 cask "qlimagesize"
 cask "qlmarkdown"
@@ -84,12 +92,20 @@ cask "visual-studio-code"
 cask "vlc"
 cask "webpquicklook"
 cask "xmind"
+# cask "box-sync"
+# cask "pandoc"
 
-# cask "skype"
+## cask private
+
 cask "clipy"
 cask "cooviewer"
-cask "kindle"
+cask "discord"
 cask "google-backup-and-sync"
+cask "kindle"
+cask "music-manager"
+# cask "skype"
+
+## mas
 
 mas "Slack", id: 803453959
 mas "Skitch", id: 425955336
@@ -98,6 +114,8 @@ mas "The Unarchiver", id: 425424353
 # mas "Keynote", id: 409183694
 # mas "Pages", id: 409201541
 # mas "Xcode", id: 497799835
+
+## mas private
 
 mas "LINE", id: 539883307
 mas "Noizio", id: 928871589

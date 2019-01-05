@@ -8,5 +8,6 @@ read -p "Hit enter: "
 mkdir -p ~/Documents/memo
 [ -e ~/Dropbox/memo/_posts ] && ln -s ~/Dropbox/memo/_posts ~/Documents/memo
 
+# TODO すでに ~/.ssh が シンボリックリンクだったらやらない
 [ -e ~/Dropbox/ssh/ ] && ln -s ~/Dropbox/ssh/ ~/.ssh
 chmod 0600 ~/.ssh/id_rsa

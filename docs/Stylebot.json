@@ -1,0 +1,58 @@
+{
+  "anond.hatelabo.jp": {
+    "_enabled": true,
+    "_rules": {
+      ".keyword": {
+        "border-bottom": "1px solid #f1f1f1"
+      },
+      "blockquote": {
+        "font-style": "italic"
+      },
+      "body, p": {
+        "color": "#282828",
+        "font-size": "19px",
+        "line-height": "1.6"
+      },
+      "h2, h3, h4": {
+        "font-family": "\"Lucida Grande\",\"Lucida Sans Unicode\",\"Lucida Sans\",Geneva,Arial,sans-serif"
+      }
+    }
+  },
+  "tweetdeck.twitter.com": {
+    "_enabled": true,
+    "_rules": {
+      ".column:nth-child(1)": {
+        "width": "600px"
+      },
+      ".column:nth-child(1) .item-box:not(:hover) .tweet-footer": {
+        "display": "none"
+      },
+      ".column:nth-child(1) .js-stream-item-content": {
+        "padding": "3px"
+      },
+      ".column:nth-child(1) .media-preview, .column:nth-child(1) .quoted-tweet": {
+        "margin": "0 10px",
+        "min-width": "250px",
+        "width": "250px"
+      },
+      ".column:nth-child(1) .tweet-body": {
+        "display": "flex"
+      },
+      ".column:nth-child(1) .tweet-context": {
+        "position": "absolute",
+        "right": "40px"
+      },
+      ".column:nth-child(1) .tweet-text": {
+        "width": "100%"
+      }
+    }
+  },
+  "www.nicovideo.jp": {
+    "_enabled": true,
+    "_rules": {
+      ".log-user-mylist-add": {
+        "background": "#eee"
+      }
+    }
+  }
+}

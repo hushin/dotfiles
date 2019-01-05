@@ -21,3 +21,17 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
   name  = hushin
   email = nnnnot+github@gmail.com
 ```
+
+## Update
+
+* `mackup backup`
+* `code --list-extensions > ~/.dotfiles/etc/init/osx/vscode-extensions.txt`
+
+## Manual Docs
+
+- [Chrome](./docs/chrome.md)
+- Alfred -> Alfred Preferences -> Advanced -> Syncing
+- Google IME
+  - ¥ キーで バックスラッシュを入力
+  - キー設定: ATOK から Ctrl-kで全角カタカナに変換
+  - 必要に応じて辞書登録

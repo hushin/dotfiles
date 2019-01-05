@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-set -eu
+set -u
 
 dir_name=$(cd $(dirname $0); pwd)
 
@@ -13,5 +13,5 @@ fi
 echo "Install homebrew apps"
 cd ${dir_name}
 brew bundle
-cd -
+source ~/.bash_profile
 echo
