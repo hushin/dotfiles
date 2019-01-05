@@ -27,6 +27,7 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
 * `mackup backup`
 * `code --list-extensions > ~/.dotfiles/etc/init/osx/vscode-extensions.txt`
 
-## Docs
+## Manual Docs
 
 - [Chrome](./docs/chrome.md)
+- Alfred -> Alfred Preferences -> Advanced -> Syncing
