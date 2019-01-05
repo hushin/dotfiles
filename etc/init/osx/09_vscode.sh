@@ -2,6 +2,7 @@
 
 set -u
 
+# code --list-extensions | pbcopy
 extensions='
 alefragnani.project-manager
 CoenraadS.bracket-pair-colorizer
@@ -18,6 +19,7 @@ MS-CEINTL.vscode-language-pack-ja
 ms-vscode.atom-keybindings
 ms-vscode.vscode-typescript-tslint-plugin
 octref.vetur
+PKief.markdown-checkbox
 satokaz.vscode-bs-ctrlchar-remover
 shd101wyy.markdown-preview-enhanced
 skyapps.fish-vscode
