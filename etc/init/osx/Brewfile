@@ -65,7 +65,6 @@ brew "yarn", args: ["without-node"]
 cask "adobe-acrobat-reader"
 cask "alfred"
 cask "atom"
-cask "betterzip"
 cask "cyberduck"
 cask "dash"
 cask "docker"
