@@ -1,0 +1,86 @@
+{
+	// Place your snippets for diagram here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"startuml": {
+		"prefix": "uml",
+		"body": [
+			"@startuml",
+			"skinparam {",
+			"  defaultFontName 'Ricty', 'Consolas','Bitstream Vera Sans Mono','Courier New',Courier,monospace",
+			"  noteFontColor #ffffff",
+			"  noteBackgroundColor #7f8c8d",
+			"  noteBorderColor #7f8c8d",
+			"",
+			"  hyperLinkColor #002233",
+			"",
+			"  activityArrowColor #333333",
+			"  activityBackgroundColor #eeeeee",
+			"  activityBorderColor #999999",
+			"  activityStartColor #000000",
+			"  activityEndColor #000000",
+			"  activityBarColor #000000",
+			"}",
+			"title タイトル",
+			"start",
+			"-hoge",
+			"stop",
+			"@enduml"
+		],
+		"description": "uml template"
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if ($1) then (true)",
+			"  :hoge;",
+			"else (false)",
+			"  :fuga;",
+			"endif"
+		],
+		"description": "if else"
+	},
+	"partition": {
+		"prefix": "pt",
+		"body": [
+			"partition Hoge$1 {",
+			"  -aaa",
+			"  -bbb",
+			"}"
+		],
+		"description": "partition"
+	},
+	"note": {
+		"prefix": "note",
+		"body": [
+			"note right",
+			"  $1",
+			"end note"
+		],
+		"description": "note"
+	},
+	"floating note left": {
+		"prefix": "fn",
+		"body": [
+			"floating note left: This is a note"
+		],
+		"description": "floating note left"
+	},
+	"detach": {
+		"prefix": "de",
+		"body": [
+			"detach"
+		],
+		"description": "detach"
+	}
+}
