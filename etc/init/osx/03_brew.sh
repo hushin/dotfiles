@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -u
 
@@ -13,4 +13,5 @@ fi
 echo "Install homebrew apps"
 cd ${dir_name}
 brew bundle
+source ~/.bash_profile
 echo

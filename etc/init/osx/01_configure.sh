@@ -120,7 +120,7 @@ killall Dock
 #
 
 # デフォルトはカラムビュー表示
-defaults write com.apple.finder FXPreferredViewStyle clmv
+defaults write com.apple.finder FXPreferredViewStyle Nlsv
 
 # 隠しファイルや隠しフォルダを表示
 # defaults write com.apple.finder AppleShowAllFiles -bool true
