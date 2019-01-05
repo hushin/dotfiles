@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eu
+set -u
 
 dir_name=$(cd $(dirname $0); pwd)
 
