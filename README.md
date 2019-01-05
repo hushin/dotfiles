@@ -21,3 +21,7 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
   name  = hushin
   email = nnnnot+github@gmail.com
 ```
+
+## Docs
+
+- [Chrome](./docs/chrome.md)
