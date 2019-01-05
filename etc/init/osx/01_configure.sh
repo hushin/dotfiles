@@ -9,7 +9,10 @@ fi
 
 echo "Configuring..."
 
+# refs
 # http://fnwiya.hatenablog.com/entry/2015/11/06/155255
+# https://qiita.com/djmonta/items/17531dde1e82d9786816
+# https://github.com/buo/dotfiles/tree/master/osx
 
 #
 # Global
@@ -21,7 +24,7 @@ echo "Configuring..."
 # フルキーボードアクセスを有効
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Fuキーを標準のファンクションキーとして使用
+# Fnキーを標準のファンクションキーとして使用
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
 # キーのリピート
@@ -48,6 +51,10 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # 外部ディスプレイでアンチエイリアスを有効にする（サブピクセルレンダリングを「中」レベルで設定）
 # defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 
+# Tap with three fingers
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
+
 #
 # Menubar
 #
@@ -57,6 +64,23 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # 日付と時刻のフォーマット（24時間表示、秒表示あり、日付・曜日を表示）
 # defaults write com.apple.menuextra.clock DateFormat -string "M\u6708d\u65e5(EEE)  H:mm:ss"
+
+#
+# Activity Monitor
+#
+
+# Show the main window when launching Activity Monitor
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+# Visualize CPU usage in the Activity Monitor Dock icon
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+# Show all processes in Activity Monitor
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+# Sort Activity Monitor results by CPU usage
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 #
 # Dock
@@ -171,11 +195,15 @@ chflags nohidden ~/Library
 # クラッシュリポーターを無効にする
 # defaults write com.apple.CrashReporter DialogType none
 
+# マウントされたディスクがあったら、自動的に新しいウィンドウを開く
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
-# # マウントされたディスクがあったら、自動的に新しいウィンドウを開く
-# defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
-# defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
-# defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+# Set `${HOME}` as the default location for new Finder windows
+# 新しいウィンドウでデフォルトでホームフォルダを開く
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Finder再起動して設定を反映
 killall Finder
