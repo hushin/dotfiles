@@ -30,8 +30,8 @@ defaults write NSGlobalDomain KeyRepeat -int 3
 # リピート入力認識までの時間
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-# サイドバーのアイコンサイズを中へ
-defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+# サイドバーのアイコンサイズを大きく
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 3
 
 # 拡張子を常に表示
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
