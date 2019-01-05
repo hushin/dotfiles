@@ -100,8 +100,9 @@ cask "xmind"
 cask "clipy"
 cask "cooviewer"
 cask "discord"
-cask "kindle"
 cask "google-backup-and-sync"
+cask "kindle"
+cask "music-manager"
 # cask "skype"
 
 ## mas
