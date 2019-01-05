@@ -9,4 +9,5 @@
 /fish/conf.d
 /fish/functions
 /fish/fishd.*
+/fish/fish_variables
 !/memo
