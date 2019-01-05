@@ -13,5 +13,4 @@ fi
 echo "Install homebrew apps"
 cd ${dir_name}
 brew bundle
-cd -
 echo

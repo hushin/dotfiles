@@ -2,32 +2,12 @@
 
 set -u
 
-# code --list-extensions | pbcopy
-extensions='
-alefragnani.project-manager
-CoenraadS.bracket-pair-colorizer
-dbaeumer.vscode-eslint
-dracula-theme.theme-dracula
-dsznajder.es7-react-js-snippets
-eamodio.gitlens
-EditorConfig.EditorConfig
-esbenp.prettier-vscode
-infeng.vscode-react-typescript
-jebbs.plantuml
-lfs.vscode-emacs-friendly
-MS-CEINTL.vscode-language-pack-ja
-ms-vscode.atom-keybindings
-ms-vscode.vscode-typescript-tslint-plugin
-octref.vetur
-PKief.markdown-checkbox
-satokaz.vscode-bs-ctrlchar-remover
-shd101wyy.markdown-preview-enhanced
-skyapps.fish-vscode
-spoonscen.es6-mocha-snippets
-yzhang.markdown-all-in-one
-'
+dir_name=$(cd $(dirname $0); pwd)
 
 echo "install vscode extensions"
+cd ${dir_name}
+extensions=$(cat vscode-extensions.txt)
 for i in ${extensions}; do
   code --install-extension $i
 done
+echo

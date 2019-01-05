@@ -22,6 +22,11 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
   email = nnnnot+github@gmail.com
 ```
 
+## Update
+
+* `mackup backup`
+* `code --list-extensions > ~/.dotfiles/etc/init/osx/vscode-extensions.txt`
+
 ## Docs
 
 - [Chrome](./docs/chrome.md)
