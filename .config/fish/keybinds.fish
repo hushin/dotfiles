@@ -1,5 +1,6 @@
 function fish_user_key_bindings
-  bind \x1b 'fzf_recentd' # Ctrl-[にバインドする
+  # FIXME 動かなくなったので一時的に無効化
+  # bind \x1b 'fzf_recentd' # Ctrl-[にバインドする
   bind \c] 'fzf_ghq'
   bind \ct '__fzf_find_file'
   bind \cr '__fzf_reverse_isearch'
