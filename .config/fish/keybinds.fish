@@ -1,6 +1,6 @@
 # FIXME 動かなくなったので一時的に無効化
 # bind \x1b 'fzf_recentd' # Ctrl-[にバインドする
-bind \cJ 'fzf_recentd'
+bind \cj 'fzf_recentd'
 bind \c] 'fzf_ghq'
 bind \ct '__fzf_find_file'
 bind \cr '__fzf_reverse_isearch'
