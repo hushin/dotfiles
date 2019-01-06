@@ -1,3 +1,4 @@
+# FIXME うまく判定できていない…
 if test (type -t balias) = 'function'
   balias t tig
   balias ta 'tig --all'

@@ -3,8 +3,8 @@
 if grep fish /etc/shells
   echo Found fish
 else
-  echo "add fish"
-  echo /usr/local/bin/fish | sudo tee -a /etc/shells
+  # echo "add fish"
+  # echo /usr/local/bin/fish | sudo tee -a /etc/shells
 end
 
 # chsh -s /usr/local/bin/fish
