@@ -2,7 +2,7 @@
 
 git init
 # https://github.com/simonwhitaker/gibo
-gibo Node >> .gitignore
+gibo dump Node >> .gitignore
 # https://github.com/blaix/license-generator
 licgen MIT hushin
 touch README.md
