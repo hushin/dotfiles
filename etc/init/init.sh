@@ -12,3 +12,6 @@ do
 done
 
 fish ${dir_name}/osx/fish.fish
+
+echo
+echo "finish init!!"
