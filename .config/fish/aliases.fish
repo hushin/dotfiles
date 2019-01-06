@@ -35,7 +35,7 @@ end
 
 function joinpdf
   mkdir -p formatted
-  "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" --output formatted/output`date "+%Y%m%d_%H%M%S"`.pdf $argv
+  "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" --output formatted/output(date "+%Y%m%d_%H%M%S").pdf $argv
 end
 
 function checkout-git-branch -d "Fuzzy-find and checkout a branch"
