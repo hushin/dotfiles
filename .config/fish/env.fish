@@ -31,3 +31,6 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 # bobthefish
 set -g theme_color_scheme solarized-light
 set -g theme_display_date no
+
+# color
+set -g fish_color_command --bold
