@@ -10,6 +10,9 @@ set log-view    = line-number:yes,interval=1 text
 set blob-view   = line-number:yes,interval=1 text
 set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
 
+# 画面を垂直方向に分割する
+set vertical-split = yes
+
 set line-graphics = utf-8       # グラフ描画時の種別
 set tab-size = 8                # TAB 文字の表示幅
 # 空白無視 (status-view では表示するが diff-view では無視する) (W でトグル)
@@ -41,6 +44,7 @@ set diff-highlight = true
 color  diff-header       default magenta
 color  diff-chunk        black   white
 
+set wrap-lines = yes
 
 # g をファイル先頭に移動に変更、 view-grep を再割当て
 bind generic g      move-first-line
@@ -70,13 +74,13 @@ bind pager   n      :/^@@
 bind pager   p      :?^@@
 bind pager   <Esc>n :/^diff --(git|cc)
 bind pager   <Esc>p :?^diff --(git|cc)
-bind log     n      :/^commit
-bind log     p      :?^commit
+bind log     <Ctrl-n> :/^commit
+bind log     <Ctrl-p> :?^commit
 
 # 元の n / p を別に割り当て
-# bind generic V      view-pager
-# bind generic <Ctrl-s> find-next # 要 stty stop undef
-# bind generic <Ctrl-r> find-prev
+bind generic V      view-pager
+bind generic <Ctrl-s> find-next # 要 stty stop undef
+bind generic <Ctrl-r> find-prev
 
 # Ctrl-f, Ctrl-b で左右スクロール
 bind generic <Ctrl-f> scroll-right
@@ -92,6 +96,9 @@ bind main    F      ?git fetch %(remote)
 # Alt-f で :toggle file-name / :toggle commit-title-refs
 bind generic <Esc>f :toggle file-name
 bind main    <Esc>f :toggle commit-title-refs
+
+# U で　pull
+bind generic U      ?git pull %(remote)
 
 # Alt-u で該当ブランチを更新
 bind main    <Esc>u ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
@@ -148,6 +155,9 @@ bind stash   Y      ?git stash pop %(stash)
 bind diff    <Esc>y ?git stash apply %(stash)
 bind stash   <Esc>y ?git stash apply %(stash)
 
+# H で　reset --hard HEAD (status-view)
+bind status  H      ?git reset --hard HEAD
+
 # D でブランチを削除 (マージ済みブランチのみ. 強制削除(branch -D) は `!`) (refs-view)
 bind refs    D      ?git branch -d %(branch)
 
@@ -169,6 +179,20 @@ bind stage   `      @bash -c "echo -n '%(file)' | pbcopy"
 bind status  `      @bash -c "echo -n '%(file)' | pbcopy"
 bind tree    `      @bash -c "echo -n '%(file)' | pbcopy"
 bind blob    `      @bash -c "echo -n '%(file)' | pbcopy"
+
+# 9 でコミットコメントをコピー
+bind generic 9      @bash -c "git show %(commit) --quiet | pbcopy"
+
+# ! で revert
+bind main    !      ?git revert %(commit)
+
+# K で　cherry-pick (default: 'C')
+bind main    K      ?git cherry-pick %(commit)
+bind diff    K      ?git cherry-pick %(commit)
+
+# Alt-k で cherry-pick -n (--no-commit)
+bind main    <Esc>k ?git cherry-pick -n %(commit)
+bind diff    <Esc>k ?git cherry-pick -n %(commit)
 
 # = で checkout
 bind main    =      ?git checkout %(branch)
@@ -193,14 +217,11 @@ bind main    <Esc>r ?git rebase %(commit)
 bind diff    <Esc>r ?git rebase %(commit)
 
 # I で rebase -i
-bind main    I      ?git rebase -i %(commit)
-bind diff    I      ?git rebase -i %(commit)
-bind main    <Esc>i ?git rebase -i %(branch)
-bind diff    <Esc>i ?git rebase -i %(branch)
-bind refs    <Esc>i ?git rebase -i %(commit)
-
-# ! で revert
-# bind main    !      ?git revert %(commit)
+bind main    I      ?git rebase -i %(branch)
+bind diff    I      ?git rebase -i %(branch)
+bind refs    I      ?git rebase -i %(branch)
+bind main    <Esc>i ?git rebase -i %(commit)
+bind diff    <Esc>i ?git rebase -i %(commit)
 
 # http://hisaichi5518.hatenablog.jp/entry/2017/02/09/160007
 # B でコミットをブラウザで開く
@@ -213,13 +234,12 @@ bind tree    B @git browse-remote %(commit) %(file)
 bind blob    B @git browse-remote %(commit) %(file) -L %(lineno)
 bind grep    B @git browse-remote %(commit) %(file)
 
-
 # w で Pull Request を開く
 bind main    w @git openpr %(commit)
 bind blame   w @git openpr %(commit)
 bind refs    w @git openpr %(ref)
 
-# B でブランチを作成してそのブランチに移動 (checkout -b)
+# Alt-b でブランチを作成してそのブランチに移動 (checkout -b)
 bind main    <Esc>b ?git checkout -b "%(prompt Enter branch name: )" %(branch)
 
 # A で git add -A
