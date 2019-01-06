@@ -1,6 +1,6 @@
 # fzf
 set -x FZF_DEFAULT_COMMAND 'ag -g "" --hidden --ignore ".git"'
-set -x FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border --inline-info --preview 'head -100 {}'"
+set -x FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border --ansi --inline-info --preview 'head -100 {}'"
 
 # Add ~/bin to PATH
 set -x PATH ~/bin $PATH
