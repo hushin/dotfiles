@@ -58,13 +58,13 @@
   "github.com": {
     "_enabled": true,
     "_rules": {
-      "details": {
+      ".Box-body details": {
         "border": "1px solid #aaa",
         "border-radius": "4px",
         "padding": ".3em .3em .3em .6em",
         "margin-bottom": ".3em"
       },
-      "summary": {
+      ".Box-body summary": {
         "color": "#0246b6"
       }
     }
