@@ -37,7 +37,6 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     html
      emacs-lisp
      markdown
 
@@ -47,22 +46,11 @@ values."
      osx
      ;; gtags
      ;; pandoc
-     dash
-     helm
-     emoji
-     auto-completion
-     better-defaults
-     git
-     github
      ;; deft
-     (org :variables
-          org-enable-github-support t
-          org-enable-bootstrap-support t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -338,6 +326,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (editorconfig-mode 1)
+  (add-to-list 'editorconfig-exclude-regexps "/git-rebase-todo\\'")
   (define-key global-map "\C-h" 'delete-backward-char)
   (global-visual-line-mode)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
