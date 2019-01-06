@@ -1,0 +1,13 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "alt+cmd+c",
+    "command": "-toggleFindCaseSensitive",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+cmd+c",
+    "command": "copyRelativeFilePath",
+    "when": "editorFocus"
+  }
+]
