@@ -2,7 +2,8 @@
 
 ## Overview
 
-各dotfilesへのシンボリックリンクを $HOME の下に作ります。
+* 各dotfilesへのシンボリックリンクを $HOME の下に作ります。
+* 各種アプリをインストール・設定します。
 
 ## Installation
 
