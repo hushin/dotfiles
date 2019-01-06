@@ -2,6 +2,9 @@
 
 set -u
 
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 echo "install node"
 mkdir -p ~/.nodebrew/src
 nodebrew selfupdate
