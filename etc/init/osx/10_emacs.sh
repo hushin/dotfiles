@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eu
+set -u
 
 brew tap d12frosted/emacs-plus
 brew install emacs-plus --HEAD --with-natural-title-bars
