@@ -30,13 +30,18 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
 
 ## Manual Docs
 
-- Launch apps
+- Launch apps (set Launch at Startup)
   - Dropbox
   - Karabiner-elements
   - 1Password
   - Spectacle
   - Clipy
   - Dash
+  - Activity Monitor
+  - Be Focused Pro
+  - Slack
+  - Discord
+  - LINE
 - [Chrome](./docs/chrome.md)
 - Alfred Preferences
   - Powerpack -> license
