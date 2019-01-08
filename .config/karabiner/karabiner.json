@@ -1246,10 +1246,18 @@
                 },
                 {
                     "from": {
+                        "key_code": "fn"
+                    },
+                    "to": {
+                        "key_code": "left_option"
+                    }
+                },
+                {
+                    "from": {
                         "key_code": "left_control"
                     },
                     "to": {
-                        "key_code": "caps_lock"
+                        "key_code": "left_option"
                     }
                 },
                 {
