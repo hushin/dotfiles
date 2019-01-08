@@ -1254,22 +1254,6 @@
                 },
                 {
                     "from": {
-                        "key_code": "backslash"
-                    },
-                    "to": {
-                        "key_code": "delete_or_backspace"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "delete_or_backspace"
-                    },
-                    "to": {
-                        "key_code": "backslash"
-                    }
-                },
-                {
-                    "from": {
                         "key_code": "right_shift"
                     },
                     "to": {
