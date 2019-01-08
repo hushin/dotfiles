@@ -1267,6 +1267,22 @@
                     "to": {
                         "key_code": "fn"
                     }
+                },
+                {
+                    "from": {
+                        "key_code": "backslash"
+                    },
+                    "to": {
+                        "key_code": "delete_or_backspace"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "delete_or_backspace"
+                    },
+                    "to": {
+                        "key_code": "backslash"
+                    }
                 }
             ],
             "virtual_hid_keyboard": {
