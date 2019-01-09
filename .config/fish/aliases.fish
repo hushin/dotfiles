@@ -1,5 +1,4 @@
-# FIXME うまく判定できていない…
-if test (type -t balias) = 'function'
+if test (type -t balias 2> /dev/null) = 'function'
   balias t tig
   balias ta 'tig --all'
   balias g 'git'
@@ -41,7 +40,7 @@ end
 
 function copy-history -a historyNum
   set -q historyNum[1] || set historyNum 10
-  history | tac | tail -n $historyNum | pbcopy
+  history | tail -n $historyNum | pbcopy
 end
 
 function joinpdf
