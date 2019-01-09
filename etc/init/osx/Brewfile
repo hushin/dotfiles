@@ -64,7 +64,6 @@ brew "yarn", args: ["without-node"]
 
 cask "adobe-acrobat-reader"
 cask "alfred"
-cask "atom"
 cask "cyberduck"
 cask "dash"
 cask "docker"
@@ -73,7 +72,6 @@ cask "font-noto-serif"
 cask "font-roboto"
 cask "font-source-han-code-jp"
 cask "google-japanese-ime"
-cask "grandperspective"
 cask "iterm2"
 cask "java"
 cask "keycastr"
@@ -107,8 +105,8 @@ cask "music-manager"
 
 ## mas
 
+mas "CotEditor", id: 1024640650
 mas "Slack", id: 803453959
-mas "Skitch", id: 425955336
 mas "The Unarchiver", id: 425424353
 # mas "Numbers", id: 409203825
 # mas "Keynote", id: 409183694

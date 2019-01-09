@@ -16,6 +16,11 @@ if ! command -v brew > /dev/null 2>&1; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+echo "brew update"
+brew update
+echo "brew doctor"
+brew doctor
+
 echo "Install homebrew apps"
 cd ${dir_name}
 brew bundle
