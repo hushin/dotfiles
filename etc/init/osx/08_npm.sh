@@ -12,4 +12,5 @@ nodebrew install-binary v10.x
 nodebrew use v10.x
 
 echo "install npm packages"
-npm install -g init-package-json-parcel http-server
+npm install -g npm
+npm install -g init-package-json-parcel http-server prettier
