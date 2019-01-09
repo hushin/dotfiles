@@ -39,7 +39,7 @@ values."
      ;; ----------------------------------------------------------------
      emacs-lisp
      markdown
-
+     better-defaults
      (colors :variables
              colors-enable-rainbow-identifiers nil
              colors-enable-nyan-cat-progress-bar (display-graphic-p))
@@ -52,7 +52,9 @@ values."
             shell-default-position 'bottom)
      ;; spell-checking
      ;; version-control
-     )
+     helm
+     git
+    )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
