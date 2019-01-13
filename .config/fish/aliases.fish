@@ -1,38 +1,39 @@
-if test (type -t balias 2> /dev/null) = 'function'
-  balias t tig
-  balias ta 'tig --all'
-  balias g 'git'
-  balias gsh 'git show'
-  balias gdc 'git diff --cached'
-  balias agh 'ag --hidden'
-end
+abbr -a ta 'tig --all'
+abbr -a tst 'tig status'
+abbr -a g 'git'
+abbr -a gsh 'git show'
+abbr -a gdc 'git diff --cached'
+abbr -a gco 'git checkout'
+abbr -a gcb 'git checkout -b'
+abbr -a gcm 'git checkout master'
+abbr -a agh 'ag --hidden'
 
-if ! command -v tac > /dev/null
-  alias tac='tail -r'
-end
+type -qa tac || abbr -a tac 'tail -r'
 
-alias reload='source ~/.config/fish/config.fish'
-alias diff='diff -u'
-alias cdu='cd-gitroot'
-alias tree "tree -NC" # N: 文字化け対策, C:色をつける
-alias notes 'ag "TODO|HACK|FIXME|OPTIMIZE"'
+abbr -a reload 'source ~/.config/fish/config.fish'
+abbr -a diff 'diff -u'
+abbr -a cdu 'cd-gitroot'
+abbr -a tree "tree -NC" # N: 文字化け対策, C:色をつける
+abbr -a notes 'ag "TODO|HACK|FIXME|OPTIMIZE"'
 
-alias e='emacsclient -t -a ""'
-alias ekill='emacsclient -e "(kill-emacs)"'
+abbr -a e 'emacsclient -t -a ""'
+abbr -a ekill 'emacsclient -e "(kill-emacs)"'
+
+type -qa open && abbr -a o 'open'
 
 function f
   git ls-tree -r --name-only HEAD
 end
 
 function ef
-  f | fzf | xargs -o emacsclient -t -a ""
+  f | fzf | xargs -o -I% sh -c '$EDITOR %'
 end
 
 function git-review
   set -l N (git log --pretty=format:"%H %h" | grep -n $argv | cut -d : -f 1)
   git log --decorate --stat --reverse -p -$N
 end
-alias gre='git-review'
+abbr -a  gre 'git-review'
 
 function touchp
   mkdir -p (dirname "$argv") && touch "$argv"

@@ -32,5 +32,8 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -g theme_color_scheme zenburn
 set -g theme_display_date no
 
+# gabbr
+set -U gabbr_config $HOME/.config/fish/gabbr.conf
+
 # color
 set -g fish_color_command --bold
