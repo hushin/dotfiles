@@ -49,6 +49,12 @@ function joinpdf
   "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" --output formatted/output(date "+%Y%m%d_%H%M%S").pdf $argv
 end
 
+function hlcopy -d "Code highlighting" --argument language theme
+  set -q language[1] || set language ts
+  set -q theme[1] || set theme Zenburn
+  pbpaste | highlight -S $language -s $theme -O rtf -k 'Source Code Pro' -K 24 | pbcopy
+end
+
 # https://github.com/junegunn/fzf/wiki/Examples-(fish)
 function fssh -d "Fuzzy-find ssh host via ag and ssh into it"
   ag --ignore-case '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf --preview='' | read -l result; and ssh "$result"

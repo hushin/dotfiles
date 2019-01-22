@@ -40,6 +40,7 @@ brew "git"
 brew "gnu-sed", args: ["with-default-names"]
 brew "go"
 brew "graphviz"
+brew "highlight"
 brew "hub"
 brew "jq"
 brew "nkf"
