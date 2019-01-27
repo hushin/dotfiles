@@ -52,7 +52,7 @@ end
 function hlcopy -d "Code highlighting" --argument language theme
   set -q language[1] || set language ts
   set -q theme[1] || set theme Zenburn
-  pbpaste | highlight -S $language -s $theme -O rtf -k 'Source Code Pro' -K 24 | pbcopy
+  pbpaste | highlight -S $language -s $theme -O rtf -k 'Source Han Code JP' -K 24 | pbcopy
 end
 
 # https://github.com/junegunn/fzf/wiki/Examples-(fish)
