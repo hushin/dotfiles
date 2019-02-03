@@ -28,10 +28,10 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
 # キーのリピート
-defaults write NSGlobalDomain KeyRepeat -int 3
+defaults write NSGlobalDomain KeyRepeat -int 6
 
 # リピート入力認識までの時間
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain InitialKeyRepeat -int 35
 
 # サイドバーのアイコンサイズを大きく
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 3
