@@ -55,6 +55,14 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
 
+# Mouse: TwoButton mouse
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
+defaults write com.apple.AppleMultitouchMouse MouseButtonMode -string "TwoButton"
+
+# Enable App Exposé
+# Swipe down with three/four fingers
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+
 #
 # Menubar
 #
