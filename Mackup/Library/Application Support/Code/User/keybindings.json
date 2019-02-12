@@ -6,8 +6,13 @@
     "when": "editorFocus"
   },
   {
-    "key": "ctrl+cmd+c",
+    "key": "alt+cmd+c",
     "command": "copyRelativeFilePath",
     "when": "editorFocus"
-  }
+  },
+  {
+    "key": "cmd+m",
+    "command": "-markdown.extension.editing.toggleMath",
+    "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+  },
 ]
