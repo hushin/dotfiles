@@ -27,5 +27,6 @@
       "editor.wordWrap": "on",
       "editor.quickSuggestions": true
     },
-    "markdown-checkbox.italicWhenChecked": false
+    "markdown-checkbox.italicWhenChecked": false,
+    "workbench.startupEditor": "newUntitledFile"
 }
