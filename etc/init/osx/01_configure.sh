@@ -51,6 +51,9 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # 外部ディスプレイでアンチエイリアスを有効にする（サブピクセルレンダリングを「中」レベルで設定）
 # defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 
+# turn off Close windows when quitting an app
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -boolean true
+
 # Tap with three fingers
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
