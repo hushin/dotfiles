@@ -1,7 +1,7 @@
 cask_args appdir: "/Applications"
-tap "caskroom/cask"
-tap "caskroom/versions"
-tap "caskroom/fonts"
+# tap "caskroom/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/cask-fonts"
 
 ## first
 
