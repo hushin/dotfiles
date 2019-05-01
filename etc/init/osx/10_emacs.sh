@@ -3,7 +3,7 @@
 set -u
 
 brew tap d12frosted/emacs-plus
-brew install emacs-plus --HEAD --with-natural-title-bars
+brew install emacs-plus
 # brew linkapps emacs-plus
 ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
 
