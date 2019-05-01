@@ -11,3 +11,4 @@
 /fish/fishd.*
 /fish/fish_variables
 !/memo
+/karabiner/automatic_backups
