@@ -363,6 +363,7 @@ you should place your code here."
     )
   (evil-leader/set-key "o y" 'copy-to-clipboard)
   (evil-leader/set-key "o p" 'paste-from-clipboard)
+  (setq powerline-image-apple-rgb t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
