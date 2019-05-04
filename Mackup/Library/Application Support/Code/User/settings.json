@@ -23,10 +23,18 @@
     "prettier.singleQuote": true,
     "prettier.stylelintIntegration": true,
     "prettier.trailingComma": "all",
+    "prettier.disableLanguages": [
+      "markdown",
+    ],
     "[markdown]": {
       "editor.wordWrap": "on",
       "editor.quickSuggestions": true
     },
     "markdown-checkbox.italicWhenChecked": false,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.copyWithSyntaxHighlighting": false,
+    "zentabs.maximumOpenedTabs": 4,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
