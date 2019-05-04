@@ -1,4 +1,5 @@
 alefragnani.project-manager
+christian-kohler.path-intellisense
 CoenraadS.bracket-pair-colorizer
 dbaeumer.vscode-eslint
 dracula-theme.theme-dracula
@@ -6,15 +7,16 @@ dsznajder.es7-react-js-snippets
 eamodio.gitlens
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
+hiro-sun.vscode-emacs
+hitode909.zentabs
 infeng.vscode-react-typescript
 jebbs.plantuml
-lfs.vscode-emacs-friendly
 MS-CEINTL.vscode-language-pack-ja
 ms-vscode.atom-keybindings
-ms-vscode.vscode-typescript-tslint-plugin
 octref.vetur
 PKief.markdown-checkbox
 satokaz.vscode-bs-ctrlchar-remover
+satokaz.vscode-memo-life-for-you
 shd101wyy.markdown-preview-enhanced
 skyapps.fish-vscode
 spoonscen.es6-mocha-snippets
