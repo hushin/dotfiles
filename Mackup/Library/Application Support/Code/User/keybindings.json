@@ -15,4 +15,14 @@
     "command": "-markdown.extension.editing.toggleMath",
     "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
   },
+  {
+    "key": "ctrl+v",
+    "command": "scrollPageDown",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+v",
+    "command": "scrollPageUp",
+    "when": "textInputFocus"
+  }
 ]
