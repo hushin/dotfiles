@@ -1,40 +1,51 @@
 {
-    "editor.tabSize": 2,
-    "window.zoomLevel": 0,
-    "keyboard.dispatch": "keyCode",
-    "editor.fontSize": 16,
-    "atomKeymap.promptV3Features": true,
-    "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
-    "editor.formatOnPaste": true,
-    "editor.minimap.enabled": false,
-    "editor.renderControlCharacters": true,
+  "editor.tabSize": 2,
+  "window.zoomLevel": 0,
+  "keyboard.dispatch": "keyCode",
+  "editor.fontSize": 16,
+  "atomKeymap.promptV3Features": true,
+  "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
+  "editor.minimap.enabled": false,
+  "editor.renderControlCharacters": true,
+  "editor.wordWrap": "on",
+  "workbench.colorTheme": "Dracula Soft",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "window.restoreWindows": "all",
+  "explorer.confirmDelete": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.fontFamily": "Ricty for Powerline",
+  "terminal.integrated.fontSize": 15,
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "prettier.jsxSingleQuote": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.trailingComma": "all",
+  "prettier.disableLanguages": ["markdown"],
+  "[markdown]": {
     "editor.wordWrap": "on",
-    "workbench.colorTheme": "Dracula Soft",
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "window.restoreWindows": "all",
-    "explorer.confirmDelete": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "terminal.integrated.fontFamily": "Ricty for Powerline",
-    "terminal.integrated.fontSize": 15,
-    "gitlens.codeLens.authors.enabled": false,
-    "gitlens.codeLens.recentChange.enabled": false,
-    "prettier.jsxSingleQuote": true,
-    "prettier.semi": false,
-    "prettier.singleQuote": true,
-    "prettier.stylelintIntegration": true,
-    "prettier.trailingComma": "all",
-    "prettier.disableLanguages": [
-      "markdown",
-    ],
-    "[markdown]": {
-      "editor.wordWrap": "on",
-      "editor.quickSuggestions": true
-    },
-    "markdown-checkbox.italicWhenChecked": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "editor.copyWithSyntaxHighlighting": false,
-    "zentabs.maximumOpenedTabs": 4,
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.quickSuggestions": true
+  },
+  "markdown-checkbox.italicWhenChecked": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.copyWithSyntaxHighlighting": false,
+  "zentabs.maximumOpenedTabs": 4,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.copyOnSelection": true,
+  "jumpy.wordRegexp": "[hjklasdfgyuiowertnm]{2,}",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html"
+  },
+  "emmet.syntaxProfiles": {
+    "jsx": {
+      "self_closing_tag": true
     }
+  },
+  "terminal.integrated.rendererType": "dom"
 }
