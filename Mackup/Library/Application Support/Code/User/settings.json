@@ -3,7 +3,6 @@
   "window.zoomLevel": 0,
   "keyboard.dispatch": "keyCode",
   "editor.fontSize": 16,
-  "atomKeymap.promptV3Features": true,
   "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
   "editor.minimap.enabled": false,
   "editor.renderControlCharacters": true,
@@ -23,10 +22,6 @@
   "prettier.stylelintIntegration": true,
   "prettier.trailingComma": "all",
   "prettier.disableLanguages": ["markdown"],
-  "[markdown]": {
-    "editor.wordWrap": "on",
-    "editor.quickSuggestions": true
-  },
   "markdown-checkbox.italicWhenChecked": false,
   "workbench.startupEditor": "newUntitledFile",
   "editor.copyWithSyntaxHighlighting": false,
@@ -34,18 +29,15 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "terminal.integrated.copyOnSelection": true,
-  "jumpy.wordRegexp": "[hjklasdfgyuiowertnm]{2,}",
+  "terminal.integrated.rendererType": "dom",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": true
+  },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "vue-html": "html"
-  },
-  "emmet.syntaxProfiles": {
-    "jsx": {
-      "self_closing_tag": true
-    }
-  },
-  "terminal.integrated.rendererType": "dom"
+  "terminal.integrated.copyOnSelection": true
 }
