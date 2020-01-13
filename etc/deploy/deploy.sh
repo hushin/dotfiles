@@ -2,9 +2,6 @@
 
 set -u
 
-echo "check .gitconfig.local"
-[ -e ~/.gitconfig.local ] || cp ~/.dotfiles/.gitconfig.local.template ~/.gitconfig.local
-
 configDir="$HOME/.config"
 
 if [ ! -L $configDir ]; then
