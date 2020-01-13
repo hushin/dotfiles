@@ -54,6 +54,9 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # turn off Close windows when quitting an app
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -boolean true
 
+# Dark mode
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+
 # Tap with three fingers
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
@@ -111,6 +114,9 @@ defaults write com.apple.dock autohide -bool true
 
 # Wipe all app icons from the Dock （Dock に標準で入っている全てのアプリを消す、Finder とごみ箱は消えない）
 defaults write com.apple.dock persistent-apps -array
+
+# 最新の使用状況に基づいて操作スペースを自動的に並べ替えない
+defaults write com.apple.dock mru-spaces -bool false
 
 # Dockをすぐに表示する
 # defaults write com.apple.dock autohide-delay -float 0
