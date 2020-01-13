@@ -3,7 +3,6 @@
   "window.zoomLevel": 0,
   "keyboard.dispatch": "keyCode",
   "editor.fontSize": 16,
-  "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
   "editor.minimap.enabled": false,
   "editor.renderControlCharacters": true,
   "editor.wordWrap": "on",
@@ -12,14 +11,13 @@
   "window.restoreWindows": "all",
   "explorer.confirmDelete": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.fontFamily": "Ricty for Powerline",
+  "terminal.integrated.fontFamily": "Cica",
   "terminal.integrated.fontSize": 15,
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "prettier.jsxSingleQuote": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.stylelintIntegration": true,
   "prettier.trailingComma": "all",
   "prettier.disableLanguages": ["markdown"],
   "markdown-checkbox.italicWhenChecked": false,
@@ -39,5 +37,6 @@
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "terminal.integrated.copyOnSelection": true
+  "terminal.integrated.copyOnSelection": true,
+  "editor.fontFamily": "Cica, Menlo, Monaco, 'Courier New', monospace"
 }

@@ -17,7 +17,7 @@
 		"body": [
 			"@startuml",
 			"skinparam {",
-			"  defaultFontName 'Ricty', 'Consolas','Bitstream Vera Sans Mono','Courier New',Courier,monospace",
+			"  defaultFontName 'Cica', 'Ricty', 'Consolas','Bitstream Vera Sans Mono','Courier New',Courier,monospace",
 			"  noteFontColor #ffffff",
 			"  noteBackgroundColor #7f8c8d",
 			"  noteBorderColor #7f8c8d",
