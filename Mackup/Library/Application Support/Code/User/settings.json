@@ -38,5 +38,6 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "terminal.integrated.copyOnSelection": true,
-  "editor.fontFamily": "Cica, Menlo, Monaco, 'Courier New', monospace"
+  "editor.fontFamily": "Cica, Menlo, Monaco, 'Courier New', monospace",
+  "markdown-checkbox.strikeThroughWhenChecked": false
 }
