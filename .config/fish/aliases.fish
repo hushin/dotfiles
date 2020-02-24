@@ -91,6 +91,32 @@ function mkdev -a dirName
 
 	mkdir -p $devPath
 	cd $devPath
+  git init
+end
+
+function mksandbox -a dirName
+	if ! test "$dirName"
+		echo "Usage: mksandbox dir-name"
+		return
+	end
+	set -l rootDir (ghq root)
+  set -l gitUser (git config user.name)
+	set -l githubUser "github.com/$gitUser-sandbox"
+	set -l devPath "$rootDir/$githubUser/$dirName"
+
+	mkdir -p $devPath
+	cd $devPath
+  git init
+end
+
+function crrepo
+  cd-gitroot
+  set -l repoName (string match -r '[^/]*/[^/]*$' "$PWD")
+  set -l userName (string match -r '^[^/]*' "$repoName")
+  set -l remoteUrl "https://$userName@github.com/$repoName.git"
+
+  hub create $argv $repoName
+  git remote set-url origin $remoteUrl
 end
 
 function move-to-bitbucket -d "github to bitbucket ghq directory" -a dirName
