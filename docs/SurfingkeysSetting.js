@@ -102,7 +102,12 @@ addSearchAliasX(
   'https://twitter.com/search?q=',
   's',
   'https://twitter.com/i/search/typeahead.json?count=10&filters=true&q=',
-  response => JSON.parse(response.text).topics.map(v => v.topic)
+  response =>
+    JSON.parse(response.text).topics.map(v =>
+      createSuggestionItem(v.topic, {
+        url: `https://twitter.com/search?q=${encodeURIComponent(v.topic)}`
+      })
+    )
 )
 mapkey('otw', '#8Open Search with alias tw', function() {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'tw' })
@@ -240,6 +245,19 @@ addSearchAliasX(
 )
 mapkey('oa', '#8Open Search with alias a', function() {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
+})
+
+// Amazon jp Kindle
+addSearchAliasX(
+  'k',
+  'Amazon Kindle',
+  'https://www.amazon.co.jp/s?i=digital-text&k=',
+  's',
+  'https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=',
+  response => JSON.parse(response.text)[1]
+)
+mapkey('ok', '#8Open Search with alias k', function() {
+  Front.openOmnibar({ type: 'SearchEngine', extra: 'k' })
 })
 
 // ---- Mapkeys ----//
