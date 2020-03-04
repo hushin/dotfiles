@@ -16,8 +16,6 @@
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "prettier.jsxSingleQuote": true,
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "prettier.disableLanguages": ["markdown"],
   "markdown-checkbox.italicWhenChecked": false,
@@ -39,5 +37,8 @@
   "editor.formatOnSave": true,
   "terminal.integrated.copyOnSelection": true,
   "editor.fontFamily": "Cica, Menlo, Monaco, 'Courier New', monospace",
-  "markdown-checkbox.strikeThroughWhenChecked": false
+  "markdown-checkbox.strikeThroughWhenChecked": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.singleQuote": true,
+  "prettier.semi": false
 }
