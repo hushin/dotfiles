@@ -260,6 +260,9 @@ mapkey('ok', '#8Open Search with alias k', function() {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'k' })
 })
 
+// mercari
+addSearchAliasX('m', 'mercari', 'https://www.mercari.com/jp/search/?keyword=')
+
 // ---- Mapkeys ----//
 const ri = { repeatIgnore: true }
 
