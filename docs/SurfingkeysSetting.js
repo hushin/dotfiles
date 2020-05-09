@@ -18,8 +18,8 @@ settings.theme = `
 `
 
 // ---- Utils ----
-const unmapKeys = keys => keys.forEach(key => unmap(key))
-const iunmapKeys = keys => keys.forEach(key => iunmap(key))
+const unmapKeys = (keys) => keys.forEach((key) => unmap(key))
+const iunmapKeys = (keys) => keys.forEach((key) => iunmap(key))
 const escapeMap = {
   '&': '&amp;',
   '<': '&lt;',
@@ -28,15 +28,15 @@ const escapeMap = {
   "'": '&#39;',
   '/': '&#x2F;',
   '`': '&#x60;',
-  '=': '&#x3D;'
+  '=': '&#x3D;',
 }
-const escape = str => String(str).replace(/[&<>"'`=/]/g, s => escapeMap[s])
+const escape = (str) => String(str).replace(/[&<>"'`=/]/g, (s) => escapeMap[s])
 const createSuggestionItem = (html, props = {}) => {
   const li = document.createElement('li')
   li.innerHTML = html
   return { html: li.outerHTML, props }
 }
-const padZero = txt => `0${txt}`.slice(-2)
+const padZero = (txt) => `0${txt}`.slice(-2)
 const formatDate = (date, format = 'YYYY/MM/DD hh:mm:ss') =>
   format
     .replace('YYYY', date.getFullYear())
@@ -46,13 +46,13 @@ const formatDate = (date, format = 'YYYY/MM/DD hh:mm:ss') =>
     .replace('mm', padZero(date.getMinutes()))
     .replace('ss', padZero(date.getSeconds()))
 
-const tabOpenBackground = url =>
+const tabOpenBackground = (url) =>
   RUNTIME('openLink', {
     tab: {
       tabbed: true,
-      active: false
+      active: false,
     },
-    url
+    url,
   })
 
 // ---- Maps ----
@@ -78,7 +78,7 @@ iunmapKeys([
   '<Ctrl-f>',
   '<Ctrl-b>',
   '<Ctrl-k>',
-  '<Ctrl-y>'
+  '<Ctrl-y>',
 ])
 // disable proxy
 unmapKeys(['cp', 'spa', 'spb', 'spd', 'spc', 'sps', 'spi', ';cp', ';ap'])
@@ -102,14 +102,14 @@ addSearchAliasX(
   'https://twitter.com/search?q=',
   's',
   'https://twitter.com/i/search/typeahead.json?count=10&filters=true&q=',
-  response =>
-    JSON.parse(response.text).topics.map(v =>
+  (response) =>
+    JSON.parse(response.text).topics.map((v) =>
       createSuggestionItem(v.topic, {
-        url: `https://twitter.com/search?q=${encodeURIComponent(v.topic)}`
+        url: `https://twitter.com/search?q=${encodeURIComponent(v.topic)}`,
       })
     )
 )
-mapkey('otw', '#8Open Search with alias tw', function() {
+mapkey('otw', '#8Open Search with alias tw', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'tw' })
 })
 
@@ -119,7 +119,7 @@ addSearchAliasX(
   'Yahoo!リアルタイム検索',
   'http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p='
 )
-mapkey('or', '#8Open Search with alias r', function() {
+mapkey('or', '#8Open Search with alias r', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'r' })
 })
 
@@ -137,14 +137,14 @@ addSearchAliasX(
   'https://developer.mozilla.org/ja/search?q=',
   's',
   'https://developer.mozilla.org/api/v1/search/ja?q=',
-  response => {
+  (response) => {
     const res = JSON.parse(response.text)
-    return res.documents.map(s => {
+    return res.documents.map((s) => {
       let excerpt = escape(s.excerpt)
       if (excerpt.length > 240) {
         excerpt = `${excerpt.slice(0, 240)}…`
       }
-      res.query.split(' ').forEach(q => {
+      res.query.split(' ').forEach((q) => {
         excerpt = excerpt.replace(new RegExp(q, 'gi'), '<strong>$&</strong>')
       })
       const title = escape(s.title)
@@ -170,8 +170,8 @@ addSearchAliasX(
   'https://www.npmjs.com/search?q=',
   's',
   'https://api.npms.io/v2/search/suggestions?size=20&q=',
-  response =>
-    JSON.parse(response.text).map(s => {
+  (response) =>
+    JSON.parse(response.text).map((s) => {
       let flags = ''
       let desc = ''
       let stars = ''
@@ -184,7 +184,7 @@ addSearchAliasX(
         stars = '⭐'.repeat(score) + '☆'.repeat(5 - score)
       }
       if (s.flags) {
-        Object.keys(s.flags).forEach(f => {
+        Object.keys(s.flags).forEach((f) => {
           flags += `[<span style='color:#ff4d00'>⚑</span> ${escape(f)}] `
         })
       }
@@ -212,8 +212,8 @@ addSearchAliasX(
   'https://hub.docker.com/search/?q=',
   's',
   'https://hub.docker.com/v2/search/repositories/?page_size=20&query=',
-  response =>
-    JSON.parse(response.text).results.map(s => {
+  (response) =>
+    JSON.parse(response.text).results.map((s) => {
       let meta = ''
       let repo = s.repo_name
       meta += `[⭐${escape(s.star_count)}] `
@@ -236,16 +236,13 @@ addSearchAliasX(
 
 // Amazon jp
 addSearchAliasX(
-  'a',
+  'am',
   'Amazon',
   'https://www.amazon.co.jp/s?k=',
   's',
   'https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=',
-  response => JSON.parse(response.text)[1]
+  (response) => JSON.parse(response.text)[1]
 )
-mapkey('oa', '#8Open Search with alias a', function() {
-  Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
-})
 
 // Amazon jp Kindle
 addSearchAliasX(
@@ -254,10 +251,24 @@ addSearchAliasX(
   'https://www.amazon.co.jp/s?i=digital-text&k=',
   's',
   'https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=',
-  response => JSON.parse(response.text)[1]
+  (response) => JSON.parse(response.text)[1]
 )
-mapkey('ok', '#8Open Search with alias k', function() {
+mapkey('ok', '#8Open Search with alias k', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'k' })
+})
+
+// alc
+addSearchAliasX(
+  'a',
+  'alc',
+  'https://eow.alc.co.jp/search?q='
+)
+mapkey('oa', '#8Open Search with alias a', function () {
+  Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
+})
+unmap("<Ctrl-'>")
+mapkey("<Ctrl-'>", 'eowf', () => {
+  searchSelectedWith('https://eowf.alc.co.jp/search?q=', false, false, '')
 })
 
 // mercari
@@ -277,7 +288,7 @@ const Hint = (selector, action = Hints.dispatchMouseClick) => () =>
 mapkey(
   'gI',
   '#4View image in new tab',
-  Hint('img', i => tabOpenLink(i.src)),
+  Hint('img', (i) => tabOpenLink(i.src)),
   ri
 )
 //  5: Sessions
@@ -286,11 +297,11 @@ mapkey(
 mapkey(
   'yI',
   '#7Copy Image URL',
-  Hint('img', i => Clipboard.write(i.src)),
+  Hint('img', (i) => Clipboard.write(i.src)),
   ri
 )
 
-const copyTitleAndUrl = format => {
+const copyTitleAndUrl = (format) => {
   const text = format
     .replace('%URL%', location.href)
     .replace('%TITLE%', document.title)
@@ -422,7 +433,7 @@ const qmarksMapKey = (prefix, urls, newTab) => {
   const openLink = (link, newTab) => () => {
     RUNTIME('openLink', {
       tab: { tabbed: newTab },
-      url: link
+      url: link,
     })
   }
   for (const key in urls) {
@@ -434,16 +445,16 @@ const qmarksUrls = {
   h: 'http://b.hatena.ne.jp/hush_in/hotentry',
   i: 'https://www.instapaper.com/u',
   tw: 'https://twitter.com/',
-  td: 'https://tweetdeck.twitter.com/'
+  td: 'https://tweetdeck.twitter.com/',
 }
 unmap('gn')
 qmarksMapKey('gn', qmarksUrls, true)
 qmarksMapKey('gO', qmarksUrls, false)
 
 // --- Site-specific mappings ---
-const clickElm = selector => () => document.querySelector(selector).click()
+const clickElm = (selector) => () => document.querySelector(selector).click()
 if (/speakerdeck.com/.test(window.location.hostname)) {
-  const clickElmFr = selector => () =>
+  const clickElmFr = (selector) => () =>
     document
       .querySelector('.speakerdeck-iframe')
       .contentWindow.document.querySelector(selector)
@@ -467,7 +478,7 @@ if (/booklog.jp/.test(window.location.hostname)) {
       url: `https://read.amazon.co.jp/?asin=${document
         .querySelector('.item-area-info-title a')
         .getAttribute('href')
-        .replace(/.*\//, '')}`
+        .replace(/.*\//, '')}`,
     })
   )
 }
@@ -483,7 +494,7 @@ if (/www.amazon.co.jp/.test(window.location.hostname)) {
 if (
   /^https:\/\/b.hatena.ne.jp\/.*\/hotentry\?date/.test(window.location.href)
 ) {
-  const moveDate = diff => () => {
+  const moveDate = (diff) => () => {
     const url = new URL(window.location.href)
     const dateTxt = url.searchParams.get('date')
     const [_, yyyy, mm, dd] = dateTxt.match(/(....)(..)(..)/)
