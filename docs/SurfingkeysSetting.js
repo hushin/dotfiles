@@ -258,11 +258,7 @@ mapkey('ok', '#8Open Search with alias k', function () {
 })
 
 // alc
-addSearchAliasX(
-  'a',
-  'alc',
-  'https://eow.alc.co.jp/search?q='
-)
+addSearchAliasX('a', 'alc', 'https://eow.alc.co.jp/search?q=')
 mapkey('oa', '#8Open Search with alias a', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
 })
