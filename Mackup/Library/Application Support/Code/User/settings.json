@@ -38,7 +38,12 @@
   "terminal.integrated.copyOnSelection": true,
   "editor.fontFamily": "Cica, Menlo, Monaco, 'Courier New', monospace",
   "markdown-checkbox.strikeThroughWhenChecked": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.singleQuote": true,
-  "prettier.semi": false
+  "prettier.semi": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "git.autofetch": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
