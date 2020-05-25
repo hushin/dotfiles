@@ -26,7 +26,6 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
 ## Update
 
 * `mackup backup`
-* `code --list-extensions > ~/.dotfiles/etc/init/osx/vscode-extensions.txt`
 
 ## Manual Docs
 
@@ -34,7 +33,7 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
   - Dropbox
   - Karabiner-elements
   - 1Password
-  - Spectacle
+  - Rectangle
   - Clipy
   - Dash
   - Activity Monitor
