@@ -10,6 +10,7 @@ set -x EDITOR 'emacsclient -t -a ""'
 
 # homebrew
 set -x HOMEBREW_CASK_OPTS "--appdir=/Applications"
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # diff-highlight
 set -x PATH $PATH /usr/local/share/git-core/contrib/diff-highlight
