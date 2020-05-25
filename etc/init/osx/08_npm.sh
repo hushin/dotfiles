@@ -12,5 +12,9 @@ nodebrew install-binary v12.x
 nodebrew use v12.x
 
 echo "install npm packages"
-npm install -g npm
-npm install -g init-package-json-parcel http-server prettier
+npm install -g \
+npm \
+init-package-json-parcel \
+http-server \
+prettier \
+@marp-team/marp-cli
