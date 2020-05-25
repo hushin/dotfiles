@@ -10,3 +10,5 @@ mkdir -p ~/Documents/memo
 
 [ -e ~/Dropbox/env/ssh/ ] && [ ! -L ~/.ssh ] && ln -s ~/Dropbox/env/ssh/ ~/.ssh
 chmod 0600 ~/.ssh/id_rsa
+
+[ -f ~/Dropbox/env/fish_history ] && [ ! -f ~/.local/share/fish/fish_history ] && ln -s ~/Dropbox/env/fish_history ~/.local/share/fish
