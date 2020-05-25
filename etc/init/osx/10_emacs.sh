@@ -13,7 +13,5 @@ git fetch --prune
 git checkout --force develop
 git reset --hard origin/develop
 
-echo "/////////////////////////////////"
-echo "Please run 'emacs --insecure'"
-echo "/////////////////////////////////"
-echo
+emacs --insecure &
+echo "running 'emacs --insecure'"
