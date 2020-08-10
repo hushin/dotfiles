@@ -30,7 +30,7 @@
 
   pushf = push --force-with-lease
   # トピックブランチで作業中、masterの変更を取り入れたいとき
-  rmaster = !git checkout master && git pull && git checkout - && git rebase master && git stash pop
+  rmaster = !git checkout master && git pull && git checkout - && git rebase --rebase-merges master
 [ghq]
 	root = ~/src
 [color]
