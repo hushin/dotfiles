@@ -46,5 +46,8 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "sync.gist": "4f3ad20d560abcf7b07839762c572918"
+  "sync.gist": "4f3ad20d560abcf7b07839762c572918",
+  "terminal.integrated.shellArgs.linux": [
+    "-l"
+  ]
 }
