@@ -7,6 +7,7 @@ abbr -a gco 'git checkout'
 abbr -a gcb 'git checkout -b'
 abbr -a gcm 'git checkout master'
 abbr -a agh 'ag --hidden'
+abbr -a tig-review "tig --reverse -w (git merge-base origin/master HEAD)...HEAD"
 
 type -qa tac || abbr -a tac 'tail -r'
 
@@ -128,4 +129,9 @@ function move-to-bitbucket -d "github to bitbucket ghq directory" -a dirName
   mkdir -p $path
   mv $dirName $path
   cd "$path/$dirName"
+end
+
+function gwt -d "git work tree" -a branch
+  set -l gitCdupDir (git rev-parse --show-cdup)
+  git worktree add {$gitCdupDir}git-worktrees/$branch -b $branch
 end
