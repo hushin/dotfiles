@@ -49,5 +49,8 @@
   "sync.gist": "4f3ad20d560abcf7b07839762c572918",
   "terminal.integrated.shellArgs.linux": [
     "-l"
-  ]
+  ],
+  "extensions.ignoreRecommendations": true,
+  "code-runner.runInTerminal": true,
+  "explorer.confirmDragAndDrop": false
 }
