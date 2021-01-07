@@ -2,11 +2,7 @@
   org-archive-directory (concat org-directory "/archive")
   org-archive-location (concat org-archive-directory "/%s_archive::")
   org-default-notes-file (concat org-directory "/note.org")
-  org-agenda-files '(
-                      (concat org-directory "/note.org")
-                      (concat org-directory "/idea.org")
-                      (concat org-directory "/gtd.org")
-                      ))
+  org-agenda-files (list org-directory))
 
 (setq org-todo-keywords
   (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
