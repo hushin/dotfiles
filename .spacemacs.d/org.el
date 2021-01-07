@@ -25,4 +25,20 @@
 (setq org-journal-dir "~/Dropbox/memo/org/journal/")
 (setq org-journal-file-format "%Y-%m-%d")
 (setq org-journal-date-format "%Y-%m-%d %A")
+(setq org-journal-time-format "%R\n")
 (setq org-journal-file-type 'weekly)
+(setq org-journal-find-file 'find-file)
+(setq org-extend-today-until '3)
+;; C-c C-j が org-goto と被っていたので回避
+(global-set-key "\C-cj" 'org-journal-new-entry)
+
+;; 行の折り返しの設定
+(add-hook 'visual-line-mode-hook
+  '(lambda()
+     (setq word-wrap nil)))
+(defun org-journal-file-header-func (time)
+  "Custom function to create journal header."
+  (concat
+    (pcase org-journal-file-type
+      (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: content indent inlineimages"))))
+(setq org-journal-file-header 'org-journal-file-header-func)
