@@ -339,6 +339,9 @@ mapkey('cp', '#7Copy title and link to plantuml', () => {
 mapkey('cr', '#7Copy rich text link', () => {
   copyHtmlLink()
 })
+mapkey('co', '#7Copy title and link to org', () => {
+  copyTitleAndUrl('[[%URL%][%TITLE%]]')
+})
 //  8: Omnibar
 //  9: Visual Mode
 // 10: vim-like marks
