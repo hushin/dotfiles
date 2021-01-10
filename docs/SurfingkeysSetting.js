@@ -30,7 +30,8 @@ const escapeMap = {
   '`': '&#x60;',
   '=': '&#x3D;',
 }
-const escape = (str) => String(str).replace(/[&<>"'`=/]/g, (s) => escapeMap[s])
+const escapeForAlias = (str) =>
+  String(str).replace(/[&<>"'`=/]/g, (s) => escapeMap[s])
 const createSuggestionItem = (html, props = {}) => {
   const li = document.createElement('li')
   li.innerHTML = html
@@ -140,15 +141,15 @@ addSearchAliasX(
   (response) => {
     const res = JSON.parse(response.text)
     return res.documents.map((s) => {
-      let excerpt = escape(s.excerpt)
+      let excerpt = escapeForAlias(s.excerpt)
       if (excerpt.length > 240) {
         excerpt = `${excerpt.slice(0, 240)}…`
       }
       res.query.split(' ').forEach((q) => {
         excerpt = excerpt.replace(new RegExp(q, 'gi'), '<strong>$&</strong>')
       })
-      const title = escape(s.title)
-      const slug = escape(s.slug)
+      const title = escapeForAlias(s.title)
+      const slug = escapeForAlias(s.slug)
       return createSuggestionItem(
         `
       <div>
@@ -177,7 +178,7 @@ addSearchAliasX(
       let stars = ''
       let score = ''
       if (s.package.description) {
-        desc = escape(s.package.description)
+        desc = escapeForAlias(s.package.description)
       }
       if (s.score && s.score.final) {
         score = Math.round(Number(s.score.final) * 5)
@@ -185,7 +186,9 @@ addSearchAliasX(
       }
       if (s.flags) {
         Object.keys(s.flags).forEach((f) => {
-          flags += `[<span style='color:#ff4d00'>⚑</span> ${escape(f)}] `
+          flags += `[<span style='color:#ff4d00'>⚑</span> ${escapeForAlias(
+            f
+          )}] `
         })
       }
       return createSuggestionItem(
@@ -216,17 +219,17 @@ addSearchAliasX(
     JSON.parse(response.text).results.map((s) => {
       let meta = ''
       let repo = s.repo_name
-      meta += `[⭐${escape(s.star_count)}] `
-      meta += `[↓${escape(s.pull_count)}] `
+      meta += `[⭐${escapeForAlias(s.star_count)}] `
+      meta += `[↓${escapeForAlias(s.pull_count)}] `
       if (repo.indexOf('/') === -1) {
         repo = `_/${repo}`
       }
       return createSuggestionItem(
         `
       <div>
-        <div class="title"><strong>${escape(repo)}</strong></div>
+        <div class="title"><strong>${escapeForAlias(repo)}</strong></div>
         <div>${meta}</div>
-        <div>${escape(s.short_description)}</div>
+        <div>${escapeForAlias(s.short_description)}</div>
       </div>
     `,
         { url: `https://hub.docker.com/r/${repo}` }
@@ -417,6 +420,44 @@ mapkey(';b', '#14hatena bookmark', () => {
 
 mapkey(';g', '#14魚拓', () => {
   tabOpenLink(`https://megalodon.jp/?url=${location.href}`)
+})
+
+// org
+const escapeChars = ['(', ')', "'"]
+const escapeForOrg = (text) => {
+  let _text = text
+  escapeChars.forEach((char) => {
+    _text = _text.replaceAll(char, escape(char))
+  })
+  return _text
+}
+const getUrl = (path, query) => {
+  const queryString = Object.entries(query)
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${escapeForOrg(encodeURIComponent(value))}`
+    )
+    .join('&')
+  return [path, queryString].join('?')
+}
+const orgCapture = (template) => {
+  const url = getUrl('org-protocol://capture', {
+    template,
+    url: window.location.href,
+    title: document.title.replace(/\|/g, '-'),
+    body: window.getSelection(),
+  })
+  console.log(`orgCapture: ${url}`)
+  window.location.href = url
+}
+mapkey('ocm', '#14org-capture memo', () => {
+  orgCapture('M')
+})
+mapkey('oct', '#14org-capture todo', () => {
+  orgCapture('T')
+})
+mapkey('ocl', '#14org-capture read it later', () => {
+  orgCapture('L')
 })
 
 mapkey('=q', '#14Delete query', () => {
