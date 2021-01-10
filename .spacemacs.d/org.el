@@ -8,19 +8,28 @@
   (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
            (sequence "WAITING(w@/!)" "|" "CANCELLED(c@/!)"))))
 
+(add-to-list 'org-modules 'org-protocol)
+
 (setq org-capture-templates
   '(
 	   ("t" "Task" entry (file+headline "~/Dropbox/memo/org/gtd.org" "Inbox")
-	     "** TODO %? \n   CREATED: %U\n %i")
+	     "* TODO %? \n   CREATED: %U\n %i")
 	   ("i" "Idea" entry (file+headline "~/Dropbox/memo/org/idea.org" "Idea")
 	     "* %? %U %i")
 	   ("r" "Remember" entry (file+headline "~/Dropbox/memo/org/remember.org" "Remember")
 	     "* %? %U %i")
 	   ("m" "Memo" entry (file+headline "~/Dropbox/memo/org/note.org" "Memo")
 	     "* %? %U %i")
-     ("R" "Review entry" entry (file+datetree "~/Dropbox/memo/org/review.org") (file "~/Dropbox/memo/org/template-review.org"))
+	   ("p" "Protocol" entry (file+headline "~/Dropbox/memo/org/note.org" "Inbox")
+       "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+	   ("L" "Protocol Link" entry (file+headline "~/Dropbox/memo/org/note.org" "Inbox")
+       "* %? [[%:link][%:description]] \nCaptured On: %U")
+	   ("M" "Memo from protocol" entry (file+headline "~/Dropbox/memo/org/note.org" "Memo")
+       "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+     ;; ("R" "Review entry" entry (file+datetree "~/Dropbox/memo/org/review.org") (file "~/Dropbox/memo/org/template-review.org"))
      ))
 
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
 
 (setq org-journal-dir "~/Dropbox/memo/org/journal/")
 (setq org-journal-file-format "%Y-%m-%d")
@@ -29,8 +38,6 @@
 (setq org-journal-file-type 'weekly)
 (setq org-journal-find-file 'find-file)
 (setq org-extend-today-until '3)
-;; C-c C-j が org-goto と被っていたので回避
-(global-set-key "\C-cj" 'org-journal-new-entry)
 
 ;; 行の折り返しの設定
 (add-hook 'visual-line-mode-hook

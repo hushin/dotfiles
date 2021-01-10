@@ -422,7 +422,7 @@ It should only modify the values of Spacemacs settings."
 
     ;; If non-nil, start an Emacs server if one is not already running.
     ;; (default nil)
-    dotspacemacs-enable-server nil
+    dotspacemacs-enable-server t
 
     ;; Set the emacs server socket location.
     ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -527,12 +527,16 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-
+  (require 'org-protocol)
   (define-key global-map "\C-h" 'delete-backward-char)
   ;; (global-set-key (kbd "s-}") #'evil-window-next)
   ;; (global-set-key (kbd "s-{") #'evil-window-prev)
 
   (set-language-environment "Japanese")
+
+  ;; C-c C-j が org-goto と被っていたので回避
+  (global-set-key "\C-cj" 'org-journal-new-entry)
+
   ;; Org stuff
   (with-eval-after-load 'org
     (load-file "~/.spacemacs.d/org.el")
