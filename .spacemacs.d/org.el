@@ -2,7 +2,8 @@
   org-archive-directory (concat org-directory "/archive")
   org-archive-location (concat org-archive-directory "/%s_archive::")
   org-default-notes-file (concat org-directory "/note.org")
-  org-agenda-files (list org-directory))
+  org-agenda-files (list org-directory)
+  org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
 (setq org-todo-keywords
   (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -32,6 +33,13 @@
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 (add-hook 'org-journal-after-entry-create-hook 'evil-insert-state)
 
+(setq org-startup-truncated nil)
+;; 行の折り返しの設定
+(add-hook 'visual-line-mode-hook
+  '(lambda()
+     (setq word-wrap nil)))
+
+;; journal
 (setq org-journal-dir "~/Dropbox/memo/org/journal/")
 (setq org-journal-file-format "%Y-%m-%d")
 (setq org-journal-date-format "%Y-%m-%d %A")
@@ -40,10 +48,6 @@
 (setq org-journal-find-file 'find-file)
 (setq org-extend-today-until '3)
 
-;; 行の折り返しの設定
-(add-hook 'visual-line-mode-hook
-  '(lambda()
-     (setq word-wrap nil)))
 (defun org-journal-file-header-func (time)
   "Custom function to create journal header."
   (concat

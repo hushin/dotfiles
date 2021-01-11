@@ -527,6 +527,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (require 'org-tempo)
   (require 'org-protocol)
   (define-key global-map "\C-h" 'delete-backward-char)
   ;; (global-set-key (kbd "s-}") #'evil-window-next)
@@ -536,7 +537,16 @@ before packages are loaded."
 
   ;; C-c C-j が org-goto と被っていたので回避
   (global-set-key "\C-cj" 'org-journal-new-entry)
-
+  (defun show-org-buffer (file)
+    "Show an org-file FILE on the current buffer."
+    (interactive)
+    (if (get-buffer file)
+      (let ((buffer (get-buffer file)))
+        (switch-to-buffer buffer)
+        (message "%s" file))
+      (find-file (concat "~/Dropbox/memo/org/" file))))
+  (global-set-key (kbd "C-M-c") '(lambda () (interactive)
+                                   (show-org-buffer "note.org")))
   ;; Org stuff
   (with-eval-after-load 'org
     (load-file "~/.spacemacs.d/org.el")
