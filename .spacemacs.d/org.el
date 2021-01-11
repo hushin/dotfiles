@@ -30,11 +30,12 @@
      ))
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
+(add-hook 'org-journal-after-entry-create-hook 'evil-insert-state)
 
 (setq org-journal-dir "~/Dropbox/memo/org/journal/")
 (setq org-journal-file-format "%Y-%m-%d")
 (setq org-journal-date-format "%Y-%m-%d %A")
-(setq org-journal-time-format "%R\n")
+;; (setq org-journal-time-format "%R ")
 (setq org-journal-file-type 'weekly)
 (setq org-journal-find-file 'find-file)
 (setq org-extend-today-until '3)
