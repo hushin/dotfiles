@@ -2,7 +2,7 @@
   "editor.tabSize": 2,
   "window.zoomLevel": 0,
   "keyboard.dispatch": "keyCode",
-  "editor.fontSize": 16,
+  "editor.fontSize": 18,
   "editor.minimap.enabled": false,
   "editor.renderControlCharacters": true,
   "editor.wordWrap": "on",
@@ -11,13 +11,11 @@
   "window.restoreWindows": "all",
   "explorer.confirmDelete": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.fontFamily": "Cica",
-  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontFamily": "HackGen35Nerd Console",
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "prettier.jsxSingleQuote": true,
   "prettier.trailingComma": "all",
-  "prettier.disableLanguages": ["markdown"],
   "markdown-checkbox.italicWhenChecked": false,
   "workbench.startupEditor": "newUntitledFile",
   "editor.copyWithSyntaxHighlighting": false,
@@ -41,16 +39,27 @@
   "prettier.singleQuote": true,
   "prettier.semi": false,
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "git.autofetch": true,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "sync.gist": "4f3ad20d560abcf7b07839762c572918",
-  "terminal.integrated.shellArgs.linux": [
-    "-l"
-  ],
   "extensions.ignoreRecommendations": true,
   "code-runner.runInTerminal": true,
-  "explorer.confirmDragAndDrop": false
+  "explorer.confirmDragAndDrop": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.profiles.linux": {
+    "bash (login)": {
+      "path": "bash",
+      "args": [
+        "-l"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash (login)",
+  "workbench.editor.untitled.hint": "hidden"
 }
