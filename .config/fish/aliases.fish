@@ -116,6 +116,21 @@ function crrepo
   hub create $argv $repoName
 end
 
+function move-to-sandbox -d "github to sandbox ghq directory" -a dirName
+	if ! test "$dirName"
+		echo "Usage: move-to-sandbox dir-name"
+		return
+	end
+	set -l rootDir (ghq root)
+  set -l gitUser (git config user.name)
+	set -l githubUser "github.com/$gitUser-sandbox"
+	set -l path "$rootDir/$githubUser/"
+
+  mkdir -p $path
+  mv $dirName $path
+  cd "$path/$dirName"
+end
+
 function move-to-bitbucket -d "github to bitbucket ghq directory" -a dirName
 	if ! test "$dirName"
 		echo "Usage: move-to-bitbucket dir-name"
