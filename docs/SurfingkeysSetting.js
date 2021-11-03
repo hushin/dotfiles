@@ -387,13 +387,13 @@ const orgCapture = (template) => {
   console.log(`orgCapture: ${url}`)
   window.location.href = url
 }
-mapkey('ocm', '#14org-capture memo', () => {
+mapkey(',m', '#14org-capture memo', () => {
   orgCapture('M')
 })
-mapkey('oct', '#14org-capture todo', () => {
+mapkey(',t', '#14org-capture todo', () => {
   orgCapture('T')
 })
-mapkey('ocl', '#14org-capture read it later', () => {
+mapkey(',l', '#14org-capture read it later', () => {
   orgCapture('L')
 })
 
@@ -517,8 +517,8 @@ unmapAllExcept(
     'cm',
     'co',
     'ch',
-    'oct',
-    'ocm',
+    ',t',
+    ',m',
   ],
   /mail.google.com|twitter.com|feedly.com|www.figma.com\/file/
 )
