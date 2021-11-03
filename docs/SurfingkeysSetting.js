@@ -5,7 +5,7 @@ settings.hintAlign = 'left'
 // settings.aceKeybindings = 'emacs'
 settings.nextLinkRegex = /((forward|>>|next|次[のへ]|→)+)/i
 settings.prevLinkRegex = /((back|<<|prev(ious)?|前[のへ]|←)+)/i
-// settings.historyMUOrder = false
+settings.historyMUOrder = false
 settings.theme = `
 #sk_status, #sk_find {
   font-size: 12pt;
@@ -311,6 +311,22 @@ mapkey(';a', '#14Save to Instapaper', () => {
     }
   }
   iprl5()
+})
+
+unmap(';t')
+mapkey(';t', '#14google translate', () => {
+  const selection = window.getSelection().toString()
+  if (selection === '') {
+    // 文字列選択してない場合はページ自体を翻訳にかける
+    tabOpenLink(
+      `https://translate.google.com/translate?js=n&sl=auto&tl=ja&u=${window.location.href}`
+    )
+  } else {
+    // 選択している場合はそれを翻訳する
+    tabOpenLink(
+      `https://translate.google.com/?sl=auto&tl=ja&text=${encodeURI(selection)}`
+    )
+  }
 })
 
 mapkey(';b', '#14hatena bookmark', () => {
