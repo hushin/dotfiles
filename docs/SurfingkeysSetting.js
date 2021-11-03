@@ -2,12 +2,10 @@
 Hints.characters = 'hlasdfgyuiowertnm'
 settings.scrollStepSize = 140
 settings.hintAlign = 'left'
-settings.aceKeybindings = 'emacs'
+// settings.aceKeybindings = 'emacs'
 settings.nextLinkRegex = /((forward|>>|next|次[のへ]|→)+)/i
 settings.prevLinkRegex = /((back|<<|prev(ious)?|前[のへ]|←)+)/i
-settings.newTabPosition = 'right'
-settings.omnibarMaxResults = 12
-settings.historyMUOrder = false
+// settings.historyMUOrder = false
 settings.theme = `
 #sk_status, #sk_find {
   font-size: 12pt;
@@ -82,22 +80,17 @@ iunmapKeys([
   '<Ctrl-y>',
 ])
 // disable proxy
-unmapKeys(['cp', 'spa', 'spb', 'spd', 'spc', 'sps', 'spi', ';cp', ';ap'])
+unmapKeys(['cp', ';pa', ';pb', ';pc', ';pd', ';ps', ';ap'])
 
 // ---- Search ----
 removeSearchAliasX('b')
 removeSearchAliasX('w')
-unmapKeys(['ob', 'sb', 'ow', 'sw'])
 
 // hatena tag
-addSearchAliasX('ht', 'hatena tag', 'http://b.hatena.ne.jp/search/tag?q=')
-
-// Qiita
-addSearchAliasX('qi', 'Qiita', 'https://qiita.com/search?q=')
-addSearchAliasX('qt', 'Qiita tag', 'https://qiita.com/tags/')
+addSearchAlias('th', 'hatena tag', 'http://b.hatena.ne.jp/search/tag?q=')
 
 // Twitter
-addSearchAliasX(
+addSearchAlias(
   'tw',
   'Twitter',
   'https://twitter.com/search?q=',
@@ -114,6 +107,19 @@ mapkey('otw', '#8Open Search with alias tw', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'tw' })
 })
 
+addSearchAlias(
+  'tf',
+  'Twitter フォロワーのみ',
+  'https://twitter.com/search?pf=on&q='
+)
+
+// Google jp 3ヶ月以内
+addSearchAlias(
+  '3',
+  'Google 3ヶ月以内',
+  'https://www.google.co.jp/search?q={0}&tbs=qdr:m3,lr:lang_1ja&lr=lang_ja'
+)
+
 // Yahoo!リアルタイム検索
 addSearchAliasX(
   'r',
@@ -125,7 +131,7 @@ mapkey('or', '#8Open Search with alias r', function () {
 })
 
 // Wikipedia jp
-addSearchAliasX(
+addSearchAlias(
   'wi',
   'Wikipedia',
   'https://ja.wikipedia.org/w/index.php?search='
@@ -133,40 +139,31 @@ addSearchAliasX(
 
 // MDN
 addSearchAliasX(
-  'md',
+  'mdn',
   'MDN',
   'https://developer.mozilla.org/ja/search?q=',
   's',
   'https://developer.mozilla.org/api/v1/search/ja?q=',
   (response) => {
     const res = JSON.parse(response.text)
-    return res.documents.map((s) => {
-      let excerpt = escapeForAlias(s.excerpt)
-      if (excerpt.length > 240) {
-        excerpt = `${excerpt.slice(0, 240)}…`
-      }
-      res.query.split(' ').forEach((q) => {
-        excerpt = excerpt.replace(new RegExp(q, 'gi'), '<strong>$&</strong>')
-      })
-      const title = escapeForAlias(s.title)
-      const slug = escapeForAlias(s.slug)
-      return createSuggestionItem(
+    return res.documents.map((s) =>
+      createSuggestionItem(
         `
       <div>
-        <div class="title"><strong>${title}</strong></div>
-        <div style="font-size:0.8em"><em>${slug}</em></div>
-        <div>${excerpt}</div>
+        <div class="title"><strong>${s.title}</strong></div>
+        <div style="font-size:0.8em"><em>${s.slug}</em></div>
+        <div>${s.summary}</div>
       </div>
     `,
-        { url: `https://developer.mozilla.org/ja/docs/${s.slug}` }
+        { url: `https://developer.mozilla.org/${s.locale}/docs/${s.slug}` }
       )
-    })
+    )
   }
 )
 
 // npm
 addSearchAliasX(
-  'np',
+  'npm',
   'npm',
   'https://www.npmjs.com/search?q=',
   's',
@@ -208,35 +205,6 @@ addSearchAliasX(
     })
 )
 
-// Docker Hub
-addSearchAliasX(
-  'dh',
-  'Docker Hub',
-  'https://hub.docker.com/search/?q=',
-  's',
-  'https://hub.docker.com/v2/search/repositories/?page_size=20&query=',
-  (response) =>
-    JSON.parse(response.text).results.map((s) => {
-      let meta = ''
-      let repo = s.repo_name
-      meta += `[⭐${escapeForAlias(s.star_count)}] `
-      meta += `[↓${escapeForAlias(s.pull_count)}] `
-      if (repo.indexOf('/') === -1) {
-        repo = `_/${repo}`
-      }
-      return createSuggestionItem(
-        `
-      <div>
-        <div class="title"><strong>${escapeForAlias(repo)}</strong></div>
-        <div>${meta}</div>
-        <div>${escapeForAlias(s.short_description)}</div>
-      </div>
-    `,
-        { url: `https://hub.docker.com/r/${repo}` }
-      )
-    })
-)
-
 // Amazon jp
 addSearchAliasX(
   'am',
@@ -256,50 +224,17 @@ addSearchAliasX(
   'https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=',
   (response) => JSON.parse(response.text)[1]
 )
-mapkey('ok', '#8Open Search with alias k', function () {
-  Front.openOmnibar({ type: 'SearchEngine', extra: 'k' })
-})
 
 // alc
-addSearchAliasX('a', 'alc', 'https://eow.alc.co.jp/search?q=')
+addSearchAlias('a', 'alc', 'https://eow.alc.co.jp/search?q=')
 mapkey('oa', '#8Open Search with alias a', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
 })
-unmap("<Ctrl-'>")
-mapkey("<Ctrl-'>", 'eowf', () => {
-  searchSelectedWith('https://eowf.alc.co.jp/search?q=', false, false, '')
-})
 
 // mercari
-addSearchAliasX('m', 'mercari', 'https://www.mercari.com/jp/search/?keyword=')
+addSearchAlias('m', 'mercari', 'https://www.mercari.com/jp/search/?keyword=')
 
 // ---- Mapkeys ----//
-const ri = { repeatIgnore: true }
-
-const Hint = (selector, action = Hints.dispatchMouseClick) => () =>
-  Hints.create(selector, action)
-// --- Global mappings ---//
-//  0: Help
-//  1: Mouse Click
-//  2: Scroll Page / Element
-//  3: Tabs
-//  4: Page Navigation
-mapkey(
-  'gI',
-  '#4View image in new tab',
-  Hint('img', (i) => tabOpenLink(i.src)),
-  ri
-)
-//  5: Sessions
-//  6: Search selected with
-//  7: Clipboard
-mapkey(
-  'yI',
-  '#7Copy Image URL',
-  Hint('img', (i) => Clipboard.write(i.src)),
-  ri
-)
-
 const copyTitleAndUrl = (format) => {
   const text = format
     .replace('%URL%', location.href)
@@ -377,20 +312,6 @@ mapkey(';a', '#14Save to Instapaper', () => {
   }
   iprl5()
 })
-mapkey(';t', '#14google translate', () => {
-  const selection = window.getSelection().toString()
-  if (selection === '') {
-    // 文字列選択してない場合はページ自体を翻訳にかける
-    tabOpenLink(
-      `http://translate.google.com/translate?u=${window.location.href}`
-    )
-  } else {
-    // 選択している場合はそれを翻訳する
-    tabOpenLink(
-      `https://translate.google.com/?sl=auto&tl=ja&text=${encodeURI(selection)}`
-    )
-  }
-})
 
 mapkey(';b', '#14hatena bookmark', () => {
   const { location } = window
@@ -418,7 +339,7 @@ mapkey(';b', '#14hatena bookmark', () => {
   throw new Error('はてなブックマークに対応していないページ')
 })
 
-mapkey(';g', '#14魚拓', () => {
+mapkey(';G', '#14魚拓', () => {
   tabOpenLink(`https://megalodon.jp/?url=${location.href}`)
 })
 
@@ -504,8 +425,8 @@ if (/speakerdeck.com/.test(window.location.hostname)) {
 }
 
 if (/www.slideshare.net/.test(window.location.hostname)) {
-  mapkey(']', 'next page', clickElm('.j-next-btn'))
-  mapkey('[', 'prev page', clickElm('.j-prev-btn'))
+  mapkey(']', 'next page', clickElm('#btnNext'))
+  mapkey('[', 'prev page', clickElm('#btnPrevious'))
 }
 
 if (/booklog.jp/.test(window.location.hostname)) {
@@ -564,8 +485,26 @@ if (/youtube.com/.test(window.location.hostname)) {
 }
 
 unmapAllExcept(
-  ['E', 'R', 'd', 'u', 'T', 'f', 'F', 'C', 'x', 'S', 'H', 'L', 'cm'],
-  /mail.google.com|twitter.com|feedly.com|i.doit.im/
+  [
+    'E',
+    'R',
+    'd',
+    'u',
+    'T',
+    'f',
+    'F',
+    'C',
+    'x',
+    'S',
+    'H',
+    'L',
+    'cm',
+    'co',
+    'ch',
+    'oct',
+    'ocm',
+  ],
+  /mail.google.com|twitter.com|feedly.com|www.figma.com\/file/
 )
 if (/^https:\/\/www.amazon.co.jp\/gp\/video\//.test(window.location.href)) {
   // for Video Speed Controller
