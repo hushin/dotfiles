@@ -19,7 +19,6 @@ cask "1password6"
 ## brew
 
 brew "ag"
-brew "awscli"
 brew "bash"
 brew "bat"
 brew "coreutils"
@@ -62,7 +61,6 @@ brew "yarn"
 cask "adobe-acrobat-reader"
 cask "alfred"
 cask "cyberduck"
-cask "docker"
 cask "firefox"
 cask "font-cica"
 cask "font-hackgen-nerd"
@@ -73,27 +71,17 @@ cask "font-source-han-code-jp"
 cask "google-japanese-ime"
 cask "iterm2"
 cask "keycastr"
-cask "qlcolorcode"
-cask "qlmarkdown"
-cask "qlprettypatch"
-cask "qlstephen"
-cask "quicklook-csv"
-cask "quicklook-json"
 cask "rectangle"
-cask "sourcetree"
-cask "suspicious-package"
 cask "visual-studio-code"
 cask "vlc"
-cask "webpquicklook"
 cask "xmind"
 
 ## cask private
 
-cask "cooviewer"
+# cask "cooviewer"
 cask "discord"
-cask "google-backup-and-sync"
-cask "kindle"
-cask "music-manager"
+# cask "google-backup-and-sync"
+# cask "kindle"
 
 ## mas
 
@@ -109,5 +97,5 @@ mas "The Unarchiver", id: 425424353
 
 mas "LINE", id: 539883307
 mas "Noizio", id: 928871589
-mas "Be Focused Pro", id: 961632517
+# mas "Be Focused Pro", id: 961632517
 # mas "Evernote", id: 406056744
