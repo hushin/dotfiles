@@ -42,7 +42,7 @@ end
 
 function copy-history -a historyNum
   set -q historyNum[1] || set historyNum 10
-  history | tail -n $historyNum | pbcopy
+  history | head -n $historyNum | tac | pbcopy
 end
 
 function joinpdf
@@ -58,8 +58,11 @@ end
 
 # https://github.com/junegunn/fzf/wiki/Examples-(fish)
 function fssh -d "Fuzzy-find ssh host via ag and ssh into it"
-  ag --ignore-case '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf --preview='' | read -l result; and ssh "$result"
-  commandline -f repaint
+  ag --ignore-case '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf | read -l result; and ssh "$result"
+end
+
+function fs -d "Switch tmux session"
+  tmux list-sessions -F "#{session_name}" | fzf | read -l result; and tmux switch-client -t "$result"
 end
 
 function checkout-git-branch -d "Fuzzy-find and checkout a branch"
@@ -125,21 +128,6 @@ function move-to-sandbox -d "github to sandbox ghq directory" -a dirName
   set -l gitUser (git config user.name)
 	set -l githubUser "github.com/$gitUser-sandbox"
 	set -l path "$rootDir/$githubUser/"
-
-  mkdir -p $path
-  mv $dirName $path
-  cd "$path/$dirName"
-end
-
-function move-to-bitbucket -d "github to bitbucket ghq directory" -a dirName
-	if ! test "$dirName"
-		echo "Usage: move-to-bitbucket dir-name"
-		return
-	end
-	set -l rootDir (ghq root)
-  set -l gitUser (git config user.name)
-	set -l bitbucketUser "bitbucket.org/$gitUser"
-  set -l path "$rootDir/$bitbucketUser/"
 
   mkdir -p $path
   mv $dirName $path
