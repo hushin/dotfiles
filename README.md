@@ -20,7 +20,7 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
 # .gitconfig.local の例
 [user]
   name  = hushin
-  email = nnnnot+github@gmail.com
+  email = ngtv.hsn@gmail.com
 ```
 
 ## Update
