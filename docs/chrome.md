@@ -1,7 +1,8 @@
 # Chrome Extensions
 
 - Surfingkeys
-  - https://gist.github.com/hushin/2b68ca3e8de1a8c92d96f944858098d7
+  - [SurfingkeysSetting.js](./SurfingkeysSetting.js)
+  - https://raw.githubusercontent.com/hushin/dotfiles/master/docs/SurfingkeysSetting.js
 - Tampermonkey
   - クラウド -> Google Drive からインポート
 - Stylebot

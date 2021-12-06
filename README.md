@@ -35,17 +35,12 @@ gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
   - 1Password
   - Rectangle
   - Clipy
-  - Dash
   - Activity Monitor
-  - Be Focused Pro
-  - Slack
-  - Discord
-  - LINE
 - [Chrome](./docs/chrome.md)
 - Alfred Preferences
   - Powerpack -> license
   - Advanced -> Syncing (Dropbox)
-- Google IME
+- Install [Google IME](https://www.google.co.jp/ime/)
   - ¥ キーで バックスラッシュを入力
   - キー設定: ATOK から Ctrl-kで全角カタカナに変換
   - 必要に応じて辞書登録
