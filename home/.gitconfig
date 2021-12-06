@@ -3,6 +3,7 @@
 	excludesfile = ~/.gitignore
 [include]
 	path = ~/.gitconfig.local
+	path = ~/.gitconfig.os
 [alias]
 	# https://gist.github.com/teppeis/4117588
 	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
@@ -31,8 +32,7 @@
   pushf = push --force-with-lease
   # トピックブランチで作業中、masterの変更を取り入れたいとき
   rmaster = !git checkout master && git pull && git checkout - && git rebase --rebase-merges master
-[ghq]
-	root = ~/src
+  rmain = !git checkout main && git pull && git checkout - && git rebase --rebase-merges main
 [color]
 	ui = auto
 [push]
@@ -54,3 +54,5 @@
 	diff = diff-highlight | less
 [interactive]
 	diffFilter = diff-highlight
+[init]
+	defaultBranch = main
