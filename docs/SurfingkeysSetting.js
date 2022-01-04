@@ -248,13 +248,13 @@ addSearchAlias(
 )
 
 // alc
-addSearchAlias('a', 'alc', 'https://eow.alc.co.jp/search?q=')
+addSearchAlias('alc', 'alc', 'https://eow.alc.co.jp/search?q=')
 mapkey('oa', '#8Open Search with alias a', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
 })
 
 // mercari
-addSearchAlias('m', 'mercari', 'https://www.mercari.com/jp/search/?keyword=')
+addSearchAlias('me', 'mercari', 'https://www.mercari.com/jp/search/?keyword=')
 
 // ---- Mapkeys ----//
 const copyTitleAndUrl = (format) => {
