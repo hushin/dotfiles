@@ -1,5 +1,27 @@
+const {
+  aceVimMap,
+  mapkey,
+  imap,
+  iunmap,
+  imapkey,
+  getClickableElements,
+  vmapkey,
+  map,
+  unmap,
+  cmap,
+  addSearchAlias,
+  removeSearchAlias,
+  tabOpenLink,
+  readText,
+  Clipboard,
+  Front,
+  Hints,
+  Visual,
+  RUNTIME,
+} = api
+
 // ---- Settings ----
-Hints.characters = 'hlasdfgyuiowertnm'
+Hints.setCharacters('asdfgyuiowertnm')
 settings.scrollStepSize = 140
 settings.hintAlign = 'left'
 // settings.aceKeybindings = 'emacs'
@@ -83,8 +105,8 @@ iunmapKeys([
 unmapKeys(['cp', ';pa', ';pb', ';pc', ';pd', ';ps', ';ap'])
 
 // ---- Search ----
-removeSearchAliasX('b')
-removeSearchAliasX('w')
+removeSearchAlias('b')
+removeSearchAlias('w')
 
 // hatena tag
 addSearchAlias('th', 'hatena tag', 'http://b.hatena.ne.jp/search/tag?q=')
@@ -121,7 +143,7 @@ addSearchAlias(
 )
 
 // Yahoo!リアルタイム検索
-addSearchAliasX(
+addSearchAlias(
   'r',
   'Yahoo!リアルタイム検索',
   'http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p='
@@ -138,7 +160,7 @@ addSearchAlias(
 )
 
 // MDN
-addSearchAliasX(
+addSearchAlias(
   'mdn',
   'MDN',
   'https://developer.mozilla.org/ja/search?q=',
@@ -162,7 +184,7 @@ addSearchAliasX(
 )
 
 // npm
-addSearchAliasX(
+addSearchAlias(
   'npm',
   'npm',
   'https://www.npmjs.com/search?q=',
@@ -206,7 +228,7 @@ addSearchAliasX(
 )
 
 // Amazon jp
-addSearchAliasX(
+addSearchAlias(
   'am',
   'Amazon',
   'https://www.amazon.co.jp/s?k=',
@@ -216,7 +238,7 @@ addSearchAliasX(
 )
 
 // Amazon jp Kindle
-addSearchAliasX(
+addSearchAlias(
   'k',
   'Amazon Kindle',
   'https://www.amazon.co.jp/s?i=digital-text&k=',
@@ -500,8 +522,12 @@ if (/youtube.com/.test(window.location.hostname)) {
   )
 }
 
-unmapAllExcept(
-  [
+if (
+  /^https?:\/\/(mail.google.com|twitter.com|feedly.com|www.figma.com\/file)/.test(
+    window.location.href
+  )
+) {
+  unmapKeys([
     'E',
     'R',
     'd',
@@ -519,9 +545,8 @@ unmapAllExcept(
     'ch',
     ',t',
     ',m',
-  ],
-  /mail.google.com|twitter.com|feedly.com|www.figma.com\/file/
-)
+  ])
+}
 if (/^https:\/\/www.amazon.co.jp\/gp\/video\//.test(window.location.href)) {
   // for Video Speed Controller
   unmapKeys(['d', 's', 'z', 'x', 'r', 'g'])
