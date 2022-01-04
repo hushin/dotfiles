@@ -250,7 +250,7 @@ addSearchAlias(
 // alc
 addSearchAlias('alc', 'alc', 'https://eow.alc.co.jp/search?q=')
 mapkey('oa', '#8Open Search with alias a', function () {
-  Front.openOmnibar({ type: 'SearchEngine', extra: 'a' })
+  Front.openOmnibar({ type: 'SearchEngine', extra: 'alc' })
 })
 
 // mercari
