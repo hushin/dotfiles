@@ -6,7 +6,6 @@ tap "homebrew/cask-fonts"
 
 brew "mas"
 cask "google-chrome"
-brew "mackup"
 cask "karabiner-elements"
 
 ## first private
