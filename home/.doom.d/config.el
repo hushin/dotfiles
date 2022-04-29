@@ -31,7 +31,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -84,10 +84,17 @@
   (and (eq system-type 'gnu/linux)
        (file-exists-p "/proc/sys/fs/binfmt_misc/WSLInterop")))
 
-
-
 ;; Ctrl-h
 (map! "C-h" 'delete-backward-char)
+
+;; delete character without yanking
+(map! :n "x" 'delete-char)
+
+;; leader key
+(add-hook! 'org-mode-hook #'+org-init-keybinds-h)
+(setq evil-snipe-override-evil-repeat-keys nil)
+(setq doom-localleader-key ",")
+;; (setq doom-localleader-alt-key "M-,")
 
 ;; auto save
 (use-package! auto-save-buffers-enhanced
@@ -100,20 +107,22 @@
 ;; Disable exit confirmation.
 (setq confirm-kill-emacs nil)
 
-;; delete character without yanking
-(map! :n "x" 'delete-char)
-
-;; leader key
-(add-hook! 'org-mode-hook #'+org-init-keybinds-h)
-(setq evil-snipe-override-evil-repeat-keys nil)
-(setq doom-localleader-key ",")
-;; (setq doom-localleader-alt-key "M-,")
-
-
 ;; org-mode の日付を英語にする
 (setq system-time-locale "C")
 
 ;;(after! org)
+(after! org-roam
+  (map!
+    "C-c n l" 'org-roam-buffer-toggle
+    "C-c n f" 'org-roam-node-find
+    "C-c n i" 'org-roam-node-insert
+    ))
+
+(map! :after evil-org
+      :map evil-org-mode-map
+      :ni "C-<return>" #'org-insert-heading-respect-content
+      :ni "C-S-<return>" #'org-insert-todo-heading-respect-content
+      )
 
 ;; mozc
 (use-package mozc
