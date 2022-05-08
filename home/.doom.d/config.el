@@ -94,7 +94,7 @@
 (add-hook! 'org-mode-hook #'+org-init-keybinds-h)
 (setq evil-snipe-override-evil-repeat-keys nil)
 (setq doom-localleader-key ",")
-;; (setq doom-localleader-alt-key "M-,")
+(setq doom-localleader-alt-key "M-,")
 
 ;; auto save
 (use-package! auto-save-buffers-enhanced
@@ -110,13 +110,13 @@
 ;; org-mode の日付を英語にする
 (setq system-time-locale "C")
 
-;;(after! org)
 (after! org-roam
   (map!
-    "C-c n l" 'org-roam-buffer-toggle
-    "C-c n f" 'org-roam-node-find
-    "C-c n i" 'org-roam-node-insert
-    ))
+    "C-c n l" #'org-roam-buffer-toggle
+    "C-c n f" #'org-roam-node-find
+    "C-c n i" #'org-roam-node-insert
+    )
+  )
 
 (map! :after evil-org
       :map evil-org-mode-map
