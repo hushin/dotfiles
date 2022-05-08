@@ -116,6 +116,8 @@
     "C-c n f" #'org-roam-node-find
     "C-c n i" #'org-roam-node-insert
     )
+  (map! :map org-mode-map
+    "C-M-i" #'completion-at-point)
   )
 
 (map! :after evil-org
