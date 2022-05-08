@@ -97,11 +97,11 @@
 (setq doom-localleader-alt-key "M-,")
 
 ;; auto save
-(use-package! auto-save-buffers-enhanced
+(use-package! super-save
   :config
-  (setq auto-save-buffers-enhanced-interval 1)
-  (setq auto-save-buffers-enhanced-quiet-save-p t)
-  (auto-save-buffers-enhanced t)
+  (setq super-save-auto-save-when-idle t
+        super-save-idle-duration 2)
+  (super-save-mode +1)
   )
 
 ;; Disable exit confirmation.

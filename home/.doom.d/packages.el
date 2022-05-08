@@ -49,7 +49,7 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! auto-save-buffers-enhanced)
+(package! super-save)
 
 (package! mozc)
 (package! mozc-im)
