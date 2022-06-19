@@ -36,7 +36,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/memo/org/")
-(setq org-roam-directory "~/Dropbox/memo/org/roam")
+(setq org-roam-directory "~/Dropbox/memo/org/roam-sandbox")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -110,14 +110,41 @@
 ;; org-mode の日付を英語にする
 (setq system-time-locale "C")
 
+(after! org
+  (setq org-todo-keywords
+    (quote ((sequence "TODO(t)" "|" "DONE(d)")
+             (sequence "WAITING(w/!)" "|" "CANCELLED(c/!)"))))
+  )
 (after! org-roam
   (map!
     "C-c n l" #'org-roam-buffer-toggle
     "C-c n f" #'org-roam-node-find
     "C-c n i" #'org-roam-node-insert
+    "C-c j" #'org-roam-dailies-capture-today
+    "C-c n d" #'org-roam-dailies-goto-today
+    :map org-mode-map
+    "C-M-i" #'completion-at-point
     )
-  (map! :map org-mode-map
-    "C-M-i" #'completion-at-point)
+  (setq org-roam-capture-templates
+    '(
+       ("d" "default" plain
+         "%?"
+         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n"))
+       ("l" "programming language" plain
+         "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n"))
+       ("b" "book notes" plain
+         "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n"))
+       ("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
+         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project"))
+       )
+    )
+  (setq org-roam-dailies-capture-templates
+    '(("d" "default" entry "* %<%H:%M> %?"
+        :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
+       )
+    )
   )
 
 (map! :after evil-org
