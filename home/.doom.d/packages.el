@@ -51,6 +51,3 @@
 
 (package! super-save)
 
-(package! mozc)
-(package! mozc-im)
-(package! mozc-popup)

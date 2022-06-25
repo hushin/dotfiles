@@ -111,9 +111,30 @@
 (setq system-time-locale "C")
 
 (after! org
+  (map!
+    "C-c a" #'org-agenda
+    "C-c c" #'org-capture
+    )
   (setq org-todo-keywords
     (quote ((sequence "TODO(t)" "|" "DONE(d)")
              (sequence "WAITING(w/!)" "|" "CANCELLED(c/!)"))))
+  (setq org-capture-templates
+    '(
+       ("t" "Task" entry (file+headline "~/Dropbox/memo/org/gtd.org" "Inbox")
+         "* TODO %? \n  CREATED: %U\n %i")
+       ("T" "Task from protocol" entry (file+headline "~/Dropbox/memo/org/gtd.org" "Inbox")
+         "* TODO %? [[%:link][%:description]] \n  CREATED: %U\n%i\n\n")
+       ("L" "ReadItLater" entry (file+headline "~/Dropbox/memo/org/gtd.org" "ReadItLater")
+         "* TODO %? [[%:link][%:description]] \n  CREATED: %U\n%i\n")
+       ("m" "Memo" entry (file+headline org-default-notes-file "Memo")
+         "* %? %U %i")
+       ("M" "Memo from protocol" entry (file+headline org-default-notes-file "Memo")
+         "* %? [[%:link][%:description]] \n  Captured On: %U\n%i\n")
+       ("R" "Review entry" entry (file+datetree "~/Dropbox/memo/org/review.org") (file "~/Dropbox/memo/org/template-review.org"))
+       ))
+  )
+(after! evil-org
+  (remove-hook 'org-tab-first-hook #'+org-cycle-only-current-subtree-h)
   )
 (after! org-roam
   (map!
@@ -153,44 +174,3 @@
       :ni "C-S-<return>" #'org-insert-todo-heading-respect-content
       )
 
-;; mozc
-(use-package mozc
-  :if (wslp)
-  :config
-  (setq mozc-helper-program-name "mozc_emacs_helper.exe")
-  (setq mozc-helper-process-timeout-sec 10)
-  ;; Windows の mozc では、セッション接続直後 directモード になるので hiraganaモード にする
-  (advice-add 'mozc-session-execute-command
-              :after (lambda (&rest args)
-                       (when (eq (nth 0 args) 'CreateSession)
-                         ;; (mozc-session-sendkey '(hiragana)))))
-                         (mozc-session-sendkey '(Hankaku/Zenkaku))))))
-(use-package mozc-im
-  :if (wslp)
-  :after mozc
-  :config
-  ;;(bind-key "<zenkaku-hankaku>" #'toggle-input-method)
-  ;; IME有効時のタイトル設定
-  (defun my-mozc-leim-title ()
-    "Return a title string (with image icon) when mozc IM is enabled."
-    (let ((icon (expand-file-name
-                 ;; 解像度に応じてアイコンの大きさを変える
-                 (format "images/mozc-icon-%d.png"
-                         (if (> (display-pixel-height) 2000) 32 16))
-                 user-emacs-directory)))
-      (if (and (image-type-available-p 'png) (file-exists-p icon))
-          (progn
-            ;; 画像表示のために `current-input-method-title' のテキストプロパティを有効にする
-            (put 'current-input-method-title 'risky-local-variable t)
-            (propertize "あ" 'display `(image :type png :file ,icon :ascent center
-                                              :mask heuristic :margin (2 . 0))))
-        "[あ]")))
-  (setq mozc-leim-title (my-mozc-leim-title))
-  (setq default-input-method "japanese-mozc-im"))
-
-(use-package mozc-popup :disabled t
-  :if (wslp)
-  :after mozc
-  :config
-  ;; 変換候補をポップアップで表示する
-  (setq mozc-candidate-style 'popup))

@@ -3,7 +3,7 @@
 set -u
 
 brew tap d12frosted/emacs-plus
-brew install emacs-plus@27 --with-spacemacs-icon
+brew install emacs-plus@28 --with-spacemacs-icon
 brew link emacs-plus
 ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
 
