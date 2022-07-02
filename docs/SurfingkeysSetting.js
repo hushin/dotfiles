@@ -281,6 +281,16 @@ const copyHtmlLink = () => {
 mapkey('cm', '#7Copy title and link to markdown', () => {
   copyTitleAndUrl('[%TITLE%](%URL%)')
 })
+mapkey('cM', '#7Copy all tabs to markdown', () => {
+  RUNTIME('getTabs', { queryInfo: { currentWindow: true } }, (response) => {
+    const tabUrls = [{ url: location.href, title: document.title }]
+      .concat(response.tabs)
+      .map((tab) => `- [${tab.title}](${tab.url})`)
+      .join('\n')
+
+    Clipboard.write(tabUrls)
+  })
+})
 mapkey('ct', '#7Copy title and link to textile', () => {
   copyTitleAndUrl('"%TITLE%":%URL%')
 })
@@ -301,6 +311,16 @@ mapkey('cr', '#7Copy rich text link', () => {
 })
 mapkey('co', '#7Copy title and link to org', () => {
   copyTitleAndUrl('[[%URL%][%TITLE%]]')
+})
+mapkey('cO', '#7Copy all tabs to org', () => {
+  RUNTIME('getTabs', { queryInfo: { currentWindow: true } }, (response) => {
+    const tabUrls = [{ url: location.href, title: document.title }]
+      .concat(response.tabs)
+      .map((tab) => `- [[${tab.url}][${tab.title}]]`)
+      .join('\n')
+
+    Clipboard.write(tabUrls)
+  })
 })
 //  8: Omnibar
 //  9: Visual Mode
