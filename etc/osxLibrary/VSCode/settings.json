@@ -29,7 +29,11 @@
   },
   "[markdown]": {
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -65,5 +69,8 @@
     "0": null,
     "prefix": "keke"
   },
-  "gitlens.hovers.currentLine.over": "line"
+  "gitlens.hovers.currentLine.over": "line",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

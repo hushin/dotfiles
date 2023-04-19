@@ -11,12 +11,13 @@ cask "karabiner-elements"
 ## first private
 
 cask "dropbox"
-cask "1password6"
+cask "1password"
 # cask "onedrive"
 # cask "keepassxc"
 
 ## brew
 
+brew "asdf"
 brew "ag"
 brew "bash"
 brew "bat"
@@ -33,14 +34,13 @@ brew "gibo"
 brew "git-now"
 brew "git-secrets"
 brew "git"
-brew "gnu-sed", args: ["with-default-names"]
+brew "gnu-sed"
 brew "go"
 brew "graphviz"
 brew "highlight"
 brew "hub"
 brew "jq"
 brew "nkf"
-brew "nodebrew"
 brew "openssl"
 brew "ripgrep"
 brew "ruby"
@@ -53,7 +53,6 @@ brew "trash"
 brew "tree"
 brew "watch"
 brew "wget"
-brew "yarn"
 
 ## cask
 
@@ -66,7 +65,7 @@ cask "font-hackgen-nerd"
 cask "font-hackgen"
 cask "font-noto-serif"
 cask "font-roboto"
-cask "font-source-han-code-jp"
+cask "iandol/adobe-fonts/font-source-code-pro"
 cask "google-japanese-ime"
 cask "iterm2"
 cask "keycastr"
