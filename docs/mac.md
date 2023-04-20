@@ -14,7 +14,8 @@
   - Powerpack -> license
   - Advanced -> Syncing (Dropbox)
 - iTerm2
-  - General -> Preferences -> `~/Dropbox/env/MackupPreferences`
+  - Profiles -> etc/config/iTerm2Profile.json を インポート
+  - Keys -> Hotkey `⌘;`
 - Install [Google IME](https://www.google.co.jp/ime/)
   - ¥ キーで バックスラッシュを入力
   - キー設定: ATOK から Ctrl-kで全角カタカナに変換
