@@ -1,4 +1,0 @@
-[web]
-  browser = dummy-browser
-[browser "dummy-browser"]
-  cmd = echo

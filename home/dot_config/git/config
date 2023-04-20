@@ -2,8 +2,7 @@
 	autocrlf = false
 	excludesfile = ~/.gitignore
 [include]
-	path = ~/.gitconfig.local
-	path = ~/.gitconfig.os
+  path = conf.d/local.conf
 [alias]
 	# https://gist.github.com/teppeis/4117588
 	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
