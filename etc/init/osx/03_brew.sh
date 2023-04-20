@@ -27,3 +27,7 @@ echo "Install homebrew apps"
 cd ${dir_name}
 brew bundle
 echo
+
+# TODO あとで移す
+# diff-highlight
+[ -h /usr/local/bin/diff-highlight ] || sudo ln -s $(brew --prefix git)/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
