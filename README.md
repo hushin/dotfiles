@@ -1,17 +1,12 @@
 # Dotfiles
 
-## Overview
-
-* 各dotfilesへのシンボリックリンクを $HOME の下に作ります。
-* 各種アプリをインストール・設定します。
+My dotfiles, managed with https://chezmoi.io
 
 ## Installation
 
+<!-- TODO あとでbranchを消す -->
 ```
-git clone https://github.com/hushin/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-make deploy
-make init
+chezmoi init hushin --branch chezmoi
 ```
 
 gitのユーザー設定は、`$HOME/.gitconfig.local` に書いて下さい。
