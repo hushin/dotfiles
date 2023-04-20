@@ -1,0 +1,11 @@
+{{ if (eq .chezmoi.os "darwin") }}
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ end }}
+
+# ref https://www.clear-code.com/blog/2023/4/3/recommended-ssh-config.html
+HashKnownHosts yes
+PasswordAuthentication no
+StrictHostKeyChecking yes
+CheckHostIP yes
+Compression yes

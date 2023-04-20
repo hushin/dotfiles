@@ -1,0 +1,7 @@
+# conf.d以下の設定ファイルを読み込む
+Include conf.d/*.conf
+
+# 最初にみつけた設定が優先される挙動のため
+# 全体で有効にしたい内容は最後に読み込む
+# 参考: man ssh_config
+Include global.conf
