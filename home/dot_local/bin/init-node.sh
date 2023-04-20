@@ -3,15 +3,48 @@
 git init
 # https://github.com/simonwhitaker/gibo
 gibo dump Node >> .gitignore
-# https://github.com/blaix/license-generator
-licgen MIT hushin
-touch README.md
 # create dir
-mkdir test
-mkdir lib
 mkdir src
-# create package.json
-# https://github.com/azu/init-package-json-parcel
-yes '' | init-package-json
+npm init -y
+
+npx mklicense
+# create README
+CURRENT_DIR=$(echo ${PWD##*/})
+cat <<EOF > README.md
+# $CURRENT_DIR
+
+(Overview)
+
+## Description
+
+***DEMO:***
+
+## Features
+
+- aaa
+
+## Installation
+
+\`\`\`
+
+\`\`\`
+
+## Usage
+
+\`\`\`
+
+\`\`\`
+
+## Anything Else
+
+## Develop
+
+\`\`\`
+npm ci
+npm run dev
+npm test
+\`\`\`
+EOF
+
 # git
 git add .
