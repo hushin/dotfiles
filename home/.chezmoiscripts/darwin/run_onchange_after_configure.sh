@@ -1,11 +1,6 @@
 #!/bin/bash
 
-set -eu
-
-if ! command -v defaults > /dev/null 2>&1; then
-    echo "\`defaults\` not found. Nothing to do."
-    exit 0
-fi
+set -eufo pipefail
 
 echo "Configuring..."
 
