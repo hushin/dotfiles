@@ -12,26 +12,35 @@
   ln = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset' --name-status
   lc = log --graph -n 20 --pretty=format:'%C(yellow)%h%Creset %s'
 	lp = log --oneline -n 20 -p
+  la = log --oneline --decorate --graph --branches --tags --remotes --all
   ls = log --stat --abbrev-commit -n 1 # display previous log
 
+  branch-name = symbolic-ref --short HEAD
 	# https://gist.github.com/azu/09dd6f27f52e2e8d9978
-	pushup = "!gitbranchname() { git symbolic-ref --short HEAD; }; gitpushupstream() { git push --set-upstream origin `gitbranchname`; }; gitpushupstream"
+	pushup = !git push --set-upstream origin `git branch-name`
 	# https://qiita.com/makoto_kw/items/c825e17e2a577bb83e19
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 	merged-list = !git branch -r --list --merged
 	no-merged-list = "!git branch -r --list --no-merged | grep -v '*' | xargs -Ibranch git log -1 --pretty=format:'|branch|%an|%ad|%s|%n' --date=short branch | cat"
+  # https://qiita.com/Yinaura/items/30992f25b87f76af3ba2
+  force-pull = !git fetch && git reset --hard origin/`git branch-name`
 	# https://qiita.com/yuichielectric/items/84cd61915a1236f19221
 	rprune = remote prune origin
-	# http://motemen.hatenablog.com/entry/2014/06/05/released-git-browse-remote-0-1-0
-	br = browse-remote
+	br = !gh browse
+  # https://tech-broccoli.life/articles/engineer/recommend-git-aliases/
+  see = !gh repo view --web
 	# https://qiita.com/awakia/items/f14dc6310e469964a8f7
   showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
-  openpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
+  openpr = "!f() { gh browse -- `git showpr $1 | cut -f5 -d' ' | sed -e 's%#%%'`; }; f"
 
   pushf = push --force-with-lease
-  # トピックブランチで作業中、masterの変更を取り入れたいとき
-  rmaster = !git checkout master && git pull && git checkout - && git rebase --rebase-merges master
-  rmain = !git checkout main && git pull && git checkout - && git rebase --rebase-merges main
+  # https://motemen.hatenablog.com/entry/2022/04/git-aliases
+  fixit = commit --amend --no-edit
+
+  default-branch = !git remote show origin | sed -n '/HEAD branch/s/.*: //p'
+  swd = !git switch `git default-branch`
+  # トピックブランチで作業中、default branchの変更を取り入れたいとき
+  rebd = !git swd && git pull && git switch - && git rebase --rebase-merges `git default-branch`
 [color]
 	ui = auto
 [push]
