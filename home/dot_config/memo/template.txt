@@ -1,6 +1,0 @@
----
-title: {{.Title}}
-date: {{.Date}}
-tags: {{.Tags}}
----
-
