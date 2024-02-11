@@ -109,7 +109,11 @@ removeSearchAlias('b');
 removeSearchAlias('w');
 
 // hatena tag
-addSearchAlias('th', 'hatena tag', 'http://b.hatena.ne.jp/search/tag?q=');
+addSearchAlias(
+  'th',
+  'hatena tag',
+  'https://b.hatena.ne.jp/q/{0}?safe=on&sort=recent&date_range=5y&target=tag&users=3'
+);
 
 // Twitter
 addSearchAlias(
@@ -146,7 +150,7 @@ addSearchAlias(
 addSearchAlias(
   'r',
   'Yahoo!リアルタイム検索',
-  'http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p='
+  'https://search.yahoo.co.jp/realtime/search?p='
 );
 mapkey('or', '#8Open Search with alias r', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'r' });
@@ -160,28 +164,7 @@ addSearchAlias(
 );
 
 // MDN
-addSearchAlias(
-  'mdn',
-  'MDN',
-  'https://developer.mozilla.org/ja/search?q=',
-  's',
-  'https://developer.mozilla.org/api/v1/search/ja?q=',
-  (response) => {
-    const res = JSON.parse(response.text);
-    return res.documents.map((s) =>
-      createSuggestionItem(
-        `
-      <div>
-        <div class="title"><strong>${s.title}</strong></div>
-        <div style="font-size:0.8em"><em>${s.slug}</em></div>
-        <div>${s.summary}</div>
-      </div>
-    `,
-        { url: `https://developer.mozilla.org/${s.locale}/docs/${s.slug}` }
-      )
-    );
-  }
-);
+addSearchAlias('mdn', 'MDN', 'https://developer.mozilla.org/ja/search?q=');
 
 // npm
 addSearchAlias(
