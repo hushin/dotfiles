@@ -297,8 +297,7 @@ mapkey('co', '#7Copy title and link to org', () => {
 });
 mapkey('cO', '#7Copy all tabs to org', () => {
   RUNTIME('getTabs', { queryInfo: { currentWindow: true } }, (response) => {
-    const tabUrls = [{ url: location.href, title: document.title }]
-      .concat(response.tabs)
+    const tabUrls = response.tabs
       .map((tab) => `- [[${tab.url}][${tab.title}]]`)
       .join('\n');
 
