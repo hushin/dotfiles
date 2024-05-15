@@ -413,6 +413,19 @@ const orgCapture = (template) => {
   console.log(`orgCapture: ${url}`);
   window.location.href = url;
 };
+const orgRoamCapture = (template, option = {}) => {
+  const url = getUrl('org-protocol://roam-ref', {
+    template,
+    ref: window.location.href,
+    title: document.title,
+    body: window.getSelection(),
+    releaseDate: '',
+    creator: '',
+    ...option,
+  });
+  console.log(`orgRoamCapture: ${url}`);
+  window.location.href = url;
+};
 mapkey(',m', '#14org-capture memo', () => {
   orgCapture('M');
 });
@@ -421,6 +434,46 @@ mapkey(',t', '#14org-capture todo', () => {
 });
 mapkey(',l', '#14org-capture read it later', () => {
   orgCapture('L');
+});
+mapkey(',r', '#14org-roam-capture ref', () => {
+  orgRoamCapture('r');
+});
+mapkey(',z', '#14org-roam-capture Resonance Calendar)', () => {
+  if (window.location.hostname === 'booklog.jp') {
+    let [, releaseDate] = document
+      .querySelector('.item-area-info')
+      .innerText.match(/\/ (.*?発売)/);
+    orgRoamCapture('z', {
+      title: document.querySelector('.item-area-info-title').innerText,
+      ref:
+        location.origin +
+        document.querySelector('.item-area-info-title a').getAttribute('href'),
+      type: 'Book',
+      creator: document.querySelector('.author-link').innerText,
+      releaseDate,
+    });
+    return;
+  }
+
+  if (window.location.hostname === 'www.amazon.co.jp') {
+    const url = `https://www.amazon.co.jp/dp/${
+      document.querySelectorAll("[name='ASIN'], [name='ASIN.0']")[0].value
+    }`;
+    orgRoamCapture('z', {
+      title: document.querySelector('#productTitle').innerText,
+      ref: url,
+      type: 'Book',
+      creator: document.querySelector('.author a').innerText,
+      releaseDate: document.querySelector(
+        '#rpi-attribute-book_details-publication_date > div.a-section.a-spacing-none.a-text-center.rpi-attribute-value > span'
+      ).innerText,
+    });
+  }
+
+  if (window.location.hostname === 'www.youtube.com') {
+    orgRoamCapture('z', { type: 'Video' });
+  }
+  orgRoamCapture('z', { type: 'Web' });
 });
 
 mapkey('=q', '#14Delete query', () => {
@@ -456,7 +509,7 @@ qmarksMapKey('gO', qmarksUrls, false);
 
 // --- Site-specific mappings ---
 const clickElm = (selector) => () => document.querySelector(selector).click();
-if (/speakerdeck.com/.test(window.location.hostname)) {
+if (window.location.hostname === 'speakerdeck.com') {
   const clickElmFr = (selector) => () =>
     document
       .querySelector('.speakerdeck-iframe')
@@ -466,12 +519,22 @@ if (/speakerdeck.com/.test(window.location.hostname)) {
   mapkey('[', 'prev page', clickElmFr('.sd-player-previous'));
 }
 
-if (/www.slideshare.net/.test(window.location.hostname)) {
+if (window.location.hostname === 'www.slideshare.net') {
   mapkey(']', 'next page', clickElm('#btnNext'));
   mapkey('[', 'prev page', clickElm('#btnPrevious'));
 }
 
-if (/booklog.jp/.test(window.location.hostname)) {
+if (window.location.hostname === 'shonenjumpplus.com') {
+  mapkey(']', 'backward page', clickElm('.page-navigation-backward'));
+  mapkey('[', 'forward page', clickElm('.page-navigation-forward'));
+}
+
+if (window.location.hostname === 'championcross.jp') {
+  mapkey(']', 'right page', clickElm('#xCVRightNav'));
+  mapkey('[', 'left page', clickElm('#xCVLeftNav'));
+}
+
+if (window.location.hostname === 'booklog.jp') {
   mapkey(']', 'next page', clickElm('#modal-review-next'));
   mapkey('[', 'prev page', clickElm('#modal-review-prev'));
   mapkey('d', '読み終わった', clickElm('#status3'));
@@ -486,7 +549,7 @@ if (/booklog.jp/.test(window.location.hostname)) {
   );
 }
 
-if (/www.amazon.co.jp/.test(window.location.hostname)) {
+if (window.location.hostname === 'www.amazon.co.jp') {
   mapkey('=s', '#14URLを短縮', () => {
     location.href = `https://www.amazon.co.jp/dp/${
       document.querySelectorAll("[name='ASIN'], [name='ASIN.0']")[0].value
