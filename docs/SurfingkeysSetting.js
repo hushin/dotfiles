@@ -439,41 +439,46 @@ mapkey(',r', '#14org-roam-capture ref', () => {
   orgRoamCapture('r');
 });
 mapkey(',z', '#14org-roam-capture Resonance Calendar)', () => {
-  if (window.location.hostname === 'booklog.jp') {
-    let [, releaseDate] = document
-      .querySelector('.item-area-info')
-      .innerText.match(/\/ (.*?発売)/);
-    orgRoamCapture('z', {
-      title: document.querySelector('.item-area-info-title').innerText,
-      ref:
-        location.origin +
-        document.querySelector('.item-area-info-title a').getAttribute('href'),
-      type: 'Book',
-      creator: document.querySelector('.author-link').innerText,
-      releaseDate,
-    });
-    return;
+  switch (window.location.hostname) {
+    case 'booklog.jp': {
+      let [, releaseDate] = document
+        .querySelector('.item-area-info')
+        .innerText.match(/\/ (.*?発売)/);
+      orgRoamCapture('z', {
+        title: document.querySelector('.item-area-info-title').innerText,
+        ref:
+          location.origin +
+          document
+            .querySelector('.item-area-info-title a')
+            .getAttribute('href'),
+        type: 'Book',
+        creator: document.querySelector('.author-link').innerText,
+        releaseDate,
+      });
+      return;
+    }
+    case 'www.amazon.co.jp': {
+      const url = `https://www.amazon.co.jp/dp/${
+        document.querySelectorAll("[name='ASIN'], [name='ASIN.0']")[0].value
+      }`;
+      orgRoamCapture('z', {
+        title: document.querySelector('#productTitle').innerText,
+        ref: url,
+        type: 'Book',
+        creator: document.querySelector('.author a').innerText,
+        releaseDate: document.querySelector(
+          '#rpi-attribute-book_details-publication_date > div.a-section.a-spacing-none.a-text-center.rpi-attribute-value > span'
+        ).innerText,
+      });
+      return;
+    }
+    case 'www.youtube.com': {
+      orgRoamCapture('z', { type: 'Video' });
+      return;
+    }
+    default:
+      orgRoamCapture('z', { type: 'Web' });
   }
-
-  if (window.location.hostname === 'www.amazon.co.jp') {
-    const url = `https://www.amazon.co.jp/dp/${
-      document.querySelectorAll("[name='ASIN'], [name='ASIN.0']")[0].value
-    }`;
-    orgRoamCapture('z', {
-      title: document.querySelector('#productTitle').innerText,
-      ref: url,
-      type: 'Book',
-      creator: document.querySelector('.author a').innerText,
-      releaseDate: document.querySelector(
-        '#rpi-attribute-book_details-publication_date > div.a-section.a-spacing-none.a-text-center.rpi-attribute-value > span'
-      ).innerText,
-    });
-  }
-
-  if (window.location.hostname === 'www.youtube.com') {
-    orgRoamCapture('z', { type: 'Video' });
-  }
-  orgRoamCapture('z', { type: 'Web' });
 });
 
 mapkey('=q', '#14Delete query', () => {
