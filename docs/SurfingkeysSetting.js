@@ -619,7 +619,11 @@ if (
     ',m',
   ]);
 }
-if (/^https:\/\/www.amazon.co.jp\/gp\/video\//.test(window.location.href)) {
+if (
+  /^https:\/\/(www.amazon.co.jp\/gp\/video|www.netflix.com\/watch)\//.test(
+    window.location.href
+  )
+) {
   // for Video Speed Controller
   unmapKeys(['d', 's', 'z', 'x', 'r', 'g']);
 }
