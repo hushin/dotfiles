@@ -534,7 +534,9 @@ if (window.location.hostname === 'shonenjumpplus.com') {
   mapkey('[', 'forward page', clickElm('.page-navigation-forward'));
 }
 
-if (window.location.hostname === 'championcross.jp') {
+if (
+  ['championcross.jp', 'younganimal.com'].includes(window.location.hostname)
+) {
   mapkey(']', 'right page', clickElm('#xCVRightNav'));
   mapkey('[', 'left page', clickElm('#xCVLeftNav'));
 }
