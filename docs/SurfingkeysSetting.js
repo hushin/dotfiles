@@ -266,8 +266,7 @@ mapkey('cm', '#7Copy title and link to markdown', () => {
 });
 mapkey('cM', '#7Copy all tabs to markdown', () => {
   RUNTIME('getTabs', { queryInfo: { currentWindow: true } }, (response) => {
-    const tabUrls = [{ url: location.href, title: document.title }]
-      .concat(response.tabs)
+    const tabUrls = response.tabs
       .map((tab) => `- [${tab.title}](${tab.url})`)
       .join('\n');
 
