@@ -313,29 +313,19 @@ mapkey('gS', '#12Open Chrome settings', () =>
 );
 // 13: Proxy
 // 14: Misc
-mapkey(';a', '#14Save to Instapaper', () => {
-  function iprl5() {
-    var d = document,
-      z = d.createElement('scr' + 'ipt'),
-      b = d.body,
-      l = d.location;
-    try {
-      if (!b) throw 0;
-      d.title = '(Saving...) ' + d.title;
-      z.setAttribute(
-        'src',
-        l.protocol +
-          '//www.instapaper.com/j/TbVSmwFP6fKy?a=read-later&u=' +
-          encodeURIComponent(l.href) +
-          '&t=' +
-          new Date().getTime()
-      );
-      b.appendChild(z);
-    } catch (e) {
-      alert('Please wait until the page has loaded.');
-    }
-  }
-  iprl5();
+const createAiQuery = () => {
+  const currentTitle = document.title;
+  const currentURL = window.location.href;
+  const query = `${currentTitle} ${currentURL} を日本語、箇条書きで要約してください。`;
+  return encodeURIComponent(query);
+};
+
+mapkey(';af', '#14summarize With Felo AI', () => {
+  tabOpenBackground(`https://felo.ai/search?q=${createAiQuery()}`);
+});
+
+mapkey(';ap', '#14summarize With PerplexityAI', () => {
+  tabOpenBackground(`https://www.perplexity.ai/?q=${createAiQuery()}`);
 });
 
 unmap(';t');
