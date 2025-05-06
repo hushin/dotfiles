@@ -314,17 +314,37 @@ mapkey('gS', '#12Open Chrome settings', () =>
 // 13: Proxy
 // 14: Misc
 const createAiQuery = () => {
-  const currentTitle = document.title;
-  const currentURL = window.location.href;
-  const query = `${currentTitle} ${currentURL} を日本語、箇条書きで要約してください。`;
+  const title = document.title;
+  const url = window.location.href;
+  const query = `${title} ${url} を日本語で要約してください。
+要約には以下の要素を含めてください：
+- **主要なポイント** - ページの重要な情報や主張をいくつか箇条書きで示してください。
+- **具体例やケーススタディ** - 記載されている例やケーススタディがあれば、それも箇条書きに含めてください。
+- **結論や推奨事項** - ページで示されている結論や推奨事項を簡潔にまとめてください。
+- **重要なデータや統計** - ページ中の特筆すべきデータや統計があればその要点を示してください。
+`;
   return encodeURIComponent(query);
 };
 
-mapkey(';af', '#14summarize With Felo AI', () => {
+mapkey('=f', '#14summarize With Felo AI', () => {
   tabOpenBackground(`https://felo.ai/search?q=${createAiQuery()}`);
 });
 
-mapkey(';ap', '#14summarize With PerplexityAI', () => {
+mapkey('=o', '#14summarize With OpenAI ChatGPT', () => {
+  tabOpenBackground(`https://chatgpt.com/?q=${createAiQuery()}`);
+});
+
+mapkey('=c', '#14summarize With Anthropic Claude', () => {
+  tabOpenBackground(`https://claude.ai/new?q=${createAiQuery()}`);
+});
+
+mapkey('=b', '#14summarize With Bing', () => {
+  tabOpenBackground(
+    `https://www.bing.com/search?showconv=1&sendquery=1&q=${createAiQuery()}`
+  );
+});
+
+mapkey('=p', '#14summarize With PerplexityAI', () => {
   tabOpenBackground(`https://www.perplexity.ai/?q=${createAiQuery()}`);
 });
 
