@@ -571,6 +571,78 @@ if (window.location.href.startsWith('https://docs.google.com/presentation/')) {
   });
 }
 
+if (window.location.href.startsWith('https://drive.google.com/file/d/')) {
+  const goToPage = (pageNumber) => {
+    const input = document.querySelector('input');
+    console.log(`ページ ${pageNumber} にジャンプします...`, input);
+    if (!input) {
+      console.error('ページ番号入力欄が見つかりません');
+      return;
+    }
+    const enterEvent = new KeyboardEvent('keydown', {
+      key: 'Enter',
+      code: 'Enter',
+      keyCode: 13,
+      bubbles: true,
+    });
+
+    // ページ要素をクリックしていないと1回ではページ送りできないので、2回実行する
+    for (let i = 0; i < 2; i++) {
+      input.select();
+      input.value = pageNumber.toString();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(enterEvent);
+    }
+
+    console.log(`ページ ${pageNumber} にジャンプしました`);
+  };
+
+  // 現在のページ数を取得
+  const getCurrentPage = () => {
+    const input = document.querySelector('input');
+    return input ? parseInt(input.value) : null;
+  };
+
+  // 総ページ数を取得
+  const getTotalPages = () => {
+    const input = document.querySelector('input');
+    const parentDiv = input.parentElement;
+    const grandParentDiv = parentDiv?.parentElement;
+    // スラッシュ（/）の次の兄弟要素を探す
+    const children = Array.from(grandParentDiv.children);
+    const slashIndex = children.findIndex(
+      (child) => child.textContent.trim() === '/'
+    );
+    const pageCountDiv = children[slashIndex + 1];
+    return pageCountDiv ? parseInt(pageCountDiv.textContent) : null;
+  };
+
+  // 次のページへ
+  const nextPage = () => {
+    const current = getCurrentPage();
+    const total = getTotalPages();
+
+    if (current && total && current < total) {
+      return goToPage(current + 1);
+    }
+
+    console.log('これが最後のページです');
+  };
+
+  // 前のページへ
+  const prevPage = () => {
+    const current = getCurrentPage();
+
+    if (current && current > 1) {
+      return goToPage(current - 1);
+    }
+
+    console.log('これが最初のページです');
+  };
+  mapkey(']', 'next page', nextPage);
+  mapkey('[', 'prev page', prevPage);
+}
+
 if (window.location.hostname === 'www.slideshare.net') {
   mapkey(']', 'next page', clickElm('#btnNext'));
   mapkey('[', 'prev page', clickElm('#btnPrevious'));
