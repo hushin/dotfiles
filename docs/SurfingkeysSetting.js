@@ -533,6 +533,44 @@ if (window.location.hostname === 'speakerdeck.com') {
   mapkey('[', 'prev page', clickElmFr('.sd-player-previous'));
 }
 
+const sendArrowKey = (direction) => {
+  const keyCodes = {
+    ArrowUp: 38,
+    ArrowDown: 40,
+    ArrowLeft: 37,
+    ArrowRight: 39,
+  };
+
+  const target = document.activeElement || document.body;
+  target.dispatchEvent(
+    new KeyboardEvent('keydown', {
+      key: direction,
+      code: direction,
+      keyCode: keyCodes[direction],
+      bubbles: true,
+    })
+  );
+};
+
+if (window.location.href.startsWith('https://docs.google.com/presentation/')) {
+  const target = document.getElementById('docs-chrome');
+  const focusDoc = () => {
+    // ページ送り後に何故かフォーカスが about:blank のページに飛ぶので、フォーカスを当て直す
+    setTimeout(() => {
+      target.focus();
+    }, 10);
+  };
+  focusDoc();
+  mapkey(']', 'next page', () => {
+    sendArrowKey('ArrowRight');
+    focusDoc();
+  });
+  mapkey('[', 'prev page', () => {
+    sendArrowKey('ArrowLeft');
+    focusDoc();
+  });
+}
+
 if (window.location.hostname === 'www.slideshare.net') {
   mapkey(']', 'next page', clickElm('#btnNext'));
   mapkey('[', 'prev page', clickElm('#btnPrevious'));
