@@ -117,15 +117,15 @@ addSearchAlias(
 
 // Twitter
 addSearchAlias(
-  'tw',
+  'x',
   'Twitter',
-  'https://twitter.com/search?q=',
+  'https://x.com/search?q=',
   's',
-  'https://twitter.com/i/search/typeahead.json?count=10&filters=true&q=',
+  'https://x.com/i/search/typeahead.json?count=10&filters=true&q=',
   (response) =>
     JSON.parse(response.text).topics.map((v) =>
       createSuggestionItem(v.topic, {
-        url: `https://twitter.com/search?q=${encodeURIComponent(v.topic)}`,
+        url: `https://x.com/search?q=${encodeURIComponent(v.topic)}`,
       })
     )
 );
@@ -133,11 +133,7 @@ mapkey('otw', '#8Open Search with alias tw', function () {
   Front.openOmnibar({ type: 'SearchEngine', extra: 'tw' });
 });
 
-addSearchAlias(
-  'tf',
-  'Twitter フォロワーのみ',
-  'https://twitter.com/search?pf=on&q='
-);
+addSearchAlias('tf', 'Twitter フォロワーのみ', 'https://x.com/search?pf=on&q=');
 
 // Google jp 3ヶ月以内
 addSearchAlias(
@@ -514,8 +510,7 @@ const qmarksUrls = {
   m: 'https://mail.google.com/mail/u/0/',
   h: 'http://b.hatena.ne.jp/hush_in/hotentry',
   i: 'https://www.instapaper.com/u',
-  tw: 'https://twitter.com/',
-  td: 'https://tweetdeck.twitter.com/',
+  x: 'https://x.com/',
 };
 unmap('gn');
 qmarksMapKey('gn', qmarksUrls, true);
@@ -716,7 +711,7 @@ if (/youtube.com/.test(window.location.hostname)) {
 }
 
 if (
-  /^https?:\/\/(mail.google.com|twitter.com|feedly.com|www.figma.com\/file)/.test(
+  /^https?:\/\/(mail.google.com|x.com|feedly.com|www.figma.com\/file)/.test(
     window.location.href
   )
 ) {
